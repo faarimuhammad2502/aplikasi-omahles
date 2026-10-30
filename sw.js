@@ -1,8 +1,12 @@
-const CACHE_NAME = 'omahles-kids-v2';
+const CACHE_NAME = 'omahles-kids-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './logo.jpg',
+  './icon-192.png',
+  './icon-512.png',
+  './screenshot1.png',
+  './screenshot2.png',
   './manifest.json',
   './lagu1.mp3'
 ];

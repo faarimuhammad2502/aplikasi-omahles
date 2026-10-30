@@ -122,6 +122,17 @@
             box-shadow: 0 1px 0 #006e26;
         }
 
+        .btn-clay-amber {
+            background: linear-gradient(180deg, #f59f00 0%, #d97706 100%);
+            color: #ffffff;
+            box-shadow: 0 5px 0 #b45309, 0 8px 15px rgba(180, 83, 9, 0.25);
+            transition: all 0.12s ease-in-out;
+        }
+        .btn-clay-amber:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b45309;
+        }
+
         .btn-clay-surface {
             background: #ffffff;
             color: #301407;
@@ -310,9 +321,14 @@
                     <span id="splashAuthBtnText">Masuk Akun Siswa (Email & Password)</span>
                 </button>
 
-                <div class="flex items-center justify-center gap-1.5 text-xs text-on-surface-variant/80 font-medium mt-0.5">
-                    <span class="material-symbols-outlined text-tertiary text-[16px]">shield</span>
-                    <span>100% Ramah Anak • Tanpa Iklan</span>
+                <div class="flex items-center justify-between px-2 pt-1 text-[11px] text-on-surface-variant font-medium">
+                    <span class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-tertiary text-[15px]">shield</span>
+                        <span>100% Ramah Anak</span>
+                    </span>
+                    <button onclick="openAdminQuickLogin()" class="text-primary font-bold hover:underline cursor-pointer flex items-center gap-0.5">
+                        <span>👑 Masuk Admin</span>
+                    </button>
                 </div>
             </div>
 
@@ -330,8 +346,8 @@
                     <span class="material-symbols-outlined text-[20px]">arrow_back</span>
                 </button>
                 <div class="text-center">
-                    <h2 class="font-heading font-extrabold text-sm text-primary">Akun Siswa Juara</h2>
-                    <span class="text-[11px] text-on-surface-variant font-medium">Omah Les Kids Portal</span>
+                    <h2 class="font-heading font-extrabold text-sm text-primary">Portal Belajar Omah Les</h2>
+                    <span class="text-[11px] text-on-surface-variant font-medium">Masuk Siswa & Guru</span>
                 </div>
                 <div class="w-9 h-9"></div>
             </div>
@@ -350,10 +366,10 @@
 
                 <!-- Tab Switcher: [Masuk / Login] vs [Daftar Akun Baru] -->
                 <div class="grid grid-cols-2 gap-2 p-1 bg-surface-container-low rounded-2xl border border-surface-container mb-4">
-                    <button id="authTabLogin" onclick="switchAuthMode('login')" class="py-2.5 rounded-xl font-heading font-bold text-xs bg-primary text-white shadow-sm transition-all">
+                    <button id="authTabLogin" onclick="switchAuthMode('login')" class="py-2.5 rounded-xl font-heading font-bold text-xs bg-primary text-white shadow-sm transition-all cursor-pointer">
                         Masuk (Login)
                     </button>
-                    <button id="authTabRegister" onclick="switchAuthMode('register')" class="py-2.5 rounded-xl font-heading font-bold text-xs text-on-surface-variant hover:text-primary transition-all">
+                    <button id="authTabRegister" onclick="switchAuthMode('register')" class="py-2.5 rounded-xl font-heading font-bold text-xs text-on-surface-variant hover:text-primary transition-all cursor-pointer">
                         Daftar Siswa Baru
                     </button>
                 </div>
@@ -391,7 +407,7 @@
                     <div class="flex flex-col gap-1">
                         <label class="text-xs font-heading font-bold text-on-surface flex items-center gap-1">
                             <span class="material-symbols-outlined text-[16px] text-primary">mail</span>
-                            <span>Email Siswa / Orang Tua:</span>
+                            <span>Email Siswa / Orang Tua / Admin:</span>
                         </label>
                         <input type="email" id="authInputEmail" required placeholder="nama@omahles.id atau email orang tua" class="w-full px-3.5 py-3 rounded-2xl bg-surface-container-low border-2 border-surface-container focus:border-primary-container focus:bg-white outline-none font-medium text-sm text-on-surface transition-all">
                     </div>
@@ -404,7 +420,7 @@
                         </label>
                         <div class="relative w-full">
                             <input type="password" id="authInputPassword" required placeholder="Masukkan kata sandi..." class="w-full px-3.5 py-3 pr-11 rounded-2xl bg-surface-container-low border-2 border-surface-container focus:border-primary-container focus:bg-white outline-none font-medium text-sm text-on-surface transition-all">
-                            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3 text-on-surface-variant hover:text-primary">
+                            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3 text-on-surface-variant hover:text-primary cursor-pointer">
                                 <span id="pwdEyeIcon" class="material-symbols-outlined text-[20px]">visibility</span>
                             </button>
                         </div>
@@ -420,17 +436,21 @@
 
                 </form>
 
-                <!-- Quick Preset / Guest Access -->
+                <!-- Quick Preset & Admin Access -->
                 <div class="mt-4 pt-3 border-t border-surface-container flex flex-col gap-2">
-                    <span class="text-center text-[11px] text-on-surface-variant font-semibold">Atau coba langsung dengan akun instan:</span>
-                    <button onclick="fillDemoAccount()" type="button" class="btn-clay-secondary py-2.5 px-3 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
-                        <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
-                        <span>Isi Akun Demo Cepat (siswa@omahles.id)</span>
+                    <button onclick="loginAsAdminFast()" type="button" class="btn-clay-amber py-2.5 px-3 rounded-2xl font-heading font-extrabold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                        <span>👑 Masuk Akun Khusus Admin (Faari)</span>
                     </button>
-                    <button onclick="loginAsGuest()" type="button" class="btn-clay-surface py-2.5 px-3 rounded-2xl font-heading font-bold text-xs text-on-surface-variant border border-surface-container flex items-center justify-center gap-1.5 cursor-pointer">
-                        <span class="material-symbols-outlined text-[18px]">sentiment_satisfied</span>
-                        <span>Masuk Langsung sebagai Tamu</span>
-                    </button>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="fillDemoAccount()" type="button" class="btn-clay-secondary py-2.5 px-2 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+                            <span>Akun Siswa Demo</span>
+                        </button>
+                        <button onclick="loginAsGuest()" type="button" class="btn-clay-surface py-2.5 px-2 rounded-2xl font-heading font-bold text-xs text-on-surface-variant border border-surface-container flex items-center justify-center gap-1 cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">sentiment_satisfied</span>
+                            <span>Mode Tamu</span>
+                        </button>
+                    </div>
                 </div>
 
             </div>
@@ -438,6 +458,148 @@
             <!-- Footer note -->
             <div class="text-center text-[11px] text-on-surface-variant/80 py-1">
                 Data prestasi & bintangmu aman tersimpan di laptop ini 🛡️
+            </div>
+
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- SCREEN ADMIN: PANEL MAINTENANCE & GURU     -->
+        <!-- ========================================== -->
+        <div id="screen-admin" class="screen-view flex-col w-full h-full min-h-screen sm:min-h-[880px] p-5 justify-between relative overflow-y-auto">
+            
+            <!-- Top Bar Admin -->
+            <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container">
+                <button onclick="navigateTo('screen-jenjang')" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm cursor-pointer">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </button>
+                <div class="text-center">
+                    <div class="flex items-center justify-center gap-1">
+                        <span class="text-base">👑</span>
+                        <h2 class="font-heading font-black text-sm text-primary">Panel Admin & Maintenance</h2>
+                    </div>
+                    <span class="text-[11px] text-on-surface-variant font-medium">Khusus Faari • Omah Les Pusat</span>
+                </div>
+                <button onclick="handleLogout()" title="Keluar Akun Admin" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-red-500 border border-surface-container-high shadow-sm cursor-pointer">
+                    <span class="material-symbols-outlined text-[19px]">logout</span>
+                </button>
+            </div>
+
+            <!-- Admin Overview Hero Card -->
+            <div class="my-3 p-4 rounded-3xl bg-gradient-to-r from-amber-500 via-orange-500 to-primary text-white shadow-lg flex items-center justify-between">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-amber-200">Mode Guru & Maintenance</span>
+                    <h3 class="font-heading font-black text-lg mt-0.5">Halo, Kak Faari! 🦉</h3>
+                    <p class="text-xs text-white/90">Akses penuh seluruh fitur, materi & kelola murid les.</p>
+                </div>
+                <div class="text-center bg-black/20 p-2.5 rounded-2xl backdrop-blur-sm">
+                    <span class="text-xs text-white/80 block">Total Siswa:</span>
+                    <span id="adminTotalStudentCount" class="font-heading font-black text-2xl text-amber-200">1</span>
+                </div>
+            </div>
+
+            <!-- Admin Tabs: [1. Data Murid] [2. Pengumuman] [3. Maintenance Tools] -->
+            <div class="grid grid-cols-3 gap-1.5 mb-3">
+                <button onclick="switchAdminTab('students')" id="adminTab-students" class="py-2.5 rounded-2xl bg-primary text-white font-heading font-bold text-xs shadow-sm flex items-center justify-center gap-1 cursor-pointer">
+                    <span class="material-symbols-outlined text-[16px]">group</span>
+                    <span>Siswa</span>
+                </button>
+                <button onclick="switchAdminTab('broadcast')" id="adminTab-broadcast" class="py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
+                    <span class="material-symbols-outlined text-[16px]">campaign</span>
+                    <span>Broadcast</span>
+                </button>
+                <button onclick="switchAdminTab('tools')" id="adminTab-tools" class="py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
+                    <span class="material-symbols-outlined text-[16px]">build</span>
+                    <span>Sistem</span>
+                </button>
+            </div>
+
+            <!-- TAB 1: DATA SISWA & KELOLA BINTANG -->
+            <div id="adminPanel-students" class="flex flex-col gap-3">
+                <div class="flex items-center justify-between px-1">
+                    <span class="font-heading font-bold text-xs text-on-surface">Daftar Akun Murid Les:</span>
+                    <button onclick="openAddStudentModal()" class="px-2.5 py-1 rounded-xl bg-tertiary-fixed text-tertiary font-heading font-bold text-xs flex items-center gap-1 cursor-pointer">
+                        <span>+ Tambah Siswa</span>
+                    </button>
+                </div>
+
+                <!-- Student List Container -->
+                <div class="flex flex-col gap-2.5 max-h-[380px] overflow-y-auto" id="adminStudentListContainer">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- TAB 2: BROADCAST & PENGUMUMAN WALI MURID -->
+            <div id="adminPanel-broadcast" class="hidden flex flex-col gap-3">
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-heading font-bold text-sm text-primary">Tulis Pengumuman Les</h4>
+                            <p class="text-xs text-on-surface-variant">Pesan ini akan tampil di bagian atas layar siswa & wali murid.</p>
+                        </div>
+                        <span class="text-2xl">📢</span>
+                    </div>
+
+                    <textarea id="adminBroadcastInput" rows="3" placeholder="Contoh: Halo Ayah & Bunda! Besok ada les tambahan Bahasa Inggris jam 15.00 WIB. Jangan lupa bawa modul ya!" class="w-full p-3 rounded-2xl bg-surface-container-low border border-surface-container focus:border-primary-container outline-none text-xs text-on-surface font-medium leading-relaxed resize-none"></textarea>
+
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center gap-2 cursor-pointer text-xs font-heading font-bold text-on-surface">
+                            <input type="checkbox" id="adminBroadcastToggle" class="w-4 h-4 accent-primary">
+                            <span>Aktifkan Banner di Aplikasi</span>
+                        </label>
+                        <button onclick="saveBroadcastNotice()" class="btn-clay-primary px-4 py-2 rounded-xl font-heading font-bold text-xs cursor-pointer">
+                            Simpan Pengumuman
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preview Banner -->
+                <div class="p-3 rounded-2xl bg-amber-50 border border-amber-200">
+                    <span class="text-[11px] font-bold text-amber-800 block mb-1">Preview Tampilan di Layar Siswa:</span>
+                    <div class="p-2.5 rounded-xl bg-white border border-amber-200 text-xs text-amber-950 font-medium">
+                        <div class="flex items-center gap-1 font-heading font-bold text-amber-800 mb-0.5">
+                            <span>📢 Pengumuman Omah Les:</span>
+                        </div>
+                        <p id="adminBroadcastPreviewText" class="text-xs text-on-surface-variant">Belum ada pengumuman aktif.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: MAINTENANCE TOOLS & GOD MODE -->
+            <div id="adminPanel-tools" class="hidden flex flex-col gap-3">
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-3">
+                    <h4 class="font-heading font-bold text-sm text-primary">Fitur Khusus Pengelola</h4>
+                    
+                    <!-- God Mode Button -->
+                    <button onclick="activateGodMode()" class="btn-clay-amber w-full py-3 rounded-2xl font-heading font-extrabold text-xs flex items-center justify-center gap-2 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">lock_open</span>
+                        <span>Buka Semua Maskot & Setel 9999 ⭐ Bintang</span>
+                    </button>
+
+                    <!-- Export Student Data -->
+                    <button onclick="exportStudentDataToClipboard()" class="btn-clay-secondary w-full py-2.5 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-2 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                        <span>Salin Rekap Data Siswa ke WhatsApp</span>
+                    </button>
+
+                    <!-- Reset to default DB -->
+                    <button onclick="resetAppDatabase()" class="py-2.5 rounded-2xl bg-red-50 text-red-600 border border-red-200 font-heading font-bold text-xs flex items-center justify-center gap-2 hover:bg-red-100 transition-all cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+                        <span>Reset Database Akun ke Bawaan</span>
+                    </button>
+                </div>
+
+                <div class="p-3 rounded-2xl bg-surface-container text-xs text-on-surface-variant flex items-center justify-between">
+                    <span>Versi Aplikasi: <b>2.5 Admin Edition</b></span>
+                    <span class="text-tertiary font-bold">Status: Online ✅</span>
+                </div>
+            </div>
+
+            <!-- Bottom Action: Masuk Belajar Mode Guru -->
+            <div class="pt-3 border-t border-surface-container">
+                <button onclick="navigateTo('screen-jenjang')" class="btn-clay-primary w-full py-3 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                    <span>Masuk ke Dunia Belajar (Mode Guru) 🚀</span>
+                </button>
             </div>
 
         </div>
@@ -460,22 +622,36 @@
                         <span class="text-[11px] text-on-surface-variant font-semibold">Taman Belajar Omah Les</span>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <div onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-full border border-surface-container-high shadow-sm cursor-pointer hover:scale-105 transition-transform">
-                        <span class="text-base">⭐</span>
+                <div class="flex items-center gap-1.5">
+                    <!-- Admin Panel Pill (Only visible for Admin Faari) -->
+                    <button onclick="navigateTo('screen-admin')" class="admin-nav-btn hidden px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-heading font-extrabold text-[10px] shadow-sm flex items-center gap-0.5 cursor-pointer">
+                        <span>👑</span>
+                        <span>Admin</span>
+                    </button>
+                    
+                    <div onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full border border-surface-container-high shadow-sm cursor-pointer hover:scale-105 transition-transform">
+                        <span class="text-sm">⭐</span>
                         <span id="starCounterJenjang" class="font-heading font-bold text-xs text-primary">0</span>
                     </div>
                     <button onclick="handleLogout()" title="Keluar / Ganti Akun" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary-container border border-surface-container-high shadow-sm cursor-pointer">
-                        <span class="material-symbols-outlined text-[18px]">logout</span>
+                        <span class="material-symbols-outlined text-[17px]">logout</span>
                     </button>
                     <button onclick="toggleAudioMute()" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary-container border border-surface-container-high shadow-sm cursor-pointer">
-                        <span id="muteIcon" class="material-symbols-outlined text-[18px]">volume_up</span>
+                        <span id="muteIcon" class="material-symbols-outlined text-[17px]">volume_up</span>
                     </button>
                 </div>
             </div>
 
+            <!-- Broadcast Announcement Banner (from Admin) -->
+            <div id="broadcastBannerJenjang" class="hidden my-2.5 p-3 rounded-2xl bg-gradient-to-r from-amber-100 to-orange-100 border border-amber-300 shadow-sm text-xs text-amber-950 font-medium">
+                <div class="flex items-center gap-1.5 font-heading font-bold text-amber-800 mb-0.5">
+                    <span>📢 Pengumuman Omah Les:</span>
+                </div>
+                <p id="broadcastBannerTextJenjang" class="leading-relaxed"></p>
+            </div>
+
             <!-- Title -->
-            <div class="mt-4 mb-3 text-center">
+            <div class="mt-3 mb-2 text-center">
                 <h2 class="text-2xl font-extrabold font-heading text-on-surface">Pilih Jenjang Belajarmu! 🎒</h2>
                 <p class="text-xs text-on-surface-variant font-medium mt-0.5">Pilih dunia belajarmu sesuai usia dan tingkat kelas</p>
             </div>
@@ -564,11 +740,11 @@
 
             <!-- Bottom Back & Hadiah Quick Access -->
             <div class="flex items-center justify-between pt-3">
-                <button onclick="navigateTo('screen-splash')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs shadow-sm">
+                <button onclick="navigateTo('screen-splash')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs shadow-sm cursor-pointer">
                     <span class="material-symbols-outlined text-[18px]">arrow_back</span>
                     <span>Kembali ke Depan</span>
                 </button>
-                <button onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-primary-fixed text-primary font-heading font-bold text-xs shadow-sm">
+                <button onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-primary-fixed text-primary font-heading font-bold text-xs shadow-sm cursor-pointer">
                     <span>🏆 Ruang Hadiah</span>
                 </button>
             </div>
@@ -583,25 +759,30 @@
             
             <!-- TK Top Bar -->
             <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container">
-                <button onclick="navigateTo('screen-jenjang')" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm">
+                <button onclick="navigateTo('screen-jenjang')" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm cursor-pointer">
                     <span class="material-symbols-outlined text-[20px]">arrow_back</span>
                 </button>
                 <div class="flex items-center gap-2">
                     <span class="text-xl">🎈</span>
                     <h2 class="font-heading font-extrabold text-sm text-secondary">Dunia Ceria TK</h2>
                 </div>
-                <div onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-full border border-surface-container-high shadow-sm cursor-pointer">
-                    <span class="text-base">⭐</span>
-                    <span id="starCounterTK" class="font-heading font-bold text-xs text-primary">0</span>
+                <div class="flex items-center gap-1.5">
+                    <button onclick="navigateTo('screen-admin')" class="admin-nav-btn hidden px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-heading font-extrabold text-[10px] shadow-sm flex items-center gap-0.5 cursor-pointer">
+                        <span>👑</span>
+                    </button>
+                    <div onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full border border-surface-container-high shadow-sm cursor-pointer">
+                        <span class="text-sm">⭐</span>
+                        <span id="starCounterTK" class="font-heading font-bold text-xs text-primary">0</span>
+                    </div>
                 </div>
             </div>
 
             <!-- TK Sub-Tabs -->
             <div class="grid grid-cols-4 gap-1.5 my-3">
-                <button onclick="switchTKSubTab('huruf')" id="tkTab-huruf" class="tk-subtab py-2 px-1 rounded-xl bg-secondary-container text-white font-heading font-bold text-xs shadow-sm text-center">🔤 Huruf</button>
-                <button onclick="switchTKSubTab('suku')" id="tkTab-suku" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center">📖 Kata</button>
-                <button onclick="switchTKSubTab('hitung')" id="tkTab-hitung" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center">🔢 Hitung</button>
-                <button onclick="switchTKSubTab('trace')" id="tkTab-trace" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center">✍️ Tulis</button>
+                <button onclick="switchTKSubTab('huruf')" id="tkTab-huruf" class="tk-subtab py-2 px-1 rounded-xl bg-secondary-container text-white font-heading font-bold text-xs shadow-sm text-center cursor-pointer">🔤 Huruf</button>
+                <button onclick="switchTKSubTab('suku')" id="tkTab-suku" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">📖 Kata</button>
+                <button onclick="switchTKSubTab('hitung')" id="tkTab-hitung" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">🔢 Hitung</button>
+                <button onclick="switchTKSubTab('trace')" id="tkTab-trace" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">✍️ Tulis</button>
             </div>
 
             <!-- SECTION TK 1: BELAJAR HURUF A-Z -->
@@ -618,7 +799,7 @@
                             <p class="text-xs text-on-surface-variant">Sentuh untuk dengar pelafalan</p>
                         </div>
                     </div>
-                    <button onclick="speakCurrentTKLetter()" class="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-transform">
+                    <button onclick="speakCurrentTKLetter()" class="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-transform cursor-pointer">
                         <span class="material-symbols-outlined text-[24px]">volume_up</span>
                     </button>
                 </div>
@@ -659,11 +840,11 @@
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
-                        <button onclick="speakSyllables()" class="btn-clay-secondary py-3 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5">
+                        <button onclick="speakSyllables()" class="btn-clay-secondary py-3 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
                             <span class="material-symbols-outlined text-[18px]">hearing</span>
                             <span>Eja Bunyi Kata</span>
                         </button>
-                        <button onclick="nextSyllableExample()" class="btn-clay-primary py-3 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5">
+                        <button onclick="nextSyllableExample()" class="btn-clay-primary py-3 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
                             <span class="material-symbols-outlined text-[18px]">shuffle</span>
                             <span>Ganti Kata Baru</span>
                         </button>
@@ -712,9 +893,9 @@
                             <p class="text-[11px] text-on-surface-variant">Ikuti garis huruf dengan jari / kursor!</p>
                         </div>
                         <div class="flex items-center gap-1">
-                            <button onclick="prevTraceItem()" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface font-bold">‹</button>
+                            <button onclick="prevTraceItem()" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface font-bold cursor-pointer">‹</button>
                             <span id="traceCharLabel" class="font-heading font-extrabold text-base text-primary px-2">A</span>
-                            <button onclick="nextTraceItem()" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface font-bold">›</button>
+                            <button onclick="nextTraceItem()" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface font-bold cursor-pointer">›</button>
                         </div>
                     </div>
 
@@ -729,12 +910,12 @@
                     <!-- Canvas Tools -->
                     <div class="flex items-center justify-between gap-2 pt-1">
                         <div class="flex items-center gap-1.5">
-                            <button onclick="setPenColor('#f76707')" class="w-7 h-7 rounded-full bg-primary-container border-2 border-white shadow-sm"></button>
-                            <button onclick="setPenColor('#00639c')" class="w-7 h-7 rounded-full bg-secondary border-2 border-white shadow-sm"></button>
-                            <button onclick="setPenColor('#24aa46')" class="w-7 h-7 rounded-full bg-tertiary-container border-2 border-white shadow-sm"></button>
-                            <button onclick="setPenColor('#cc5de8')" class="w-7 h-7 rounded-full bg-purple-500 border-2 border-white shadow-sm"></button>
+                            <button onclick="setPenColor('#f76707')" class="w-7 h-7 rounded-full bg-primary-container border-2 border-white shadow-sm cursor-pointer"></button>
+                            <button onclick="setPenColor('#00639c')" class="w-7 h-7 rounded-full bg-secondary border-2 border-white shadow-sm cursor-pointer"></button>
+                            <button onclick="setPenColor('#24aa46')" class="w-7 h-7 rounded-full bg-tertiary-container border-2 border-white shadow-sm cursor-pointer"></button>
+                            <button onclick="setPenColor('#cc5de8')" class="w-7 h-7 rounded-full bg-purple-500 border-2 border-white shadow-sm cursor-pointer"></button>
                         </div>
-                        <button onclick="clearTraceCanvas()" class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center gap-1 shadow-sm">
+                        <button onclick="clearTraceCanvas()" class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center gap-1 shadow-sm cursor-pointer">
                             <span class="material-symbols-outlined text-[16px]">restart_alt</span>
                             <span>Hapus</span>
                         </button>
@@ -752,27 +933,32 @@
             
             <!-- SD Top Bar -->
             <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container">
-                <button onclick="navigateTo('screen-jenjang')" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm">
+                <button onclick="navigateTo('screen-jenjang')" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm cursor-pointer">
                     <span class="material-symbols-outlined text-[20px]">arrow_back</span>
                 </button>
                 <div class="text-center">
                     <h2 id="sdGradeTitle" class="font-heading font-extrabold text-sm text-primary">Kelas 1 SD • Kurikulum Merdeka</h2>
                     <span id="sdFaseBadge" class="text-[11px] text-on-surface-variant font-semibold">Fase A (Fondasi Literasi & Numerasi)</span>
                 </div>
-                <div onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-full border border-surface-container-high shadow-sm cursor-pointer">
-                    <span class="text-base">⭐</span>
-                    <span id="starCounterSD" class="font-heading font-bold text-xs text-primary">0</span>
+                <div class="flex items-center gap-1.5">
+                    <button onclick="navigateTo('screen-admin')" class="admin-nav-btn hidden px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-heading font-extrabold text-[10px] shadow-sm flex items-center gap-0.5 cursor-pointer">
+                        <span>👑</span>
+                    </button>
+                    <div onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full border border-surface-container-high shadow-sm cursor-pointer">
+                        <span class="text-sm">⭐</span>
+                        <span id="starCounterSD" class="font-heading font-bold text-xs text-primary">0</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Grade Switcher Bar inside SD -->
             <div class="flex items-center gap-1.5 overflow-x-auto py-2 my-1" id="sdGradeSwitcher">
-                <button onclick="switchSDGrade(1)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-primary-container text-white shadow-sm" data-grade="1">Kelas 1</button>
-                <button onclick="switchSDGrade(2)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="2">Kelas 2</button>
-                <button onclick="switchSDGrade(3)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="3">Kelas 3</button>
-                <button onclick="switchSDGrade(4)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="4">Kelas 4</button>
-                <button onclick="switchSDGrade(5)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="5">Kelas 5</button>
-                <button onclick="switchSDGrade(6)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="6">Kelas 6</button>
+                <button onclick="switchSDGrade(1)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-primary-container text-white shadow-sm cursor-pointer" data-grade="1">Kelas 1</button>
+                <button onclick="switchSDGrade(2)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant cursor-pointer" data-grade="2">Kelas 2</button>
+                <button onclick="switchSDGrade(3)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant cursor-pointer" data-grade="3">Kelas 3</button>
+                <button onclick="switchSDGrade(4)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant cursor-pointer" data-grade="4">Kelas 4</button>
+                <button onclick="switchSDGrade(5)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant cursor-pointer" data-grade="5">Kelas 5</button>
+                <button onclick="switchSDGrade(6)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant cursor-pointer" data-grade="6">Kelas 6</button>
             </div>
 
             <!-- Progress Card -->
@@ -781,7 +967,7 @@
                     <span class="font-heading font-bold text-xs text-primary">Misi Belajar Hari Ini 🏆</span>
                     <p class="text-[11px] text-on-surface-variant">Selesaikan materi & raih Bintang Prestasi!</p>
                 </div>
-                <button onclick="openSDQuizModal()" class="btn-clay-green px-3 py-2 rounded-xl font-heading font-bold text-xs flex items-center gap-1">
+                <button onclick="openSDQuizModal()" class="btn-clay-green px-3 py-2 rounded-xl font-heading font-bold text-xs flex items-center gap-1 cursor-pointer">
                     <span class="material-symbols-outlined text-[16px]">play_circle</span>
                     <span>Kuis Kelas</span>
                 </button>
@@ -806,11 +992,11 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mt-1">
-                        <button onclick="openSubjectDetail('indo')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1">
+                        <button onclick="openSubjectDetail('indo')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
                             <span class="material-symbols-outlined text-[16px]">menu_book</span>
                             <span>Buka Materi</span>
                         </button>
-                        <button onclick="speakCurrentSubject('indo')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container">
+                        <button onclick="speakCurrentSubject('indo')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
                             <span class="material-symbols-outlined text-[16px] text-primary">volume_up</span>
                             <span>Dengar Audio</span>
                         </button>
@@ -833,11 +1019,11 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mt-1">
-                        <button onclick="openSubjectDetail('inggris')" class="btn-clay-secondary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1">
+                        <button onclick="openSubjectDetail('inggris')" class="btn-clay-secondary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
                             <span class="material-symbols-outlined text-[16px]">menu_book</span>
                             <span>Buka Materi</span>
                         </button>
-                        <button onclick="speakCurrentSubject('inggris')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container">
+                        <button onclick="speakCurrentSubject('inggris')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
                             <span class="material-symbols-outlined text-[16px] text-secondary">volume_up</span>
                             <span>Dengar Audio</span>
                         </button>
@@ -860,11 +1046,11 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mt-1">
-                        <button onclick="openSubjectDetail('ipas')" class="btn-clay-green py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1">
+                        <button onclick="openSubjectDetail('ipas')" class="btn-clay-green py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
                             <span class="material-symbols-outlined text-[16px]">menu_book</span>
                             <span>Buka Materi</span>
                         </button>
-                        <button onclick="speakCurrentSubject('ipas')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container">
+                        <button onclick="speakCurrentSubject('ipas')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
                             <span class="material-symbols-outlined text-[16px] text-tertiary">volume_up</span>
                             <span>Dengar Audio</span>
                         </button>
@@ -887,11 +1073,11 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mt-1">
-                        <button onclick="openSubjectDetail('math')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1">
+                        <button onclick="openSubjectDetail('math')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
                             <span class="material-symbols-outlined text-[16px]">menu_book</span>
                             <span>Buka Materi</span>
                         </button>
-                        <button onclick="speakCurrentSubject('math')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container">
+                        <button onclick="speakCurrentSubject('math')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
                             <span class="material-symbols-outlined text-[16px] text-primary">volume_up</span>
                             <span>Dengar Audio</span>
                         </button>
@@ -910,14 +1096,16 @@
             
             <!-- Top Bar -->
             <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container">
-                <button onclick="navigateBackFromHadiah()" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm">
+                <button onclick="navigateBackFromHadiah()" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm cursor-pointer">
                     <span class="material-symbols-outlined text-[20px]">arrow_back</span>
                 </button>
                 <div class="text-center">
                     <h2 class="font-heading font-extrabold text-sm text-primary">Ruang Hadiah & Maskot</h2>
                     <span class="text-[11px] text-on-surface-variant font-medium">Koleksi Bintang Prestasi</span>
                 </div>
-                <div class="w-9 h-9"></div>
+                <button onclick="navigateTo('screen-admin')" class="admin-nav-btn hidden px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-heading font-extrabold text-[10px] shadow-sm flex items-center gap-0.5 cursor-pointer">
+                    <span>👑</span>
+                </button>
             </div>
 
             <!-- Star Bank Hero -->
@@ -938,11 +1126,11 @@
 
             <!-- Tabs: [Maskot] vs [Sertifikat] -->
             <div class="grid grid-cols-2 gap-2 my-2">
-                <button onclick="switchHadiahTab('mascot')" id="tabHadiah-mascot" class="py-2.5 rounded-2xl bg-secondary text-white font-heading font-bold text-xs shadow-sm flex items-center justify-center gap-1.5">
+                <button onclick="switchHadiahTab('mascot')" id="tabHadiah-mascot" class="py-2.5 rounded-2xl bg-secondary text-white font-heading font-bold text-xs shadow-sm flex items-center justify-center gap-1.5 cursor-pointer">
                     <span class="material-symbols-outlined text-[18px]">pets</span>
                     <span>Toko Maskot 3D</span>
                 </button>
-                <button onclick="switchHadiahTab('cert')" id="tabHadiah-cert" class="py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center justify-center gap-1.5">
+                <button onclick="switchHadiahTab('cert')" id="tabHadiah-cert" class="py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
                     <span class="material-symbols-outlined text-[18px]">workspace_premium</span>
                     <span>Sertifikat Resmi</span>
                 </button>
@@ -1100,6 +1288,54 @@
 
 
     <!-- ========================================== -->
+    <!-- MODAL 3: TAMBAH SISWA MANUAL OLEH GURU     -->
+    <!-- ========================================== -->
+    <div id="modalAddStudent" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-surface rounded-3xl max-w-sm w-full p-5 border-2 border-primary-container shadow-2xl flex flex-col gap-3">
+            <div class="flex items-center justify-between pb-2 border-b border-surface-container">
+                <h4 class="font-heading font-black text-sm text-primary">Tambah Siswa Les Baru</h4>
+                <button onclick="closeAddStudentModal()" class="text-on-surface-variant font-bold cursor-pointer">✕</button>
+            </div>
+
+            <form onsubmit="handleAdminAddStudent(event)" class="flex flex-col gap-2.5">
+                <div>
+                    <label class="text-[11px] font-heading font-bold text-on-surface block mb-0.5">Nama Lengkap Siswa:</label>
+                    <input type="text" id="adminNewStudentName" required placeholder="Contoh: Ananda Budi" class="w-full px-3 py-2 rounded-xl bg-surface-container-low border border-surface-container text-xs outline-none">
+                </div>
+                <div>
+                    <label class="text-[11px] font-heading font-bold text-on-surface block mb-0.5">Email Siswa / Wali Murid:</label>
+                    <input type="email" id="adminNewStudentEmail" required placeholder="budi@omahles.id" class="w-full px-3 py-2 rounded-xl bg-surface-container-low border border-surface-container text-xs outline-none">
+                </div>
+                <div>
+                    <label class="text-[11px] font-heading font-bold text-on-surface block mb-0.5">Kata Sandi (Password):</label>
+                    <input type="text" id="adminNewStudentPassword" required value="123" class="w-full px-3 py-2 rounded-xl bg-surface-container-low border border-surface-container text-xs outline-none font-bold">
+                </div>
+                <div>
+                    <label class="text-[11px] font-heading font-bold text-on-surface block mb-0.5">Tingkat Kelas:</label>
+                    <select id="adminNewStudentGrade" class="w-full px-3 py-2 rounded-xl bg-surface-container-low border border-surface-container text-xs outline-none font-heading font-bold">
+                        <option value="tk">Dunia Ceria TK (PAUD - TK B)</option>
+                        <option value="1">SD Kelas 1</option>
+                        <option value="2">SD Kelas 2</option>
+                        <option value="3">SD Kelas 3</option>
+                        <option value="4">SD Kelas 4</option>
+                        <option value="5">SD Kelas 5</option>
+                        <option value="6">SD Kelas 6</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                    <button type="submit" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs cursor-pointer">
+                        Simpan Siswa
+                    </button>
+                    <button type="button" onclick="closeAddStudentModal()" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs border border-surface-container cursor-pointer">
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
     <!-- JAVASCRIPT LOGIC & CURRICULUM DATABASE     -->
     <!-- ========================================== -->
     <script>
@@ -1110,23 +1346,49 @@
         // Inisialisasi Database User Siswa di localStorage jika belum ada
         function getUsersDB() {
             const raw = localStorage.getItem('omahles_users_db');
+            let db = [];
             if (!raw) {
-                // Default akun demo
-                const defaultUsers = [
+                // Default akun bawaan
+                db = [
                     {
-                        nama: "Muhammad Faari",
+                        nama: "Muhammad Faari (Admin)",
+                        email: "admin@omahles.id",
+                        password: "admin",
+                        role: "admin",
+                        jenjang: "all",
+                        stars: 9999,
+                        mascot: "🦉"
+                    },
+                    {
+                        nama: "Siswa Juara",
                         email: "siswa@omahles.id",
                         password: "123",
+                        role: "student",
                         jenjang: "2",
                         stars: 50,
-                        mascot: "🦉"
+                        mascot: "🐰"
                     }
                 ];
-                localStorage.setItem('omahles_users_db', JSON.stringify(defaultUsers));
-                return defaultUsers;
+                saveUsersDB(db);
+                return db;
             }
             try {
-                return JSON.parse(raw);
+                db = JSON.parse(raw);
+                // Pastikan akun admin Faari selalu ada di DB
+                const hasAdmin = db.some(u => u.role === 'admin' || u.email === 'admin@omahles.id');
+                if (!hasAdmin) {
+                    db.unshift({
+                        nama: "Muhammad Faari (Admin)",
+                        email: "admin@omahles.id",
+                        password: "admin",
+                        role: "admin",
+                        jenjang: "all",
+                        stars: 9999,
+                        mascot: "🦉"
+                    });
+                    saveUsersDB(db);
+                }
+                return db;
             } catch(e) {
                 return [];
             }
@@ -1147,6 +1409,7 @@
                 }
             }
             updateSplashAuthButtons();
+            loadBroadcastNotice();
         }
 
         function updateSplashAuthButtons() {
@@ -1154,7 +1417,7 @@
             const startText = document.getElementById('splashStartBtnText');
             if (currentUser) {
                 if (btnText) btnText.innerText = `Masuk sebagai ${currentUser.nama} (Ganti Akun)`;
-                if (startText) startText.innerText = `Lanjut Belajar (${currentUser.nama})!`;
+                if (startText) startText.innerText = currentUser.role === 'admin' ? `Masuk Panel Admin & Guru` : `Lanjut Belajar (${currentUser.nama})!`;
             } else {
                 if (btnText) btnText.innerText = `Masuk Akun Siswa (Email & Password)`;
                 if (startText) startText.innerText = `Mulai Petualangan Belajar!`;
@@ -1164,7 +1427,11 @@
         function handleSplashStart() {
             playClickSound();
             if (currentUser) {
-                navigateTo('screen-jenjang');
+                if (currentUser.role === 'admin') {
+                    navigateTo('screen-admin');
+                } else {
+                    navigateTo('screen-jenjang');
+                }
             } else {
                 openAuthScreen('login');
             }
@@ -1190,16 +1457,16 @@
             alertBox.classList.add('hidden');
 
             if (mode === 'login') {
-                tabLogin.className = 'py-2.5 rounded-xl font-heading font-bold text-xs bg-primary text-white shadow-sm transition-all';
-                tabRegister.className = 'py-2.5 rounded-xl font-heading font-bold text-xs text-on-surface-variant hover:text-primary transition-all';
+                tabLogin.className = 'py-2.5 rounded-xl font-heading font-bold text-xs bg-primary text-white shadow-sm transition-all cursor-pointer';
+                tabRegister.className = 'py-2.5 rounded-xl font-heading font-bold text-xs text-on-surface-variant hover:text-primary transition-all cursor-pointer';
                 fieldNama.classList.add('hidden');
                 fieldJenjang.classList.add('hidden');
                 title.innerText = 'Masuk ke Akunmu 🎒';
                 sub.innerText = 'Masukkan email & password untuk simpan prestasimu!';
                 submitText.innerText = 'Masuk Sekarang 🚀';
             } else {
-                tabRegister.className = 'py-2.5 rounded-xl font-heading font-bold text-xs bg-primary text-white shadow-sm transition-all';
-                tabLogin.className = 'py-2.5 rounded-xl font-heading font-bold text-xs text-on-surface-variant hover:text-primary transition-all';
+                tabRegister.className = 'py-2.5 rounded-xl font-heading font-bold text-xs bg-primary text-white shadow-sm transition-all cursor-pointer';
+                tabLogin.className = 'py-2.5 rounded-xl font-heading font-bold text-xs text-on-surface-variant hover:text-primary transition-all cursor-pointer';
                 fieldNama.classList.remove('hidden');
                 fieldJenjang.classList.remove('hidden');
                 title.innerText = 'Daftar Siswa Juara Baru 🎉';
@@ -1240,6 +1507,12 @@
             const db = getUsersDB();
 
             if (authMode === 'login') {
+                // Check if admin login credentials
+                if ((email === 'admin@omahles.id' || email === 'admin') && (password === 'admin' || password === 'admin123' || password === 'faari')) {
+                    loginAsAdminFast();
+                    return;
+                }
+
                 const user = db.find(u => u.email === email && u.password === password);
                 if (user) {
                     playRewardFanfare();
@@ -1247,7 +1520,8 @@
                     setCurrentUser(user);
                     speakText(`Halo ${user.nama}! Selamat datang kembali di Omah Les.`);
                     setTimeout(() => {
-                        navigateTo('screen-jenjang');
+                        if (user.role === 'admin') navigateTo('screen-admin');
+                        else navigateTo('screen-jenjang');
                     }, 800);
                 } else {
                     playTone(220, 'sawtooth', 0.2, 0.2);
@@ -1273,6 +1547,7 @@
                     nama: nama,
                     email: email,
                     password: password,
+                    role: "student",
                     jenjang: jenjang,
                     stars: 50, // Bonus bintang pendaftaran
                     mascot: "🦉"
@@ -1290,12 +1565,32 @@
             }
         }
 
+        function openAdminQuickLogin() {
+            loginAsAdminFast();
+        }
+
+        function loginAsAdminFast() {
+            playRewardFanfare();
+            const adminUser = {
+                nama: "Muhammad Faari (Admin)",
+                email: "admin@omahles.id",
+                password: "admin",
+                role: "admin",
+                jenjang: "all",
+                stars: 9999,
+                mascot: "🦉"
+            };
+            setCurrentUser(adminUser);
+            speakText("Selamat datang Kak Faari di Panel Pengelola Omah Les!");
+            navigateTo('screen-admin');
+        }
+
         function fillDemoAccount() {
             playClickSound();
             document.getElementById('authInputEmail').value = "siswa@omahles.id";
             document.getElementById('authInputPassword').value = "123";
             switchAuthMode('login');
-            showAuthAlert("Akun demo terisi! Tekan tombol 'Masuk Sekarang'.", true);
+            showAuthAlert("Akun demo siswa terisi! Tekan 'Masuk Sekarang'.", true);
         }
 
         function loginAsGuest() {
@@ -1304,6 +1599,7 @@
                 nama: "Siswa Tamu",
                 email: "guest@omahles.id",
                 password: "",
+                role: "guest",
                 jenjang: "1",
                 stars: 30,
                 mascot: "🐰"
@@ -1329,14 +1625,29 @@
             const avatarHeader = document.getElementById('activeStudentAvatar');
             const certName = document.getElementById('certDisplayName');
 
-            if (nameHeader) nameHeader.innerText = `Halo, ${studentName}!`;
+            if (nameHeader) {
+                if (user.role === 'admin') {
+                    nameHeader.innerText = `👑 Faari (Admin)`;
+                } else {
+                    nameHeader.innerText = `Halo, ${studentName}!`;
+                }
+            }
             if (avatarHeader) avatarHeader.innerText = activeMascot;
             if (certName) certName.innerText = studentName;
+
+            // Show/hide admin nav button
+            const adminBtns = document.querySelectorAll('.admin-nav-btn');
+            if (user.role === 'admin') {
+                adminBtns.forEach(b => b.classList.remove('hidden'));
+                unlockedMascots = ['🦉', '🐰', '🦌', '🐅', '🐘', '🚀']; // All unlocked for admin!
+            } else {
+                adminBtns.forEach(b => b.classList.add('hidden'));
+            }
 
             updateStarDisplays();
             renderMascots();
 
-            if (user.jenjang && user.jenjang !== 'tk') {
+            if (user.jenjang && user.jenjang !== 'tk' && user.jenjang !== 'all') {
                 selectedGrade = parseInt(user.jenjang);
                 selectGrade(selectedGrade);
             }
@@ -1344,13 +1655,241 @@
 
         function handleLogout() {
             playClickSound();
-            if (confirm("Apakah ingin keluar akun siswa ini?")) {
+            if (confirm("Apakah ingin keluar dari akun ini?")) {
                 currentUser = null;
                 localStorage.removeItem('omahles_current_user');
                 updateSplashAuthButtons();
                 const nameHeader = document.getElementById('activeStudentNameHeader');
                 if (nameHeader) nameHeader.innerText = `Halo, Sahabat Juara!`;
+                document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.add('hidden'));
                 navigateTo('screen-splash');
+            }
+        }
+
+
+        /* --- ADMIN PANEL LOGIC & TOOLS --- */
+        function switchAdminTab(tabKey) {
+            playClickSound();
+            ['students', 'broadcast', 'tools'].forEach(t => {
+                const btn = document.getElementById(`adminTab-${t}`);
+                const panel = document.getElementById(`adminPanel-${t}`);
+                if (t === tabKey) {
+                    if (btn) btn.className = 'py-2.5 rounded-2xl bg-primary text-white font-heading font-bold text-xs shadow-sm flex items-center justify-center gap-1 cursor-pointer';
+                    if (panel) panel.classList.remove('hidden');
+                } else {
+                    if (btn) btn.className = 'py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer';
+                    if (panel) panel.classList.add('hidden');
+                }
+            });
+
+            if (tabKey === 'students') renderAdminStudentList();
+        }
+
+        function renderAdminStudentList() {
+            const container = document.getElementById('adminStudentListContainer');
+            if (!container) return;
+            const db = getUsersDB();
+            const students = db.filter(u => u.role !== 'admin');
+            
+            document.getElementById('adminTotalStudentCount').innerText = students.length;
+
+            if (students.length === 0) {
+                container.innerHTML = `<div class="p-4 text-center text-xs text-on-surface-variant font-medium bg-surface-container-low rounded-2xl">Belum ada murid les yang terdaftar. Tekan '+ Tambah Siswa' untuk mendaftarkan murid pertamamu!</div>`;
+                return;
+            }
+
+            container.innerHTML = students.map((s, idx) => `
+                <div class="bg-surface-container-lowest p-3.5 rounded-2xl border border-surface-container shadow-sm flex flex-col gap-2">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">${s.mascot || '🦉'}</span>
+                            <div>
+                                <h4 class="font-heading font-black text-xs text-primary leading-tight">${s.nama}</h4>
+                                <span class="text-[10px] text-on-surface-variant font-medium">${s.email} • Kelas ${s.jenjang === 'tk' ? 'TK' : s.jenjang}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-primary font-heading font-bold text-xs">
+                            <span>⭐</span>
+                            <span>${s.stars || 0}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between pt-1 border-t border-surface-container">
+                        <div class="flex items-center gap-1">
+                            <button onclick="adminAddStarsToStudent('${s.email}', 20)" class="px-2 py-1 rounded-lg bg-secondary-container text-white font-heading font-bold text-[10px] cursor-pointer hover:opacity-90">
+                                +20 ⭐
+                            </button>
+                            <button onclick="adminAddStarsToStudent('${s.email}', 50)" class="px-2 py-1 rounded-lg bg-tertiary-container text-white font-heading font-bold text-[10px] cursor-pointer hover:opacity-90">
+                                +50 ⭐
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="adminQuickCert('${s.nama}', ${s.stars || 50})" class="px-2 py-1 rounded-lg bg-amber-100 text-amber-800 font-heading font-bold text-[10px] cursor-pointer hover:bg-amber-200">
+                                📜 Sertifikat
+                            </button>
+                            <button onclick="adminDeleteStudent('${s.email}')" class="px-2 py-1 rounded-lg bg-red-100 text-red-600 font-heading font-bold text-[10px] cursor-pointer hover:bg-red-200">
+                                🗑️ Hapus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function adminAddStarsToStudent(email, amount) {
+            playRewardFanfare();
+            const db = getUsersDB();
+            const user = db.find(u => u.email === email);
+            if (user) {
+                user.stars = (user.stars || 0) + amount;
+                saveUsersDB(db);
+                renderAdminStudentList();
+                alert(`Berhasil menambahkan +${amount} ⭐ Bintang untuk ${user.nama}!`);
+            }
+        }
+
+        function adminDeleteStudent(email) {
+            playClickSound();
+            if (confirm(`Yakin ingin menghapus data murid dengan email ${email}?`)) {
+                let db = getUsersDB();
+                db = db.filter(u => u.email !== email);
+                saveUsersDB(db);
+                renderAdminStudentList();
+            }
+        }
+
+        function adminQuickCert(name, stars) {
+            playClickSound();
+            studentName = name;
+            userStars = stars;
+            document.getElementById('certDisplayName').innerText = name;
+            document.getElementById('certStarTotal').innerText = stars;
+            navigateTo('screen-hadiah');
+            switchHadiahTab('cert');
+        }
+
+        function openAddStudentModal() {
+            playClickSound();
+            document.getElementById('modalAddStudent').classList.remove('hidden');
+            document.getElementById('modalAddStudent').classList.add('flex');
+        }
+
+        function closeAddStudentModal() {
+            playClickSound();
+            document.getElementById('modalAddStudent').classList.add('hidden');
+            document.getElementById('modalAddStudent').classList.remove('flex');
+        }
+
+        function handleAdminAddStudent(e) {
+            e.preventDefault();
+            playClickSound();
+            const nama = document.getElementById('adminNewStudentName').value.trim();
+            const email = document.getElementById('adminNewStudentEmail').value.trim().toLowerCase();
+            const password = document.getElementById('adminNewStudentPassword').value.trim();
+            const jenjang = document.getElementById('adminNewStudentGrade').value;
+
+            const db = getUsersDB();
+            if (db.some(u => u.email === email)) {
+                alert("Email sudah ada di database!");
+                return;
+            }
+
+            db.push({
+                nama: nama,
+                email: email,
+                password: password,
+                role: "student",
+                jenjang: jenjang,
+                stars: 50,
+                mascot: "🦉"
+            });
+            saveUsersDB(db);
+            closeAddStudentModal();
+            renderAdminStudentList();
+            playCorrectSound();
+            alert(`Siswa ${nama} berhasil didaftarkan!`);
+        }
+
+        /* Broadcast Notice System */
+        function loadBroadcastNotice() {
+            const rawNotice = localStorage.getItem('omahles_broadcast_notice');
+            const isActive = localStorage.getItem('omahles_broadcast_active') === 'true';
+
+            const banner = document.getElementById('broadcastBannerJenjang');
+            const bannerText = document.getElementById('broadcastBannerTextJenjang');
+            const adminInput = document.getElementById('adminBroadcastInput');
+            const adminToggle = document.getElementById('adminBroadcastToggle');
+            const previewText = document.getElementById('adminBroadcastPreviewText');
+
+            if (adminInput && rawNotice) adminInput.value = rawNotice;
+            if (adminToggle) adminToggle.checked = isActive;
+            if (previewText) previewText.innerText = rawNotice || 'Belum ada pengumuman aktif.';
+
+            if (banner && bannerText) {
+                if (isActive && rawNotice && rawNotice.trim()) {
+                    bannerText.innerText = rawNotice;
+                    banner.classList.remove('hidden');
+                } else {
+                    banner.classList.add('hidden');
+                }
+            }
+        }
+
+        function saveBroadcastNotice() {
+            playClickSound();
+            const text = document.getElementById('adminBroadcastInput').value.trim();
+            const isActive = document.getElementById('adminBroadcastToggle').checked;
+
+            localStorage.setItem('omahles_broadcast_notice', text);
+            localStorage.setItem('omahles_broadcast_active', isActive.toString());
+            loadBroadcastNotice();
+            playRewardFanfare();
+            alert("Pengumuman berhasil diperbarui dan dipasang di layar siswa! 📢");
+        }
+
+        /* God Mode & Maintenance Tools */
+        function activateGodMode() {
+            playRewardFanfare();
+            userStars = 9999;
+            unlockedMascots = ['🦉', '🐰', '🦌', '🐅', '🐘', '🚀'];
+            localStorage.setItem('omahles_stars', '9999');
+            localStorage.setItem('omahles_unlocked_mascots', JSON.stringify(unlockedMascots));
+            updateStarDisplays();
+            renderMascots();
+            alert("🔓 GOD MODE AKTIF! Saldo 9999 ⭐ Bintang & Seluruh Maskot 3D Terbuka!");
+        }
+
+        function exportStudentDataToClipboard() {
+            playClickSound();
+            const db = getUsersDB();
+            const students = db.filter(u => u.role !== 'admin');
+            
+            let text = `📋 *REKAP DATA SISWA OMAH LES KIDS*\n`;
+            text += `Total Murid: ${students.length} Siswa\n\n`;
+            students.forEach((s, idx) => {
+                text += `${idx + 1}. *${s.nama}*\n`;
+                text += `   • Email: ${s.email}\n`;
+                text += `   • Kelas: ${s.jenjang === 'tk' ? 'TK' : 'Kelas ' + s.jenjang + ' SD'}\n`;
+                text += `   • Tabungan Bintang: ${s.stars || 0} ⭐\n\n`;
+            });
+
+            navigator.clipboard.writeText(text).then(() => {
+                playCorrectSound();
+                alert("Data rekap siswa berhasil disalin ke Clipboard! Kamu bisa langsung Paste (Ctrl+V) ke WhatsApp Ayah/Bunda atau pasanganmu.");
+            }).catch(() => {
+                prompt("Salin teks rekap berikut:", text);
+            });
+        }
+
+        function resetAppDatabase() {
+            if (confirm("PERINGATAN: Yakin ingin mereset data akun murid les ke setelan pabrik?")) {
+                localStorage.removeItem('omahles_users_db');
+                localStorage.removeItem('omahles_current_user');
+                localStorage.removeItem('omahles_broadcast_notice');
+                localStorage.removeItem('omahles_broadcast_active');
+                getUsersDB();
+                alert("Database berhasil direset bersih ke setelan awal.");
+                location.reload();
             }
         }
 
@@ -1444,6 +1983,8 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             updateStarDisplays();
+            if (screenId === 'screen-admin') renderAdminStudentList();
+            if (screenId === 'screen-jenjang') loadBroadcastNotice();
         }
 
         function navigateBackFromHadiah() {
@@ -1460,10 +2001,9 @@
                 if (el) el.innerText = userStars;
             });
             localStorage.setItem('omahles_stars', userStars.toString());
-            if (currentUser) {
+            if (currentUser && currentUser.role !== 'admin') {
                 currentUser.stars = userStars;
                 localStorage.setItem('omahles_current_user', JSON.stringify(currentUser));
-                // Update in DB
                 const db = getUsersDB();
                 const idx = db.findIndex(u => u.email === currentUser.email);
                 if (idx !== -1) {
@@ -1521,9 +2061,9 @@
             document.querySelectorAll('.grade-pill').forEach(btn => {
                 const g = parseInt(btn.dataset.grade);
                 if (g === grade) {
-                    btn.className = 'grade-pill py-2 rounded-xl bg-primary-container text-white font-heading font-bold text-xs shadow-md scale-105 transition-all';
+                    btn.className = 'grade-pill py-2 rounded-xl bg-primary-container text-white font-heading font-bold text-xs shadow-md scale-105 transition-all cursor-pointer';
                 } else {
-                    btn.className = 'grade-pill py-2 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs transition-all';
+                    btn.className = 'grade-pill py-2 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs transition-all cursor-pointer';
                 }
             });
             const label = document.getElementById('selectedGradeLabelJenjang');
@@ -1896,9 +2436,9 @@
             document.querySelectorAll('.sd-grade-tab').forEach(btn => {
                 const g = parseInt(btn.dataset.grade);
                 if (g === selectedGrade) {
-                    btn.className = 'sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-primary-container text-white shadow-sm';
+                    btn.className = 'sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-primary-container text-white shadow-sm cursor-pointer';
                 } else {
-                    btn.className = 'sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant';
+                    btn.className = 'sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant cursor-pointer';
                 }
             });
 
@@ -2217,7 +2757,7 @@
             playCorrectSound();
             activeMascot = id;
             localStorage.setItem('omahles_active_mascot', id);
-            if (currentUser) {
+            if (currentUser && currentUser.role !== 'admin') {
                 currentUser.mascot = id;
                 localStorage.setItem('omahles_current_user', JSON.stringify(currentUser));
                 const db = getUsersDB();
@@ -2258,7 +2798,7 @@
                     currentUser.nama = studentName;
                     localStorage.setItem('omahles_current_user', JSON.stringify(currentUser));
                     const nameHeader = document.getElementById('activeStudentNameHeader');
-                    if (nameHeader) nameHeader.innerText = `Halo, ${studentName}!`;
+                    if (nameHeader && currentUser.role !== 'admin') nameHeader.innerText = `Halo, ${studentName}!`;
                 }
             }
         }
@@ -2323,7 +2863,6 @@
             }
             animate();
         }
-
 
         /* --- SERVICE WORKER REGISTRATION (FOR PWABUILDER & APK) --- */
         if ('serviceWorker' in navigator) {

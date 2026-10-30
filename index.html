@@ -357,8 +357,8 @@
                 
                 <!-- Logo Badge & Greeting -->
                 <div class="flex flex-col items-center text-center mb-4">
-                    <div class="w-20 h-20 rounded-full p-1.5 bg-gradient-to-b from-white to-surface-container border-2 border-primary-container shadow-md flex items-center justify-center mb-2">
-                        <img src="logo.jpg" alt="Logo" class="w-full h-full object-contain rounded-full">
+                    <div onclick="handleLogoSecretTap()" title="Omah Les" class="w-20 h-20 rounded-full p-1.5 bg-gradient-to-b from-white to-surface-container border-2 border-primary-container shadow-md flex items-center justify-center mb-2 cursor-pointer active:scale-95 transition-transform select-none">
+                        <img src="logo.jpg" alt="Logo" class="w-full h-full object-contain rounded-full pointer-events-none">
                     </div>
                     <h3 id="authTitle" class="font-heading font-black text-xl text-on-surface">Masuk ke Akunmu 🎒</h3>
                     <p id="authSubtitle" class="text-xs text-on-surface-variant mt-0.5">Masukkan email & password untuk simpan prestasimu!</p>
@@ -438,7 +438,8 @@
 
                 <!-- Quick Preset & Admin Access -->
                 <div class="mt-4 pt-3 border-t border-surface-container flex flex-col gap-2">
-                    <button onclick="loginAsAdminFast()" type="button" class="btn-clay-amber py-2.5 px-3 rounded-2xl font-heading font-extrabold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                    <!-- Tombol Cepat Admin Disembunyikan (Hanya muncul jika klik logo 3x atau URL ?admin=1) -->
+                    <button id="adminFastBtn" onclick="loginAsAdminFast()" type="button" class="hidden btn-clay-amber py-2.5 px-3 rounded-2xl font-heading font-extrabold text-xs flex items-center justify-center gap-1.5 cursor-pointer transition-all">
                         <span>👑 Masuk Akun Khusus Admin (Faari)</span>
                     </button>
                     <div class="grid grid-cols-2 gap-2">
@@ -457,7 +458,7 @@
 
             <!-- Footer note -->
             <div class="text-center text-[11px] text-on-surface-variant/80 py-1">
-                Data prestasi & bintangmu aman tersimpan di laptop ini 🛡️
+                Data prestasi & bintangmu aman tersimpan di perangkat ini 🛡️
             </div>
 
         </div>
@@ -1562,6 +1563,23 @@
                 setTimeout(() => {
                     navigateTo('screen-jenjang');
                 }, 900);
+            }
+        }
+
+        let logoTapCount = 0;
+        let logoTapTimer = null;
+        function handleLogoSecretTap() {
+            logoTapCount++;
+            clearTimeout(logoTapTimer);
+            logoTapTimer = setTimeout(() => { logoTapCount = 0; }, 1500);
+            if (logoTapCount >= 3) {
+                logoTapCount = 0;
+                const btn = document.getElementById('adminFastBtn');
+                if (btn) {
+                    btn.classList.remove('hidden');
+                    playRewardFanfare();
+                    showAuthAlert("👑 Akses Admin Faari Terbuka!", true);
+                }
             }
         }
 
@@ -2875,6 +2893,19 @@
 
         /* --- INITIALIZATION ON LOAD --- */
         window.addEventListener('DOMContentLoaded', () => {
+            // Check for ?admin=1 in URL parameter
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('admin') === '1' || urlParams.get('admin') === 'true' || window.location.hash === '#admin' || window.location.hash === '#screen-admin') {
+                    const btn = document.getElementById('adminFastBtn');
+                    if (btn) btn.classList.remove('hidden');
+                }
+                if (window.location.hash === '#screen-admin') {
+                    setTimeout(() => {
+                        navigateTo('screen-admin');
+                    }, 150);
+                }
+            } catch(e) {}
             getUsersDB();
             checkExistingSession();
             updateStarDisplays();

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omah Les - Portal Admin Khusus (Faari)</title>
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #431407;
+            text-align: center;
+        }
+        .card {
+            background: #ffffff;
+            padding: 32px 24px;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.15);
+            max-width: 360px;
+            width: 90%;
+            border: 2px solid #FED7AA;
+        }
+        .icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        h2 {
+            margin: 0 0 8px 0;
+            font-size: 20px;
+            color: #C2410C;
+        }
+        p {
+            font-size: 13px;
+            color: #78350F;
+            margin: 0 0 20px 0;
+            line-height: 1.5;
+        }
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #FFEDD5;
+            border-top: 3px solid #EA580C;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">👑</div>
+        <h2>Portal Admin Omah Les</h2>
+        <p>Menyiapkan akses maintenance khusus Kak Faari...</p>
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        // Set sesi admin permanen untuk Faari
+        const adminUser = {
+            nama: "Muhammad Faari (Admin)",
+            email: "admin@omahles.id",
+            password: "admin",
+            role: "admin",
+            jenjang: "all",
+            stars: 9999,
+            mascot: "👑"
+        };
+        try {
+            localStorage.setItem('omahles_current_user', JSON.stringify(adminUser));
+        } catch(e) {
+            console.error(e);
+        }
+
+        // Langsung redirect ke aplikasi utama dalam mode Admin
+        setTimeout(() => {
+            window.location.replace('./index.html?admin=1#screen-admin');
+        }, 500);
+    </script>
+</body>
+</html>

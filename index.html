@@ -3302,11 +3302,27 @@ Nilai π (phi) = 22/7 (jika r kelipatan 7) atau 3,14.
             animate();
         }
 
-        /* --- SERVICE WORKER REGISTRATION (FOR PWABUILDER & APK) --- */
+        /* --- SERVICE WORKER REGISTRATION WITH AUTO-UPDATE & RECOVERY --- */
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('Omah Les PWA ServiceWorker aktif:', reg.scope))
+                navigator.serviceWorker.register('./sw.js?v=6')
+                    .then(reg => {
+                        console.log('Omah Les PWA ServiceWorker aktif:', reg.scope);
+                        // Trigger immediate background update check
+                        reg.update();
+                        reg.addEventListener('updatefound', () => {
+                            const newWorker = reg.installing;
+                            if (newWorker) {
+                                newWorker.addEventListener('statechange', () => {
+                                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                        // Cache updated! Auto reload to apply fresh assets
+                                        console.log('New version found, reloading...');
+                                        window.location.reload();
+                                    }
+                                });
+                            }
+                        });
+                    })
                     .catch(err => console.warn('ServiceWorker gagal:', err));
             });
         }

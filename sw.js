@@ -1,4 +1,4 @@
-const CACHE_NAME = 'omahles-kids-v5';
+const CACHE_NAME = 'omahles-kids-v6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

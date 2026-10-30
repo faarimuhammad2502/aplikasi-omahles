@@ -1976,19 +1976,20 @@
             triggerConfetti();
         }
 
-        /* --- SPEECH SYNTHESIS (VOICE) DENGAN AKSEN & LOGAT ASLI INDONESIA --- */
+        /* --- SUARA ASLI LOGAT BAHASA INDONESIA (HYBRID CLOUD + NATIVE) --- */
         let availableVoices = [];
         let indonesianVoice = null;
+        let activeAudioPlayer = null;
 
         function loadVoices() {
             if (!('speechSynthesis' in window)) return;
             availableVoices = window.speechSynthesis.getVoices() || [];
             
-            // Prioritaskan suara asli Indonesia: Google Bahasa Indonesia, id-ID, Damayanti, Gadis, dsb.
+            // Cari apakah perangkat memiliki voice asli Indonesia
             indonesianVoice = availableVoices.find(v => 
                 (v.lang === 'id-ID' || v.lang === 'id_ID' || v.lang.startsWith('id')) && 
-                (v.name.includes('Google') || v.name.includes('Indonesian') || v.name.includes('Indonesia'))
-            ) || availableVoices.find(v => v.lang.toLowerCase().includes('id'));
+                (v.name.includes('Google') || v.name.includes('Indonesian') || v.name.includes('Indonesia') || v.name.includes('Gadis') || v.name.includes('Andika'))
+            ) || availableVoices.find(v => v.lang && v.lang.toLowerCase().includes('id'));
         }
 
         if ('speechSynthesis' in window) {
@@ -1998,23 +1999,59 @@
 
         function speakText(text, lang = 'id-ID') {
             if (isAudioMuted) return;
+
+            // Hentikan audio yang sedang berjalan sebelumnya
+            if (activeAudioPlayer) {
+                try {
+                    activeAudioPlayer.pause();
+                    activeAudioPlayer.currentTime = 0;
+                } catch(e) {}
+                activeAudioPlayer = null;
+            }
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                // Bersihkan emoji dan karakter aneh agar pengucapan fasih & alami
-                const cleanText = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
-                
-                const utterance = new SpeechSynthesisUtterance(cleanText);
-                utterance.lang = 'id-ID';
-
-                if (!indonesianVoice) loadVoices();
-                if (indonesianVoice) {
-                    utterance.voice = indonesianVoice;
-                }
-
-                utterance.rate = 0.92; // Kecepatan nyaman untuk anak-anak
-                utterance.pitch = 1.05; // Nada ramah & ceria
-                window.speechSynthesis.speak(utterance);
             }
+
+            // Bersihkan emoji dan karakter aneh agar pengucapan lancar dan jernih
+            let cleanText = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
+            cleanText = cleanText.replace(/\s+/g, ' ').trim();
+            if (!cleanText) return;
+
+            if (!indonesianVoice) loadVoices();
+
+            // METODE 1: Jika laptop/perangkat TIDAK punya voice pack Indonesia asli (seperti Windows bawaan yang hanya punya Zira/David Inggris),
+            // gunakan Google Cloud Indonesian Voice dengan aksen & intonasi asli Indonesia yang jernih!
+            if (!indonesianVoice && cleanText.length < 200) {
+                try {
+                    const encoded = encodeURIComponent(cleanText);
+                    const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=id&client=tw-ob`;
+                    const audio = new Audio(audioUrl);
+                    activeAudioPlayer = audio;
+                    audio.playbackRate = 1.0;
+                    audio.play().catch(err => {
+                        console.warn('Audio TTS fallback triggered:', err);
+                        fallbackWebSpeech(cleanText);
+                    });
+                    return;
+                } catch(e) {
+                    console.warn(e);
+                }
+            }
+
+            // METODE 2: Browser Web Speech API jika voice Indonesia terpasang atau teks panjang
+            fallbackWebSpeech(cleanText);
+        }
+
+        function fallbackWebSpeech(cleanText) {
+            if (!('speechSynthesis' in window)) return;
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = 'id-ID';
+            if (indonesianVoice) {
+                utterance.voice = indonesianVoice;
+            }
+            utterance.rate = 0.95;
+            utterance.pitch = 1.05;
+            window.speechSynthesis.speak(utterance);
         }
 
         /* --- NAVIGATION --- */

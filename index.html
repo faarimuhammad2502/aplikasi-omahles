@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#f76707">
+    <title>Omah Les Kids - Aplikasi Belajar Kurikulum Merdeka (TK & SD)</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Fonts: Quicksand (Headings & Labels) + Nunito Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400..800;1,6..12,400..800&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#a14000',
+                        'primary-container': '#f76707',
+                        'on-primary': '#ffffff',
+                        'on-primary-container': '#511c00',
+                        'primary-fixed': '#ffdbcc',
+                        'primary-fixed-dim': '#ffb694',
+                        'on-primary-fixed': '#351000',
+                        'secondary': '#00639c',
+                        'secondary-container': '#55b2fe',
+                        'on-secondary': '#ffffff',
+                        'on-secondary-container': '#00436b',
+                        'secondary-fixed': '#cee5ff',
+                        'secondary-fixed-dim': '#97cbff',
+                        'tertiary': '#006e26',
+                        'tertiary-container': '#24aa46',
+                        'on-tertiary': '#ffffff',
+                        'on-tertiary-container': '#00350e',
+                        'tertiary-fixed': '#7ffc8d',
+                        'tertiary-fixed-dim': '#62df74',
+                        'surface': '#fff8f6',
+                        'surface-dim': '#ffd0be',
+                        'surface-bright': '#fff8f6',
+                        'surface-container-lowest': '#ffffff',
+                        'surface-container-low': '#fff1ec',
+                        'surface-container': '#ffe9e2',
+                        'surface-container-high': '#ffe2d8',
+                        'surface-container-highest': '#ffdbce',
+                        'on-surface': '#301407',
+                        'on-surface-variant': '#594137',
+                        'outline': '#8d7165',
+                        'outline-variant': '#e2bfb1',
+                    },
+                    fontFamily: {
+                        'quick': ['Quicksand', 'sans-serif'],
+                        'nunito': ['Nunito Sans', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'squircle': '2rem',
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #fff8f6;
+            color: #301407;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            user-select: none;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-heading, button, .label-clay {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        /* 3D Tactile Clay Buttons */
+        .btn-clay-primary {
+            background: linear-gradient(180deg, #f76707 0%, #e05400 100%);
+            color: #ffffff;
+            box-shadow: 0 5px 0 #a14000, 0 8px 15px rgba(161, 64, 0, 0.25);
+            transition: all 0.12s ease-in-out;
+        }
+        .btn-clay-primary:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #a14000, 0 3px 6px rgba(161, 64, 0, 0.2);
+        }
+
+        .btn-clay-secondary {
+            background: linear-gradient(180deg, #55b2fe 0%, #2296f3 100%);
+            color: #ffffff;
+            box-shadow: 0 5px 0 #00639c, 0 8px 15px rgba(0, 99, 156, 0.25);
+            transition: all 0.12s ease-in-out;
+        }
+        .btn-clay-secondary:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #00639c, 0 3px 6px rgba(0, 99, 156, 0.2);
+        }
+
+        .btn-clay-green {
+            background: linear-gradient(180deg, #24aa46 0%, #1c923a 100%);
+            color: #ffffff;
+            box-shadow: 0 5px 0 #006e26, 0 8px 15px rgba(0, 110, 38, 0.25);
+            transition: all 0.12s ease-in-out;
+        }
+        .btn-clay-green:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #006e26;
+        }
+
+        .btn-clay-surface {
+            background: #ffffff;
+            color: #301407;
+            box-shadow: 0 4px 0 #ffd0be;
+            transition: all 0.12s ease-in-out;
+        }
+        .btn-clay-surface:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #ffd0be;
+        }
+
+        /* Screen containers */
+        .screen-view {
+            display: none;
+            opacity: 0;
+            transform: scale(0.98);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .screen-view.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Animated Floating */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-bounce-slow {
+            animation: bounceSlow 2.5s ease-in-out infinite;
+        }
+
+        /* Canvas Tracing Area */
+        #drawingCanvas {
+            touch-action: none;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface antialiased flex justify-center items-center min-h-screen p-0 sm:p-4">
+
+    <!-- Confetti Canvas overlay -->
+    <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
+    <!-- App Wrapper (Mobile First Max Width 480px, responsive centered) -->
+    <div class="relative w-full max-w-[480px] min-h-screen sm:min-h-[880px] sm:max-h-[920px] bg-surface sm:rounded-[36px] sm:shadow-2xl sm:border-4 sm:border-surface-container-high flex flex-col justify-between overflow-hidden">
+
+        <!-- ========================================== -->
+        <!-- SCREEN 1: SPLASH & SELAMAT DATANG          -->
+        <!-- ========================================== -->
+        <div id="screen-splash" class="screen-view active flex-col w-full h-full min-h-screen sm:min-h-[880px] justify-between p-5 relative overflow-y-auto">
+            
+            <!-- Background Ornaments -->
+            <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+                <div class="absolute -top-12 -left-10 w-44 h-44 rounded-full bg-surface-dim/40 blur-2xl"></div>
+                <div class="absolute top-1/3 -right-12 w-52 h-52 rounded-full bg-secondary-fixed/50 blur-3xl"></div>
+                <div class="absolute bottom-16 -left-8 w-48 h-48 rounded-full bg-primary-fixed/40 blur-2xl"></div>
+            </div>
+
+            <!-- Top Badges -->
+            <div class="flex items-center justify-between w-full pt-1">
+                <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container shadow-sm border border-surface-container-high">
+                    <span class="material-symbols-outlined text-primary-container text-[18px]">school</span>
+                    <span class="font-bold text-xs tracking-wider text-primary font-heading">PAUD • TK • SD</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-tertiary-fixed text-on-tertiary-container shadow-sm font-heading font-bold text-xs">
+                    <span class="material-symbols-outlined text-tertiary text-[16px]">verified</span>
+                    <span>Kurikulum Merdeka 🇮🇩</span>
+                </div>
+            </div>
+
+            <!-- Central Hero: Official Omah Les Crest -->
+            <div class="relative w-full flex flex-col items-center justify-center my-3">
+                <!-- Floating Decorative Clay Badges -->
+                <div class="absolute -top-1 left-4 w-10 h-10 rounded-2xl bg-secondary-container/20 flex items-center justify-center text-secondary shadow-sm transform -rotate-12 animate-float">
+                    <span class="material-symbols-outlined text-[20px]">edit</span>
+                </div>
+                <div class="absolute top-6 right-3 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary-container shadow-sm transform rotate-12 animate-bounce-slow">
+                    <span class="material-symbols-outlined text-[22px]">auto_awesome</span>
+                </div>
+                <div class="absolute bottom-4 left-3 w-11 h-11 rounded-2xl bg-surface-container flex flex-col items-center justify-center shadow-sm transform rotate-6">
+                    <span class="font-bold text-primary font-heading text-xs leading-none">A B</span>
+                    <span class="font-bold text-on-surface-variant font-heading text-[10px] leading-none mt-0.5">1 2 3</span>
+                </div>
+                <div class="absolute bottom-2 right-4 w-10 h-10 rounded-2xl bg-secondary-fixed flex items-center justify-center text-secondary shadow-sm transform -rotate-6">
+                    <span class="material-symbols-outlined text-[22px]">cloud</span>
+                </div>
+
+                <!-- Main Glowing Circular Logo Badge -->
+                <div class="relative p-3">
+                    <div class="absolute inset-0 rounded-full bg-primary-container/20 blur-xl scale-95"></div>
+                    <div class="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full p-2 bg-gradient-to-b from-surface-container-lowest via-surface-container to-surface-container-high shadow-2xl flex items-center justify-center border-4 border-surface-container-lowest">
+                        <div class="w-full h-full rounded-full overflow-hidden p-1.5 bg-white flex items-center justify-center shadow-inner">
+                            <img src="logo.jpg" alt="Logo Omah Les Privat" class="w-full h-full object-contain rounded-full transform transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/200x200/f76707/ffffff?text=OMAH+LES'">
+                        </div>
+                        <div class="absolute -bottom-2 bg-gradient-to-r from-primary-container to-primary text-white font-heading font-bold text-xs px-4 py-1 rounded-full shadow-lg flex items-center gap-1.5 border border-white">
+                            <span class="material-symbols-outlined text-[15px]">workspace_premium</span>
+                            <span>Bimbel Sahabat Juara</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Greeting Text -->
+            <div class="w-full text-center px-2">
+                <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-primary-fixed text-primary font-heading font-bold text-xs mb-1.5 shadow-sm">
+                    <span class="material-symbols-outlined text-[15px]">waving_hand</span>
+                    <span>Selamat Datang Sahabat Cilik!</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-on-surface font-heading tracking-tight">
+                    Halo Sahabat Juara! <span class="inline-block animate-bounce-slow">🦉</span>
+                </h1>
+                <p class="text-on-surface-variant text-sm mt-1 max-w-xs mx-auto font-medium">
+                    Bimbel Seru & Belajar Asyik untuk Teman-Teman TK dan SD
+                </p>
+            </div>
+
+            <!-- Audio Greeting Button (with lagu1.mp3) -->
+            <div class="w-full mt-2.5">
+                <button id="btnPlayGreetingAudio" type="button" class="w-full flex items-center justify-between p-3 rounded-2xl bg-surface-container border border-surface-container-high shadow-sm btn-clay-surface cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-secondary-container text-white flex items-center justify-center shadow-md">
+                            <span class="material-symbols-outlined text-[22px]" id="audioIcon">volume_up</span>
+                        </div>
+                        <div class="text-left">
+                            <p class="font-heading font-bold text-xs text-on-surface">Dengarkan Suara Omah Les 🎵</p>
+                            <p class="text-[11px] text-on-surface-variant" id="audioStatusText">Sentuh untuk dengar sapaan & musik ceria!</p>
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary-container">
+                        <span class="material-symbols-outlined text-[20px]" id="audioActionIcon">play_arrow</span>
+                    </div>
+                </button>
+                <audio id="bgAudio" src="lagu1.mp3" preload="auto" loop></audio>
+            </div>
+
+            <!-- 3 Mini Feature Badges -->
+            <div class="w-full grid grid-cols-3 gap-2 my-2.5">
+                <div class="flex flex-col items-center justify-center p-2 rounded-2xl bg-surface-container-low text-center shadow-sm border border-surface-container">
+                    <div class="w-7 h-7 rounded-full bg-primary-fixed flex items-center justify-center text-primary mb-1">
+                        <span class="material-symbols-outlined text-[16px]">menu_book</span>
+                    </div>
+                    <span class="font-heading font-bold text-xs text-on-surface">Membaca</span>
+                    <span class="text-[10px] text-on-surface-variant font-medium">Lancar & Paham</span>
+                </div>
+                <div class="flex flex-col items-center justify-center p-2 rounded-2xl bg-surface-container-low text-center shadow-sm border border-surface-container">
+                    <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary mb-1">
+                        <span class="material-symbols-outlined text-[16px]">calculate</span>
+                    </div>
+                    <span class="font-heading font-bold text-xs text-on-surface">Berhitung</span>
+                    <span class="text-[10px] text-on-surface-variant font-medium">Cepat & Ceria</span>
+                </div>
+                <div class="flex flex-col items-center justify-center p-2 rounded-2xl bg-surface-container-low text-center shadow-sm border border-surface-container">
+                    <div class="w-7 h-7 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary mb-1">
+                        <span class="material-symbols-outlined text-[16px]">sports_esports</span>
+                    </div>
+                    <span class="font-heading font-bold text-xs text-on-surface">Kuis Seru</span>
+                    <span class="text-[10px] text-on-surface-variant font-medium">Koleksi Bintang</span>
+                </div>
+            </div>
+
+            <!-- CTA Buttons: Login Siswa & Mulai Belajar -->
+            <div class="w-full flex flex-col gap-2 pt-1 pb-2">
+                <button onclick="handleSplashStart()" type="button" class="btn-clay-primary w-full py-3.5 px-6 rounded-2xl font-heading font-extrabold text-base tracking-wide flex items-center justify-center gap-2 cursor-pointer">
+                    <span id="splashStartBtnText">Mulai Petualangan Belajar!</span>
+                    <span class="text-xl">🚀</span>
+                </button>
+                
+                <button onclick="openAuthScreen('login')" type="button" class="btn-clay-surface w-full py-2.5 px-4 rounded-2xl font-heading font-bold text-xs text-primary border border-surface-container flex items-center justify-center gap-1.5 cursor-pointer">
+                    <span class="material-symbols-outlined text-[18px]">account_circle</span>
+                    <span id="splashAuthBtnText">Masuk Akun Siswa (Email & Password)</span>
+                </button>
+
+                <div class="flex items-center justify-center gap-1.5 text-xs text-on-surface-variant/80 font-medium mt-0.5">
+                    <span class="material-symbols-outlined text-tertiary text-[16px]">shield</span>
+                    <span>100% Ramah Anak • Tanpa Iklan</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- SCREEN AUTH: HALAMAN LOGIN & DAFTAR SISWA  -->
+        <!-- ========================================== -->
+        <div id="screen-auth" class="screen-view flex-col w-full h-full min-h-screen sm:min-h-[880px] p-5 justify-between relative overflow-y-auto">
+            
+            <!-- Top Bar -->
+            <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container">
+                <button onclick="navigateTo('screen-splash')" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm cursor-pointer">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </button>
+                <div class="text-center">
+                    <h2 class="font-heading font-extrabold text-sm text-primary">Akun Siswa Juara</h2>
+                    <span class="text-[11px] text-on-surface-variant font-medium">Omah Les Kids Portal</span>
+                </div>
+                <div class="w-9 h-9"></div>
+            </div>
+
+            <!-- Center Form Box -->
+            <div class="w-full my-auto py-2">
+                
+                <!-- Logo Badge & Greeting -->
+                <div class="flex flex-col items-center text-center mb-4">
+                    <div class="w-20 h-20 rounded-full p-1.5 bg-gradient-to-b from-white to-surface-container border-2 border-primary-container shadow-md flex items-center justify-center mb-2">
+                        <img src="logo.jpg" alt="Logo" class="w-full h-full object-contain rounded-full">
+                    </div>
+                    <h3 id="authTitle" class="font-heading font-black text-xl text-on-surface">Masuk ke Akunmu 🎒</h3>
+                    <p id="authSubtitle" class="text-xs text-on-surface-variant mt-0.5">Masukkan email & password untuk simpan prestasimu!</p>
+                </div>
+
+                <!-- Tab Switcher: [Masuk / Login] vs [Daftar Akun Baru] -->
+                <div class="grid grid-cols-2 gap-2 p-1 bg-surface-container-low rounded-2xl border border-surface-container mb-4">
+                    <button id="authTabLogin" onclick="switchAuthMode('login')" class="py-2.5 rounded-xl font-heading font-bold text-xs bg-primary text-white shadow-sm transition-all">
+                        Masuk (Login)
+                    </button>
+                    <button id="authTabRegister" onclick="switchAuthMode('register')" class="py-2.5 rounded-xl font-heading font-bold text-xs text-on-surface-variant hover:text-primary transition-all">
+                        Daftar Siswa Baru
+                    </button>
+                </div>
+
+                <!-- FORM INPUTS -->
+                <form id="authForm" onsubmit="handleAuthSubmit(event)" class="flex flex-col gap-3">
+                    
+                    <!-- Nama Anak (Hanya tampil saat Register) -->
+                    <div id="authFieldNama" class="hidden flex-col gap-1">
+                        <label class="text-xs font-heading font-bold text-on-surface flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px] text-primary">face</span>
+                            <span>Nama Lengkap / Panggilan Anak:</span>
+                        </label>
+                        <input type="text" id="authInputNama" placeholder="Contoh: Muhammad Faari" class="w-full px-3.5 py-3 rounded-2xl bg-surface-container-low border-2 border-surface-container focus:border-primary-container focus:bg-white outline-none font-medium text-sm text-on-surface transition-all">
+                    </div>
+
+                    <!-- Pilihan Jenjang Awal (Hanya tampil saat Register) -->
+                    <div id="authFieldJenjang" class="hidden flex-col gap-1">
+                        <label class="text-xs font-heading font-bold text-on-surface flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px] text-secondary">school</span>
+                            <span>Tingkat Belajar:</span>
+                        </label>
+                        <select id="authSelectJenjang" class="w-full px-3.5 py-3 rounded-2xl bg-surface-container-low border-2 border-surface-container focus:border-primary-container focus:bg-white outline-none font-heading font-bold text-sm text-on-surface transition-all">
+                            <option value="tk">🎈 Dunia Ceria TK (PAUD - TK B)</option>
+                            <option value="1">🎒 SD Kelas 1 (Kurikulum Merdeka)</option>
+                            <option value="2" selected>🎒 SD Kelas 2 (Kurikulum Merdeka)</option>
+                            <option value="3">🎒 SD Kelas 3 (Kurikulum Merdeka)</option>
+                            <option value="4">🎒 SD Kelas 4 (Kurikulum Merdeka)</option>
+                            <option value="5">🎒 SD Kelas 5 (Kurikulum Merdeka)</option>
+                            <option value="6">🎒 SD Kelas 6 (Kurikulum Merdeka)</option>
+                        </select>
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-heading font-bold text-on-surface flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px] text-primary">mail</span>
+                            <span>Email Siswa / Orang Tua:</span>
+                        </label>
+                        <input type="email" id="authInputEmail" required placeholder="nama@omahles.id atau email orang tua" class="w-full px-3.5 py-3 rounded-2xl bg-surface-container-low border-2 border-surface-container focus:border-primary-container focus:bg-white outline-none font-medium text-sm text-on-surface transition-all">
+                    </div>
+
+                    <!-- Password Input with Toggle Peek -->
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-heading font-bold text-on-surface flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px] text-primary">lock</span>
+                            <span>Password Akun:</span>
+                        </label>
+                        <div class="relative w-full">
+                            <input type="password" id="authInputPassword" required placeholder="Masukkan kata sandi..." class="w-full px-3.5 py-3 pr-11 rounded-2xl bg-surface-container-low border-2 border-surface-container focus:border-primary-container focus:bg-white outline-none font-medium text-sm text-on-surface transition-all">
+                            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3 text-on-surface-variant hover:text-primary">
+                                <span id="pwdEyeIcon" class="material-symbols-outlined text-[20px]">visibility</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Error / Success Notification Banner -->
+                    <div id="authAlertBox" class="hidden p-3 rounded-2xl text-xs font-heading font-bold text-center"></div>
+
+                    <!-- Action Submit Button -->
+                    <button type="submit" id="authSubmitBtn" class="btn-clay-primary w-full py-3.5 rounded-2xl font-heading font-extrabold text-sm flex items-center justify-center gap-2 cursor-pointer mt-1">
+                        <span id="authSubmitText">Masuk Sekarang 🚀</span>
+                    </button>
+
+                </form>
+
+                <!-- Quick Preset / Guest Access -->
+                <div class="mt-4 pt-3 border-t border-surface-container flex flex-col gap-2">
+                    <span class="text-center text-[11px] text-on-surface-variant font-semibold">Atau coba langsung dengan akun instan:</span>
+                    <button onclick="fillDemoAccount()" type="button" class="btn-clay-secondary py-2.5 px-3 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                        <span>Isi Akun Demo Cepat (siswa@omahles.id)</span>
+                    </button>
+                    <button onclick="loginAsGuest()" type="button" class="btn-clay-surface py-2.5 px-3 rounded-2xl font-heading font-bold text-xs text-on-surface-variant border border-surface-container flex items-center justify-center gap-1.5 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">sentiment_satisfied</span>
+                        <span>Masuk Langsung sebagai Tamu</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Footer note -->
+            <div class="text-center text-[11px] text-on-surface-variant/80 py-1">
+                Data prestasi & bintangmu aman tersimpan di laptop ini 🛡️
+            </div>
+
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- SCREEN 2: PILIH JENJANG BELAJAR (TK vs SD) -->
+        <!-- ========================================== -->
+        <div id="screen-jenjang" class="screen-view flex-col w-full h-full min-h-screen sm:min-h-[880px] p-5 relative overflow-y-auto">
+            
+            <!-- Top App Bar -->
+            <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container">
+                <div class="flex items-center gap-2.5">
+                    <img src="logo.jpg" alt="Logo" class="w-9 h-9 rounded-full object-contain border border-surface-container-high shadow-sm">
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <h2 id="activeStudentNameHeader" class="font-heading font-bold text-sm text-on-surface leading-tight">Halo, Sahabat Juara!</h2>
+                            <span id="activeStudentAvatar" class="text-sm">🦉</span>
+                        </div>
+                        <span class="text-[11px] text-on-surface-variant font-semibold">Taman Belajar Omah Les</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-full border border-surface-container-high shadow-sm cursor-pointer hover:scale-105 transition-transform">
+                        <span class="text-base">⭐</span>
+                        <span id="starCounterJenjang" class="font-heading font-bold text-xs text-primary">0</span>
+                    </div>
+                    <button onclick="handleLogout()" title="Keluar / Ganti Akun" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary-container border border-surface-container-high shadow-sm cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">logout</span>
+                    </button>
+                    <button onclick="toggleAudioMute()" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary-container border border-surface-container-high shadow-sm cursor-pointer">
+                        <span id="muteIcon" class="material-symbols-outlined text-[18px]">volume_up</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="mt-4 mb-3 text-center">
+                <h2 class="text-2xl font-extrabold font-heading text-on-surface">Pilih Jenjang Belajarmu! 🎒</h2>
+                <p class="text-xs text-on-surface-variant font-medium mt-0.5">Pilih dunia belajarmu sesuai usia dan tingkat kelas</p>
+            </div>
+
+            <!-- Card 1: TK (PAUD - TK B) -->
+            <div class="bg-surface-container-lowest rounded-3xl p-5 border-2 border-secondary-container/40 shadow-[0_6px_0_#cee5ff] flex flex-col gap-3 my-2">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <span class="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-secondary-fixed text-secondary font-heading font-bold text-xs">
+                            🎈 Usia 4 - 6 Tahun
+                        </span>
+                        <h3 class="text-xl font-bold font-heading text-secondary mt-1.5">Dunia Ceria TK</h3>
+                        <p class="text-xs text-on-surface-variant">Belajar huruf, membaca suku kata, & hitung benda ceria!</p>
+                    </div>
+                    <div class="w-16 h-16 rounded-2xl bg-secondary-fixed/50 flex items-center justify-center text-3xl shadow-inner">
+                        🌈
+                    </div>
+                </div>
+
+                <!-- 4 Quick Pills -->
+                <div class="grid grid-cols-2 gap-2 text-xs font-heading font-bold">
+                    <div class="flex items-center gap-2 p-2 rounded-xl bg-surface-container-low text-on-surface">
+                        <span class="material-symbols-outlined text-secondary text-[18px]">spellcheck</span>
+                        <span>Belajar Huruf A-Z</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 rounded-xl bg-surface-container-low text-on-surface">
+                        <span class="material-symbols-outlined text-primary text-[18px]">menu_book</span>
+                        <span>Suku Kata</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 rounded-xl bg-surface-container-low text-on-surface">
+                        <span class="material-symbols-outlined text-tertiary text-[18px]">calculate</span>
+                        <span>Hitung Benda</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 rounded-xl bg-surface-container-low text-on-surface">
+                        <span class="material-symbols-outlined text-primary-container text-[18px]">draw</span>
+                        <span>Papan Tracing</span>
+                    </div>
+                </div>
+
+                <button onclick="enterTKMode()" class="btn-clay-secondary w-full py-3.5 rounded-2xl font-heading font-bold text-sm flex items-center justify-center gap-2 cursor-pointer mt-1">
+                    <span>Masuk Kelas Ceria TK 🎈</span>
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </button>
+            </div>
+
+            <!-- Card 2: SD (Kelas 1 - 6) Kurikulum Merdeka -->
+            <div class="bg-surface-container-lowest rounded-3xl p-5 border-2 border-primary-container/40 shadow-[0_6px_0_#ffdbce] flex flex-col gap-3 my-2">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-tertiary-fixed text-tertiary font-heading font-bold text-xs">
+                                <span class="material-symbols-outlined text-[15px]">verified</span>
+                                <span>Kurikulum Merdeka</span>
+                            </span>
+                            <span class="text-[11px] font-bold text-on-surface-variant">Usia 7 - 12 Tahun</span>
+                        </div>
+                        <h3 class="text-xl font-bold font-heading text-primary mt-1.5">Petualangan SD 🚀</h3>
+                        <p class="text-xs text-on-surface-variant">Kuasai B. Indonesia, English, IPAS & Matematika Juara!</p>
+                    </div>
+                    <div class="w-16 h-16 rounded-2xl bg-primary-fixed/50 flex items-center justify-center text-3xl shadow-inner">
+                        🚀
+                    </div>
+                </div>
+
+                <!-- Grade Pills (Kelas 1 - 6) -->
+                <div>
+                    <div class="flex items-center justify-between text-xs font-heading font-bold mb-1.5">
+                        <span class="text-on-surface">Pilih Tingkat Kelas:</span>
+                        <span id="selectedGradeLabelJenjang" class="text-primary-container font-extrabold">Kelas 1 Terpilih</span>
+                    </div>
+                    <div class="grid grid-cols-6 gap-1.5" id="gradePillsContainer">
+                        <button onclick="selectGrade(1)" class="grade-pill py-2 rounded-xl bg-primary-container text-white font-heading font-bold text-xs shadow-sm" data-grade="1">Kls 1</button>
+                        <button onclick="selectGrade(2)" class="grade-pill py-2 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs" data-grade="2">Kls 2</button>
+                        <button onclick="selectGrade(3)" class="grade-pill py-2 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs" data-grade="3">Kls 3</button>
+                        <button onclick="selectGrade(4)" class="grade-pill py-2 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs" data-grade="4">Kls 4</button>
+                        <button onclick="selectGrade(5)" class="grade-pill py-2 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs" data-grade="5">Kls 5</button>
+                        <button onclick="selectGrade(6)" class="grade-pill py-2 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs" data-grade="6">Kls 6</button>
+                    </div>
+                </div>
+
+                <button onclick="enterSDMode()" class="btn-clay-primary w-full py-3.5 rounded-2xl font-heading font-bold text-sm flex items-center justify-center gap-2 cursor-pointer mt-1">
+                    <span>Mulai Petualangan SD 🚀</span>
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </button>
+            </div>
+
+            <!-- Bottom Back & Hadiah Quick Access -->
+            <div class="flex items-center justify-between pt-3">
+                <button onclick="navigateTo('screen-splash')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs shadow-sm">
+                    <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                    <span>Kembali ke Depan</span>
+                </button>
+                <button onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-primary-fixed text-primary font-heading font-bold text-xs shadow-sm">
+                    <span>🏆 Ruang Hadiah</span>
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- SCREEN 3: TK LEARNING HUB                  -->
+        <!-- ========================================== -->
+        <div id="screen-tk" class="screen-view flex-col w-full h-full min-h-screen sm:min-h-[880px] p-5 relative overflow-y-auto">
+            
+            <!-- TK Top Bar -->
+            <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container">
+                <button onclick="navigateTo('screen-jenjang')" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </button>
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">🎈</span>
+                    <h2 class="font-heading font-extrabold text-sm text-secondary">Dunia Ceria TK</h2>
+                </div>
+                <div onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-full border border-surface-container-high shadow-sm cursor-pointer">
+                    <span class="text-base">⭐</span>
+                    <span id="starCounterTK" class="font-heading font-bold text-xs text-primary">0</span>
+                </div>
+            </div>
+
+            <!-- TK Sub-Tabs -->
+            <div class="grid grid-cols-4 gap-1.5 my-3">
+                <button onclick="switchTKSubTab('huruf')" id="tkTab-huruf" class="tk-subtab py-2 px-1 rounded-xl bg-secondary-container text-white font-heading font-bold text-xs shadow-sm text-center">🔤 Huruf</button>
+                <button onclick="switchTKSubTab('suku')" id="tkTab-suku" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center">📖 Kata</button>
+                <button onclick="switchTKSubTab('hitung')" id="tkTab-hitung" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center">🔢 Hitung</button>
+                <button onclick="switchTKSubTab('trace')" id="tkTab-trace" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center">✍️ Tulis</button>
+            </div>
+
+            <!-- SECTION TK 1: BELAJAR HURUF A-Z -->
+            <div id="tkSection-huruf" class="tk-section flex flex-col gap-3">
+                <!-- Letter Hero Display Box -->
+                <div class="bg-gradient-to-r from-surface-container-low to-surface-container p-4 rounded-3xl border-2 border-surface-container-high flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div id="tkBigLetter" class="w-16 h-16 rounded-2xl bg-secondary-container text-white font-heading font-extrabold text-4xl flex items-center justify-center shadow-md animate-bounce-slow">
+                            A
+                        </div>
+                        <div>
+                            <span class="text-xs text-on-surface-variant font-bold">Huruf Pilihan:</span>
+                            <h3 id="tkBigWord" class="font-heading font-bold text-lg text-primary leading-tight">Apel 🍎</h3>
+                            <p class="text-xs text-on-surface-variant">Sentuh untuk dengar pelafalan</p>
+                        </div>
+                    </div>
+                    <button onclick="speakCurrentTKLetter()" class="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-transform">
+                        <span class="material-symbols-outlined text-[24px]">volume_up</span>
+                    </button>
+                </div>
+
+                <!-- Grid Huruf A-Z -->
+                <div class="bg-surface-container-lowest p-3 rounded-3xl border border-surface-container shadow-sm">
+                    <div class="flex items-center justify-between mb-2 px-1">
+                        <span class="font-heading font-bold text-xs text-on-surface">Pilih Abjad A-Z:</span>
+                        <span class="text-[11px] text-primary font-bold">+1 ⭐ Tiap Sentuh</span>
+                    </div>
+                    <div class="grid grid-cols-6 gap-2 max-h-[300px] overflow-y-auto p-1" id="tkLetterGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION TK 2: SUKU KATA MEMBACA -->
+            <div id="tkSection-suku" class="tk-section hidden flex-col gap-3">
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-heading font-bold text-base text-primary">Playground Suku Kata</h3>
+                            <p class="text-xs text-on-surface-variant">Gabungkan dua bunyi menjadi kata benda</p>
+                        </div>
+                        <span class="text-2xl">🧸</span>
+                    </div>
+
+                    <!-- Syllable equation -->
+                    <div class="flex items-center justify-center gap-2 p-4 bg-surface-container-low rounded-2xl border border-surface-container-high">
+                        <div id="sukuPart1" class="px-4 py-2.5 rounded-xl bg-secondary-container text-white font-heading font-extrabold text-xl shadow-sm">Ba</div>
+                        <span class="font-heading font-bold text-xl text-outline-variant">+</span>
+                        <div id="sukuPart2" class="px-4 py-2.5 rounded-xl bg-primary-container text-white font-heading font-extrabold text-xl shadow-sm">Ju</div>
+                        <span class="font-heading font-bold text-xl text-outline-variant">=</span>
+                        <div id="sukuResult" class="px-4 py-2 rounded-xl bg-white text-primary font-heading font-bold text-base shadow-sm border border-surface-container flex items-center gap-1.5">
+                            <span id="sukuEmoji" class="text-2xl">👕</span>
+                            <span id="sukuWordText">Baju!</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="speakSyllables()" class="btn-clay-secondary py-3 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5">
+                            <span class="material-symbols-outlined text-[18px]">hearing</span>
+                            <span>Eja Bunyi Kata</span>
+                        </button>
+                        <button onclick="nextSyllableExample()" class="btn-clay-primary py-3 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5">
+                            <span class="material-symbols-outlined text-[18px]">shuffle</span>
+                            <span>Ganti Kata Baru</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Daftar Kata TK Lainnya -->
+                <div class="bg-surface-container-lowest p-3.5 rounded-3xl border border-surface-container shadow-sm">
+                    <span class="font-heading font-bold text-xs text-on-surface mb-2 block">Daftar Kata Seru Lainnya:</span>
+                    <div class="grid grid-cols-2 gap-2" id="sukuKataListContainer">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION TK 3: BERHITUNG OBJEK -->
+            <div id="tkSection-hitung" class="tk-section hidden flex-col gap-3">
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col items-center text-center gap-3">
+                    <span class="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-tertiary-fixed text-tertiary font-heading font-bold text-xs">
+                        Hitung Objek Lucu 🍎
+                    </span>
+                    <h3 class="font-heading font-bold text-base text-on-surface">Ada berapa jumlah buah di bawah?</h3>
+                    
+                    <!-- Emoji objects container -->
+                    <div id="tkMathObjects" class="min-h-[90px] flex items-center justify-center flex-wrap gap-2 p-3 bg-surface-container-low rounded-2xl w-full text-3xl">
+                        🍎 🍎 🍎
+                    </div>
+
+                    <p class="text-xs text-on-surface-variant font-medium">Sentuh jawaban angka yang benar:</p>
+
+                    <!-- Choice Options -->
+                    <div class="grid grid-cols-3 gap-2.5 w-full" id="tkMathOptions">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div id="tkMathFeedback" class="text-xs font-heading font-bold text-tertiary min-h-[20px]"></div>
+                </div>
+            </div>
+
+            <!-- SECTION TK 4: PAPAN TULIS & TRACING -->
+            <div id="tkSection-trace" class="tk-section hidden flex-col gap-3">
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-heading font-bold text-sm text-primary">Papan Tracing Ajaib ✍️</h3>
+                            <p class="text-[11px] text-on-surface-variant">Ikuti garis huruf dengan jari / kursor!</p>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="prevTraceItem()" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface font-bold">‹</button>
+                            <span id="traceCharLabel" class="font-heading font-extrabold text-base text-primary px-2">A</span>
+                            <button onclick="nextTraceItem()" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface font-bold">›</button>
+                        </div>
+                    </div>
+
+                    <!-- Canvas Box with Ghost Text Guide -->
+                    <div class="relative w-full h-[220px] rounded-2xl border-2 border-dashed border-tertiary-container overflow-hidden bg-white shadow-inner flex items-center justify-center">
+                        <div id="traceGuideText" class="absolute inset-0 flex items-center justify-center text-[130px] font-heading font-extrabold text-surface-container-high pointer-events-none select-none">
+                            A
+                        </div>
+                        <canvas id="drawingCanvas" class="w-full h-full relative z-10"></canvas>
+                    </div>
+
+                    <!-- Canvas Tools -->
+                    <div class="flex items-center justify-between gap-2 pt-1">
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="setPenColor('#f76707')" class="w-7 h-7 rounded-full bg-primary-container border-2 border-white shadow-sm"></button>
+                            <button onclick="setPenColor('#00639c')" class="w-7 h-7 rounded-full bg-secondary border-2 border-white shadow-sm"></button>
+                            <button onclick="setPenColor('#24aa46')" class="w-7 h-7 rounded-full bg-tertiary-container border-2 border-white shadow-sm"></button>
+                            <button onclick="setPenColor('#cc5de8')" class="w-7 h-7 rounded-full bg-purple-500 border-2 border-white shadow-sm"></button>
+                        </div>
+                        <button onclick="clearTraceCanvas()" class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center gap-1 shadow-sm">
+                            <span class="material-symbols-outlined text-[16px]">restart_alt</span>
+                            <span>Hapus</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- SCREEN 4: SD DASHBOARD (KURIKULUM MERDEKA) -->
+        <!-- ========================================== -->
+        <div id="screen-sd" class="screen-view flex-col w-full h-full min-h-screen sm:min-h-[880px] p-5 relative overflow-y-auto">
+            
+            <!-- SD Top Bar -->
+            <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container">
+                <button onclick="navigateTo('screen-jenjang')" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </button>
+                <div class="text-center">
+                    <h2 id="sdGradeTitle" class="font-heading font-extrabold text-sm text-primary">Kelas 1 SD • Kurikulum Merdeka</h2>
+                    <span id="sdFaseBadge" class="text-[11px] text-on-surface-variant font-semibold">Fase A (Fondasi Literasi & Numerasi)</span>
+                </div>
+                <div onclick="navigateTo('screen-hadiah')" class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-full border border-surface-container-high shadow-sm cursor-pointer">
+                    <span class="text-base">⭐</span>
+                    <span id="starCounterSD" class="font-heading font-bold text-xs text-primary">0</span>
+                </div>
+            </div>
+
+            <!-- Grade Switcher Bar inside SD -->
+            <div class="flex items-center gap-1.5 overflow-x-auto py-2 my-1" id="sdGradeSwitcher">
+                <button onclick="switchSDGrade(1)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-primary-container text-white shadow-sm" data-grade="1">Kelas 1</button>
+                <button onclick="switchSDGrade(2)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="2">Kelas 2</button>
+                <button onclick="switchSDGrade(3)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="3">Kelas 3</button>
+                <button onclick="switchSDGrade(4)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="4">Kelas 4</button>
+                <button onclick="switchSDGrade(5)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="5">Kelas 5</button>
+                <button onclick="switchSDGrade(6)" class="sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant" data-grade="6">Kelas 6</button>
+            </div>
+
+            <!-- Progress Card -->
+            <div class="bg-gradient-to-r from-primary-fixed to-surface-container p-3.5 rounded-2xl border border-surface-container-high shadow-sm flex items-center justify-between my-1">
+                <div>
+                    <span class="font-heading font-bold text-xs text-primary">Misi Belajar Hari Ini 🏆</span>
+                    <p class="text-[11px] text-on-surface-variant">Selesaikan materi & raih Bintang Prestasi!</p>
+                </div>
+                <button onclick="openSDQuizModal()" class="btn-clay-green px-3 py-2 rounded-xl font-heading font-bold text-xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                    <span>Kuis Kelas</span>
+                </button>
+            </div>
+
+            <!-- 4 Mata Pelajaran Utama -->
+            <div class="flex flex-col gap-3 my-2">
+                
+                <!-- 1. Bahasa Indonesia -->
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-primary font-heading font-bold text-xs">Bahasa Indonesia</span>
+                        <span class="text-[11px] text-on-surface-variant font-medium">Buku Siswa Merdeka</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-primary-fixed/40 flex items-center justify-center text-2xl shrink-0">
+                            📖
+                        </div>
+                        <div class="min-w-0">
+                            <h3 id="indoTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Membaca & Memahami Teks</h3>
+                            <p class="text-xs text-on-surface-variant truncate">Suku kata, kosakata & dongeng anak</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-1">
+                        <button onclick="openSubjectDetail('indo')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">menu_book</span>
+                            <span>Buka Materi</span>
+                        </button>
+                        <button onclick="speakCurrentSubject('indo')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container">
+                            <span class="material-symbols-outlined text-[16px] text-primary">volume_up</span>
+                            <span>Dengar Audio</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. English for Kids -->
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-secondary font-heading font-bold text-xs">English for Kids</span>
+                        <span class="text-[11px] text-secondary font-bold">Phonics & Vocabulary</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-secondary-fixed/40 flex items-center justify-center text-2xl shrink-0">
+                            🇬🇧
+                        </div>
+                        <div class="min-w-0">
+                            <h3 id="inggrisTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Greetings & Numbers</h3>
+                            <p class="text-xs text-on-surface-variant truncate">Percakapan ramah & kosakata bergambar</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-1">
+                        <button onclick="openSubjectDetail('inggris')" class="btn-clay-secondary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">menu_book</span>
+                            <span>Buka Materi</span>
+                        </button>
+                        <button onclick="speakCurrentSubject('inggris')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container">
+                            <span class="material-symbols-outlined text-[16px] text-secondary">volume_up</span>
+                            <span>Dengar Audio</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. IPAS (Sains & Sosial) -->
+                <div id="ipasSubjectCard" class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-tertiary font-heading font-bold text-xs">IPAS (Sains & Sosial)</span>
+                        <span class="text-[11px] text-tertiary font-bold">Eksperimen Seru</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-tertiary-fixed/40 flex items-center justify-center text-2xl shrink-0">
+                            🔬
+                        </div>
+                        <div class="min-w-0">
+                            <h3 id="ipasTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Panca Indra & Alam Sekitar</h3>
+                            <p class="text-xs text-on-surface-variant truncate">Wujud benda, fotosintesis & tata surya</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-1">
+                        <button onclick="openSubjectDetail('ipas')" class="btn-clay-green py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">menu_book</span>
+                            <span>Buka Materi</span>
+                        </button>
+                        <button onclick="speakCurrentSubject('ipas')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container">
+                            <span class="material-symbols-outlined text-[16px] text-tertiary">volume_up</span>
+                            <span>Dengar Audio</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. Matematika Dasar -->
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-0.5 rounded-full bg-surface-container text-primary-container font-heading font-bold text-xs">Matematika Dasar</span>
+                        <span class="text-[11px] text-primary-container font-bold">Rumus Cepat</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-2xl shrink-0">
+                            📐
+                        </div>
+                        <div class="min-w-0">
+                            <h3 id="mathTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Hitung Cepat & Bangun Datar</h3>
+                            <p class="text-xs text-on-surface-variant truncate">Penjumlahan, perkalian, pecahan & volume</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-1">
+                        <button onclick="openSubjectDetail('math')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">menu_book</span>
+                            <span>Buka Materi</span>
+                        </button>
+                        <button onclick="speakCurrentSubject('math')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container">
+                            <span class="material-symbols-outlined text-[16px] text-primary">volume_up</span>
+                            <span>Dengar Audio</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- SCREEN 5: RUANG HADIAH & SERTIFIKAT        -->
+        <!-- ========================================== -->
+        <div id="screen-hadiah" class="screen-view flex-col w-full h-full min-h-screen sm:min-h-[880px] p-5 relative overflow-y-auto">
+            
+            <!-- Top Bar -->
+            <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container">
+                <button onclick="navigateBackFromHadiah()" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </button>
+                <div class="text-center">
+                    <h2 class="font-heading font-extrabold text-sm text-primary">Ruang Hadiah & Maskot</h2>
+                    <span class="text-[11px] text-on-surface-variant font-medium">Koleksi Bintang Prestasi</span>
+                </div>
+                <div class="w-9 h-9"></div>
+            </div>
+
+            <!-- Star Bank Hero -->
+            <div class="bg-gradient-to-r from-primary-container to-primary text-white p-4 rounded-3xl shadow-lg my-3 flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-primary-fixed font-medium">Tabungan Bintang Kamu</span>
+                    <div class="flex items-center gap-2 mt-0.5">
+                        <span class="text-3xl">⭐</span>
+                        <h3 id="starBankAmount" class="font-heading font-extrabold text-3xl">0</h3>
+                        <span class="font-heading font-bold text-sm text-primary-fixed">Bintang</span>
+                    </div>
+                    <p class="text-[11px] text-white/90 mt-1">Kumpulkan dari kuis dan belajar setiap hari!</p>
+                </div>
+                <div class="text-4xl animate-bounce-slow">
+                    🏆
+                </div>
+            </div>
+
+            <!-- Tabs: [Maskot] vs [Sertifikat] -->
+            <div class="grid grid-cols-2 gap-2 my-2">
+                <button onclick="switchHadiahTab('mascot')" id="tabHadiah-mascot" class="py-2.5 rounded-2xl bg-secondary text-white font-heading font-bold text-xs shadow-sm flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-[18px]">pets</span>
+                    <span>Toko Maskot 3D</span>
+                </button>
+                <button onclick="switchHadiahTab('cert')" id="tabHadiah-cert" class="py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+                    <span>Sertifikat Resmi</span>
+                </button>
+            </div>
+
+            <!-- VIEW 1: TOKO MASKOT 3D -->
+            <div id="viewHadiah-mascot" class="flex flex-col gap-3">
+                <div class="flex items-center justify-between px-1">
+                    <span class="font-heading font-bold text-xs text-on-surface">Pilih Sahabat Belajarmu:</span>
+                    <span class="text-[11px] text-on-surface-variant" id="activeMascotLabel">Aktif: 🦉 Burung Hantu</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3" id="mascotGridContainer">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- VIEW 2: SERTIFIKAT RESMI KELULUSAN -->
+            <div id="viewHadiah-cert" class="hidden flex-col gap-3">
+                <div class="bg-surface-container-lowest p-5 rounded-3xl border-4 border-double border-primary-container shadow-md text-center flex flex-col items-center">
+                    <img src="logo.jpg" alt="Crest" class="w-14 h-14 rounded-full object-contain mb-1 shadow-sm border border-surface-container-high">
+                    <span class="font-heading font-extrabold text-xs text-primary tracking-widest uppercase">Omah Les Privat Indonesia</span>
+                    <h3 class="font-heading font-black text-lg text-primary-container mt-1">SERTIFIKAT PRESTASI BELAJAR</h3>
+                    <p class="text-xs text-on-surface-variant mt-1">Diberikan dengan bangga atas semangat belajar kepada:</p>
+                    
+                    <!-- Student Name -->
+                    <div class="my-3 px-6 py-2 rounded-2xl bg-surface-container-low border-b-2 border-primary-container text-primary font-heading font-black text-xl flex items-center gap-2">
+                        <span id="certDisplayName">Anak Pintar Juara</span>
+                        <button onclick="changeStudentNamePrompt()" class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-primary cursor-pointer">edit</button>
+                    </div>
+
+                    <p class="text-xs text-on-surface-variant max-w-xs leading-relaxed">
+                        Telah berhasil menyelesaikan rangkaian modul belajar ceria dan mengumpulkan total:
+                    </p>
+                    <div class="flex items-center gap-1.5 my-2 px-4 py-1.5 rounded-full bg-primary-fixed text-primary font-heading font-bold text-sm">
+                        <span>⭐</span>
+                        <span id="certStarTotal">0</span>
+                        <span>Bintang Prestasi</span>
+                    </div>
+
+                    <div class="flex items-center justify-between w-full mt-4 pt-3 border-t border-surface-container text-[11px] text-on-surface-variant">
+                        <div>
+                            <span>Tanggal Terbit:</span>
+                            <div class="font-bold text-on-surface" id="certIssueDate">30 Oktober 2026</div>
+                        </div>
+                        <div class="text-right">
+                            <span>Status:</span>
+                            <div class="font-bold text-tertiary">Terverifikasi Resmi ✅</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                    <button onclick="printCertificate()" class="btn-clay-primary py-3 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">print</span>
+                        <span>Cetak / PDF</span>
+                    </button>
+                    <button onclick="shareWhatsApp()" class="btn-clay-green py-3 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">share</span>
+                        <span>Kirim WA Ayah & Bunda</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- MODAL 1: DETAIL MATERI PELAJARAN SD        -->
+    <!-- ========================================== -->
+    <div id="modalSubjectDetail" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-surface rounded-3xl max-w-md w-full max-h-[85vh] flex flex-col overflow-hidden border-2 border-primary-container shadow-2xl animate-bounce-slow">
+            <div class="flex items-center justify-between p-4 border-b border-surface-container bg-surface-container-low">
+                <div class="flex items-center gap-2">
+                    <span id="modalSubjectIcon" class="text-2xl">📖</span>
+                    <div>
+                        <h3 id="modalSubjectTitle" class="font-heading font-bold text-base text-primary">Judul Materi</h3>
+                        <span id="modalSubjectSub" class="text-[11px] text-on-surface-variant font-medium">Buku Ajar Kurikulum Merdeka</span>
+                    </div>
+                </div>
+                <button onclick="closeSubjectModal()" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface font-bold cursor-pointer">✕</button>
+            </div>
+            
+            <div id="modalSubjectBody" class="p-5 overflow-y-auto text-sm text-on-surface leading-relaxed whitespace-pre-line font-medium space-y-3">
+                <!-- Content injected here -->
+            </div>
+
+            <div class="flex items-center justify-between p-3.5 border-t border-surface-container bg-surface-container-low">
+                <button onclick="speakModalContent()" class="btn-clay-secondary px-4 py-2.5 rounded-xl font-heading font-bold text-xs flex items-center gap-1.5 cursor-pointer">
+                    <span class="material-symbols-outlined text-[18px]">volume_up</span>
+                    <span>Bacakan Teks</span>
+                </button>
+                <button onclick="closeSubjectModal()" class="btn-clay-surface px-5 py-2.5 rounded-xl font-heading font-bold text-xs border border-surface-container cursor-pointer">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- MODAL 2: KUIS PETUALANGAN INTERAKTIF       -->
+    <!-- ========================================== -->
+    <div id="modalQuizGame" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-surface rounded-3xl max-w-md w-full max-h-[90vh] flex flex-col overflow-hidden border-3 border-tertiary-container shadow-2xl">
+            <!-- Quiz Header -->
+            <div class="p-4 bg-tertiary-container text-white flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🎮</span>
+                    <div>
+                        <h3 class="font-heading font-black text-base">Kuis Petualangan Pintar</h3>
+                        <span id="quizGradeBadge" class="text-xs text-white/90">Kelas 1 SD</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1 bg-black/20 px-3 py-1 rounded-full text-xs font-heading font-bold">
+                    <span>Soal: </span>
+                    <span id="quizCurrentNum">1</span>
+                    <span>/</span>
+                    <span id="quizTotalNum">10</span>
+                </div>
+            </div>
+
+            <!-- Quiz Body -->
+            <div class="p-5 overflow-y-auto flex flex-col gap-4">
+                <div class="bg-surface-container-low p-4 rounded-2xl border border-surface-container flex flex-col gap-2">
+                    <span class="text-xs text-primary font-heading font-bold">Pertanyaan:</span>
+                    <h4 id="quizQuestionText" class="font-heading font-bold text-base text-on-surface leading-snug">
+                        Pertanyaan kuis akan muncul di sini...
+                    </h4>
+                </div>
+
+                <!-- Multiple Choices -->
+                <div class="flex flex-col gap-2.5" id="quizOptionsList">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div id="quizInstantFeedback" class="text-center font-heading font-bold text-sm min-h-[24px]"></div>
+            </div>
+
+            <!-- Quiz Footer -->
+            <div class="p-3 bg-surface-container-low border-t border-surface-container flex items-center justify-between">
+                <div class="flex items-center gap-1 text-xs font-heading font-bold text-primary">
+                    <span>Skor Kuis: </span>
+                    <span id="quizLiveScore" class="text-sm font-extrabold">0</span>
+                    <span>⭐</span>
+                </div>
+                <button onclick="closeQuizModal()" class="px-4 py-2 rounded-xl bg-surface-container text-on-surface font-heading font-bold text-xs cursor-pointer">
+                    Keluar Kuis
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT LOGIC & CURRICULUM DATABASE     -->
+    <!-- ========================================== -->
+    <script>
+        /* --- AUTHENTICATION & USER MANAGEMENT --- */
+        let authMode = 'login'; // 'login' or 'register'
+        let currentUser = null;
+
+        // Inisialisasi Database User Siswa di localStorage jika belum ada
+        function getUsersDB() {
+            const raw = localStorage.getItem('omahles_users_db');
+            if (!raw) {
+                // Default akun demo
+                const defaultUsers = [
+                    {
+                        nama: "Muhammad Faari",
+                        email: "siswa@omahles.id",
+                        password: "123",
+                        jenjang: "2",
+                        stars: 50,
+                        mascot: "🦉"
+                    }
+                ];
+                localStorage.setItem('omahles_users_db', JSON.stringify(defaultUsers));
+                return defaultUsers;
+            }
+            try {
+                return JSON.parse(raw);
+            } catch(e) {
+                return [];
+            }
+        }
+
+        function saveUsersDB(db) {
+            localStorage.setItem('omahles_users_db', JSON.stringify(db));
+        }
+
+        function checkExistingSession() {
+            const savedSession = localStorage.getItem('omahles_current_user');
+            if (savedSession) {
+                try {
+                    currentUser = JSON.parse(savedSession);
+                    applyUserDataToApp(currentUser);
+                } catch(e) {
+                    currentUser = null;
+                }
+            }
+            updateSplashAuthButtons();
+        }
+
+        function updateSplashAuthButtons() {
+            const btnText = document.getElementById('splashAuthBtnText');
+            const startText = document.getElementById('splashStartBtnText');
+            if (currentUser) {
+                if (btnText) btnText.innerText = `Masuk sebagai ${currentUser.nama} (Ganti Akun)`;
+                if (startText) startText.innerText = `Lanjut Belajar (${currentUser.nama})!`;
+            } else {
+                if (btnText) btnText.innerText = `Masuk Akun Siswa (Email & Password)`;
+                if (startText) startText.innerText = `Mulai Petualangan Belajar!`;
+            }
+        }
+
+        function handleSplashStart() {
+            playClickSound();
+            if (currentUser) {
+                navigateTo('screen-jenjang');
+            } else {
+                openAuthScreen('login');
+            }
+        }
+
+        function openAuthScreen(mode = 'login') {
+            playClickSound();
+            switchAuthMode(mode);
+            navigateTo('screen-auth');
+        }
+
+        function switchAuthMode(mode) {
+            authMode = mode;
+            playClickSound();
+            const tabLogin = document.getElementById('authTabLogin');
+            const tabRegister = document.getElementById('authTabRegister');
+            const fieldNama = document.getElementById('authFieldNama');
+            const fieldJenjang = document.getElementById('authFieldJenjang');
+            const title = document.getElementById('authTitle');
+            const sub = document.getElementById('authSubtitle');
+            const submitText = document.getElementById('authSubmitText');
+            const alertBox = document.getElementById('authAlertBox');
+            alertBox.classList.add('hidden');
+
+            if (mode === 'login') {
+                tabLogin.className = 'py-2.5 rounded-xl font-heading font-bold text-xs bg-primary text-white shadow-sm transition-all';
+                tabRegister.className = 'py-2.5 rounded-xl font-heading font-bold text-xs text-on-surface-variant hover:text-primary transition-all';
+                fieldNama.classList.add('hidden');
+                fieldJenjang.classList.add('hidden');
+                title.innerText = 'Masuk ke Akunmu 🎒';
+                sub.innerText = 'Masukkan email & password untuk simpan prestasimu!';
+                submitText.innerText = 'Masuk Sekarang 🚀';
+            } else {
+                tabRegister.className = 'py-2.5 rounded-xl font-heading font-bold text-xs bg-primary text-white shadow-sm transition-all';
+                tabLogin.className = 'py-2.5 rounded-xl font-heading font-bold text-xs text-on-surface-variant hover:text-primary transition-all';
+                fieldNama.classList.remove('hidden');
+                fieldJenjang.classList.remove('hidden');
+                title.innerText = 'Daftar Siswa Juara Baru 🎉';
+                sub.innerText = 'Buat akun belajar Omah Les hanya dalam beberapa detik!';
+                submitText.innerText = 'Daftar & Mulai Belajar 🎉';
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('authInputPassword');
+            const icon = document.getElementById('pwdEyeIcon');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                icon.innerText = 'visibility_off';
+            } else {
+                pwdInput.type = 'password';
+                icon.innerText = 'visibility';
+            }
+        }
+
+        function showAuthAlert(message, isSuccess = false) {
+            const alertBox = document.getElementById('authAlertBox');
+            alertBox.innerText = message;
+            alertBox.classList.remove('hidden');
+            if (isSuccess) {
+                alertBox.className = 'p-3 rounded-2xl text-xs font-heading font-bold text-center bg-green-100 text-green-700 border border-green-300';
+            } else {
+                alertBox.className = 'p-3 rounded-2xl text-xs font-heading font-bold text-center bg-red-100 text-red-700 border border-red-300';
+            }
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            playClickSound();
+
+            const email = document.getElementById('authInputEmail').value.trim().toLowerCase();
+            const password = document.getElementById('authInputPassword').value.trim();
+            const db = getUsersDB();
+
+            if (authMode === 'login') {
+                const user = db.find(u => u.email === email && u.password === password);
+                if (user) {
+                    playRewardFanfare();
+                    showAuthAlert(`Selamat Datang, ${user.nama}! 🌟`, true);
+                    setCurrentUser(user);
+                    speakText(`Halo ${user.nama}! Selamat datang kembali di Omah Les.`);
+                    setTimeout(() => {
+                        navigateTo('screen-jenjang');
+                    }, 800);
+                } else {
+                    playTone(220, 'sawtooth', 0.2, 0.2);
+                    showAuthAlert("Email atau Password salah. Coba periksa kembali yaa!");
+                }
+            } else {
+                // Mode Register
+                const nama = document.getElementById('authInputNama').value.trim();
+                const jenjang = document.getElementById('authSelectJenjang').value;
+
+                if (!nama) {
+                    showAuthAlert("Silakan masukkan nama siswa.");
+                    return;
+                }
+
+                const existing = db.find(u => u.email === email);
+                if (existing) {
+                    showAuthAlert("Email ini sudah pernah terdaftar. Silakan Masuk (Login).");
+                    return;
+                }
+
+                const newUser = {
+                    nama: nama,
+                    email: email,
+                    password: password,
+                    jenjang: jenjang,
+                    stars: 50, // Bonus bintang pendaftaran
+                    mascot: "🦉"
+                };
+
+                db.push(newUser);
+                saveUsersDB(db);
+                playRewardFanfare();
+                showAuthAlert(`Pendaftaran berhasil! Selamat datang, ${nama}! +50 ⭐`, true);
+                setCurrentUser(newUser);
+                speakText(`Halo ${nama}! Selamat bergabung di Omah Les Kids.`);
+                setTimeout(() => {
+                    navigateTo('screen-jenjang');
+                }, 900);
+            }
+        }
+
+        function fillDemoAccount() {
+            playClickSound();
+            document.getElementById('authInputEmail').value = "siswa@omahles.id";
+            document.getElementById('authInputPassword').value = "123";
+            switchAuthMode('login');
+            showAuthAlert("Akun demo terisi! Tekan tombol 'Masuk Sekarang'.", true);
+        }
+
+        function loginAsGuest() {
+            playCorrectSound();
+            const guestUser = {
+                nama: "Siswa Tamu",
+                email: "guest@omahles.id",
+                password: "",
+                jenjang: "1",
+                stars: 30,
+                mascot: "🐰"
+            };
+            setCurrentUser(guestUser);
+            speakText("Selamat datang Sahabat Tamu di Omah Les Kids!");
+            navigateTo('screen-jenjang');
+        }
+
+        function setCurrentUser(user) {
+            currentUser = user;
+            localStorage.setItem('omahles_current_user', JSON.stringify(user));
+            applyUserDataToApp(user);
+            updateSplashAuthButtons();
+        }
+
+        function applyUserDataToApp(user) {
+            studentName = user.nama || "Anak Pintar Juara";
+            userStars = parseInt(user.stars || 50);
+            activeMascot = user.mascot || "🦉";
+
+            const nameHeader = document.getElementById('activeStudentNameHeader');
+            const avatarHeader = document.getElementById('activeStudentAvatar');
+            const certName = document.getElementById('certDisplayName');
+
+            if (nameHeader) nameHeader.innerText = `Halo, ${studentName}!`;
+            if (avatarHeader) avatarHeader.innerText = activeMascot;
+            if (certName) certName.innerText = studentName;
+
+            updateStarDisplays();
+            renderMascots();
+
+            if (user.jenjang && user.jenjang !== 'tk') {
+                selectedGrade = parseInt(user.jenjang);
+                selectGrade(selectedGrade);
+            }
+        }
+
+        function handleLogout() {
+            playClickSound();
+            if (confirm("Apakah ingin keluar akun siswa ini?")) {
+                currentUser = null;
+                localStorage.removeItem('omahles_current_user');
+                updateSplashAuthButtons();
+                const nameHeader = document.getElementById('activeStudentNameHeader');
+                if (nameHeader) nameHeader.innerText = `Halo, Sahabat Juara!`;
+                navigateTo('screen-splash');
+            }
+        }
+
+
+        /* --- STATE VARIABLES --- */
+        let currentScreen = 'screen-splash';
+        let previousScreen = 'screen-splash';
+        let currentTKTab = 'huruf';
+        let selectedGrade = 1;
+        let userStars = parseInt(localStorage.getItem('omahles_stars') || '50');
+        let studentName = localStorage.getItem('omahles_student_name') || 'Anak Pintar Juara';
+        let activeMascot = localStorage.getItem('omahles_active_mascot') || '🦉';
+        let unlockedMascots = JSON.parse(localStorage.getItem('omahles_unlocked_mascots') || '["🦉", "🐰"]');
+
+        let isAudioMuted = false;
+        let isAudioPlaying = false;
+        let bgAudio = document.getElementById('bgAudio');
+
+        /* Web Audio API Synthesizer for instant tactile sound effects */
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playTone(freq, type = 'sine', duration = 0.15, gainVal = 0.1) {
+            if (isAudioMuted) return;
+            try {
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + duration);
+            } catch (e) {
+                console.warn(e);
+            }
+        }
+
+        function playClickSound() {
+            playTone(600, 'triangle', 0.08, 0.15);
+        }
+
+        function playCorrectSound() {
+            playTone(523.25, 'sine', 0.12, 0.15);
+            setTimeout(() => playTone(659.25, 'sine', 0.15, 0.15), 100);
+            setTimeout(() => playTone(783.99, 'sine', 0.25, 0.2), 200);
+        }
+
+        function playRewardFanfare() {
+            [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                setTimeout(() => playTone(freq, 'triangle', 0.2, 0.2), idx * 120);
+            });
+            triggerConfetti();
+        }
+
+        /* --- SPEECH SYNTHESIS (VOICE) --- */
+        function speakText(text, lang = 'id-ID') {
+            if (isAudioMuted) return;
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.95;
+                utterance.pitch = 1.1; // Friendly warm pitch for kids
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        /* --- NAVIGATION --- */
+        function navigateTo(screenId) {
+            playClickSound();
+            previousScreen = currentScreen;
+            document.querySelectorAll('.screen-view').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(screenId);
+            if (target) {
+                target.classList.add('active');
+                currentScreen = screenId;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            updateStarDisplays();
+        }
+
+        function navigateBackFromHadiah() {
+            if (previousScreen && previousScreen !== 'screen-hadiah') {
+                navigateTo(previousScreen);
+            } else {
+                navigateTo('screen-jenjang');
+            }
+        }
+
+        function updateStarDisplays() {
+            ['starCounterJenjang', 'starCounterTK', 'starCounterSD', 'starBankAmount', 'certStarTotal'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = userStars;
+            });
+            localStorage.setItem('omahles_stars', userStars.toString());
+            if (currentUser) {
+                currentUser.stars = userStars;
+                localStorage.setItem('omahles_current_user', JSON.stringify(currentUser));
+                // Update in DB
+                const db = getUsersDB();
+                const idx = db.findIndex(u => u.email === currentUser.email);
+                if (idx !== -1) {
+                    db[idx].stars = userStars;
+                    saveUsersDB(db);
+                }
+            }
+        }
+
+        function addStars(num) {
+            userStars += num;
+            updateStarDisplays();
+        }
+
+        /* --- AUDIO TOGGLE --- */
+        function toggleAudioMute() {
+            isAudioMuted = !isAudioMuted;
+            const muteIcon = document.getElementById('muteIcon');
+            if (muteIcon) {
+                muteIcon.innerText = isAudioMuted ? 'volume_off' : 'volume_up';
+            }
+            if (bgAudio) {
+                if (isAudioMuted) bgAudio.pause();
+            }
+        }
+
+        /* Audio Greeting on Splash Screen */
+        const btnPlayGreetingAudio = document.getElementById('btnPlayGreetingAudio');
+        if (btnPlayGreetingAudio) {
+            btnPlayGreetingAudio.onclick = () => {
+                playClickSound();
+                if (bgAudio) {
+                    if (isAudioPlaying) {
+                        bgAudio.pause();
+                        isAudioPlaying = false;
+                        document.getElementById('audioActionIcon').innerText = 'play_arrow';
+                        document.getElementById('audioStatusText').innerText = 'Sentuh untuk dengar sapaan & musik ceria!';
+                    } else {
+                        bgAudio.play().then(() => {
+                            isAudioPlaying = true;
+                            document.getElementById('audioActionIcon').innerText = 'pause';
+                            document.getElementById('audioStatusText').innerText = 'Musik Omah Les sedang berputar 🎶';
+                        }).catch(() => {
+                            speakText("Halo Sahabat Juara! Selamat datang di Omah Les Kids. Mari belajar asyik bersama!");
+                        });
+                    }
+                }
+            };
+        }
+
+        /* --- SCREEN 2: JENJANG SELECTION --- */
+        function selectGrade(grade) {
+            playClickSound();
+            selectedGrade = grade;
+            document.querySelectorAll('.grade-pill').forEach(btn => {
+                const g = parseInt(btn.dataset.grade);
+                if (g === grade) {
+                    btn.className = 'grade-pill py-2 rounded-xl bg-primary-container text-white font-heading font-bold text-xs shadow-md scale-105 transition-all';
+                } else {
+                    btn.className = 'grade-pill py-2 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs transition-all';
+                }
+            });
+            const label = document.getElementById('selectedGradeLabelJenjang');
+            if (label) label.innerText = `Kelas ${grade} Terpilih`;
+        }
+
+        function enterTKMode() {
+            playCorrectSound();
+            navigateTo('screen-tk');
+            switchTKSubTab('huruf');
+        }
+
+        function enterSDMode() {
+            playCorrectSound();
+            navigateTo('screen-sd');
+            syncSDGradeView();
+        }
+
+        /* --- SCREEN 3: TK LOGIC --- */
+        const wordDataTK = {
+            'A': 'Apel 🍎', 'B': 'Balon 🎈', 'C': 'Ceri 🍒', 'D': 'Duren 🍈', 
+            'E': 'Elang 🦅', 'F': 'Foto 📸', 'G': 'Gajah 🐘', 'H': 'Harimau 🐅', 
+            'I': 'Ikan 🐟', 'J': 'Jeruk 🍊', 'K': 'Kucing 🐱', 'L': 'Lampu 💡', 
+            'M': 'Mobil 🚗', 'N': 'Nanas 🍍', 'O': 'Obat 💊', 'P': 'Pisang 🍌', 
+            'Q': 'Qur\'an 📖', 'R': 'Rusa 🦌', 'S': 'Sapi 🐄', 'T': 'Topi 🧢', 
+            'U': 'Ular 🐍', 'V': 'Vandel 🏆', 'W': 'Wortel 🥕', 'X': 'Xylophone 🎹', 
+            'Y': 'Yoyo 🪀', 'Z': 'Zebra 🦓'
+        };
+
+        let currentTKChar = 'A';
+        function initTKLetterGrid() {
+            const container = document.getElementById('tkLetterGrid');
+            if (!container) return;
+            container.innerHTML = '';
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(char => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'py-2 rounded-xl bg-surface-container font-heading font-extrabold text-sm text-primary shadow-sm hover:bg-secondary-container hover:text-white active:scale-90 transition-all border border-surface-container-high cursor-pointer';
+                btn.innerText = char;
+                btn.onclick = () => selectTKLetter(char);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectTKLetter(char) {
+            playClickSound();
+            currentTKChar = char;
+            const bigLetter = document.getElementById('tkBigLetter');
+            const bigWord = document.getElementById('tkBigWord');
+            const word = wordDataTK[char] || `${char} Benda`;
+            if (bigLetter) bigLetter.innerText = char;
+            if (bigWord) bigWord.innerText = word;
+            
+            speakCurrentTKLetter();
+            addStars(1);
+        }
+
+        function speakCurrentTKLetter() {
+            const word = wordDataTK[currentTKChar] || currentTKChar;
+            speakText(`${currentTKChar}. ${word.replace(/[^\w\s]/gi, '')}`);
+        }
+
+        function switchTKSubTab(tabName) {
+            playClickSound();
+            currentTKTab = tabName;
+            ['huruf', 'suku', 'hitung', 'trace'].forEach(t => {
+                const tabBtn = document.getElementById(`tkTab-${t}`);
+                const sec = document.getElementById(`tkSection-${t}`);
+                if (t === tabName) {
+                    if (tabBtn) tabBtn.className = 'tk-subtab py-2 px-1 rounded-xl bg-secondary-container text-white font-heading font-bold text-xs shadow-sm text-center cursor-pointer';
+                    if (sec) sec.classList.remove('hidden');
+                } else {
+                    if (tabBtn) tabBtn.className = 'tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer';
+                    if (sec) sec.classList.add('hidden');
+                }
+            });
+
+            if (tabName === 'hitung') loadTKMathQuestion();
+            if (tabName === 'trace') resizeCanvas();
+        }
+
+        /* Suku Kata Data */
+        const sukuKataExamples = [
+            { p1: 'Ba', p2: 'Ju', word: 'Baju!', emoji: '👕' },
+            { p1: 'Bo', p2: 'La', word: 'Bola!', emoji: '⚽' },
+            { p1: 'Ku', p2: 'Da', word: 'Kuda!', emoji: '🐴' },
+            { p1: 'Bu', p2: 'Ku', word: 'Buku!', emoji: '📚' },
+            { p1: 'Ka', p2: 'Ki', word: 'Kaki!', emoji: '🦶' },
+            { p1: 'Ma', p2: 'Ta', word: 'Mata!', emoji: '👁️' },
+            { p1: 'Ro', p2: 'Ti', word: 'Roti!', emoji: '🍞' },
+            { p1: 'Su', p2: 'Su', word: 'Susu!', emoji: '🥛' }
+        ];
+        let sukuIndex = 0;
+
+        function nextSyllableExample() {
+            playClickSound();
+            sukuIndex = (sukuIndex + 1) % sukuKataExamples.length;
+            const item = sukuKataExamples[sukuIndex];
+            document.getElementById('sukuPart1').innerText = item.p1;
+            document.getElementById('sukuPart2').innerText = item.p2;
+            document.getElementById('sukuResult').innerHTML = `<span class="text-2xl">${item.emoji}</span><span>${item.word}</span>`;
+            speakSyllables();
+        }
+
+        function speakSyllables() {
+            const item = sukuKataExamples[sukuIndex];
+            speakText(`${item.p1}... ${item.p2}... ${item.word}`);
+        }
+
+        function initSukuKataList() {
+            const container = document.getElementById('sukuKataListContainer');
+            if (!container) return;
+            container.innerHTML = '';
+            sukuKataExamples.forEach((item, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'p-2 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between text-xs font-heading font-bold text-on-surface hover:bg-secondary-container hover:text-white transition-all cursor-pointer';
+                btn.innerHTML = `<span>${item.emoji} ${item.p1}-${item.p2}</span><span class="text-primary font-black">${item.word}</span>`;
+                btn.onclick = () => {
+                    sukuIndex = idx;
+                    document.getElementById('sukuPart1').innerText = item.p1;
+                    document.getElementById('sukuPart2').innerText = item.p2;
+                    document.getElementById('sukuResult').innerHTML = `<span class="text-2xl">${item.emoji}</span><span>${item.word}</span>`;
+                    speakSyllables();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        /* Hitung Objek TK */
+        const mathEmojis = ['🍎', '⭐', '🎈', '🚗', '🐱', '🐟', '🍌', '🌸'];
+        let currentTKMathAnswer = 3;
+
+        function loadTKMathQuestion() {
+            const container = document.getElementById('tkMathObjects');
+            const options = document.getElementById('tkMathOptions');
+            const feedback = document.getElementById('tkMathFeedback');
+            feedback.innerText = '';
+
+            const count = Math.floor(Math.random() * 5) + 1; // 1 to 5
+            currentTKMathAnswer = count;
+            const emoji = mathEmojis[Math.floor(Math.random() * mathEmojis.length)];
+
+            container.innerHTML = Array(count).fill(emoji).join(' ');
+
+            let choices = [count, count + 1, Math.max(1, count - 1)];
+            choices = [...new Set(choices)];
+            while (choices.length < 3) {
+                let r = Math.floor(Math.random() * 6) + 1;
+                if (!choices.includes(r)) choices.push(r);
+            }
+            choices.sort(() => Math.random() - 0.5);
+
+            options.innerHTML = '';
+            choices.forEach(num => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'btn-clay-surface py-3 rounded-2xl font-heading font-black text-xl text-primary border border-surface-container cursor-pointer';
+                btn.innerText = num;
+                btn.onclick = () => checkTKMath(num, btn);
+                options.appendChild(btn);
+            });
+        }
+
+        function checkTKMath(selected, btn) {
+            const feedback = document.getElementById('tkMathFeedback');
+            if (selected === currentTKMathAnswer) {
+                playCorrectSound();
+                btn.className = 'btn-clay-green py-3 rounded-2xl font-heading font-black text-xl';
+                feedback.innerText = 'Horeee! Jawabanmu Benar! +2 ⭐';
+                addStars(2);
+                setTimeout(loadTKMathQuestion, 1400);
+            } else {
+                playTone(250, 'sawtooth', 0.15, 0.2);
+                btn.className = 'py-3 rounded-2xl font-heading font-black text-xl bg-red-100 text-red-600 border border-red-300';
+                feedback.innerText = 'Yuk coba hitung lagi yaa!';
+            }
+        }
+
+        /* Papan Tracing Canvas */
+        const traceItems = ["A", "B", "C", "D", "E", "F", "1", "2", "3", "4", "5"];
+        let traceIdx = 0;
+        const canvas = document.getElementById('drawingCanvas');
+        let ctx = canvas ? canvas.getContext('2d') : null;
+        let isPainting = false;
+        let brushColor = '#f76707';
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width || 320;
+            canvas.height = 220;
+            if (ctx) {
+                ctx.lineWidth = 14;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = brushColor;
+            }
+        }
+
+        function clearTraceCanvas() {
+            playClickSound();
+            if (!ctx || !canvas) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function setPenColor(color) {
+            playClickSound();
+            brushColor = color;
+            if (ctx) ctx.strokeStyle = brushColor;
+        }
+
+        function nextTraceItem() {
+            playClickSound();
+            traceIdx = (traceIdx + 1) % traceItems.length;
+            updateTraceDisplay();
+        }
+
+        function prevTraceItem() {
+            playClickSound();
+            traceIdx = (traceIdx - 1 + traceItems.length) % traceItems.length;
+            updateTraceDisplay();
+        }
+
+        function updateTraceDisplay() {
+            const char = traceItems[traceIdx];
+            document.getElementById('traceCharLabel').innerText = char;
+            document.getElementById('traceGuideText').innerText = char;
+            clearTraceCanvas();
+        }
+
+        if (canvas) {
+            function startDraw(e) {
+                isPainting = true;
+                draw(e);
+            }
+            function stopDraw() {
+                isPainting = false;
+                if (ctx) ctx.beginPath();
+            }
+            function draw(e) {
+                if (!isPainting || !ctx) return;
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                const x = clientX - rect.left;
+                const y = clientY - rect.top;
+
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            }
+
+            canvas.addEventListener('mousedown', startDraw);
+            canvas.addEventListener('mouseup', stopDraw);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDraw(e); });
+            canvas.addEventListener('touchend', (e) => { e.preventDefault(); stopDraw(); });
+            canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); });
+        }
+
+
+        /* --- SCREEN 4: SD KURIKULUM MERDEKA DATA & LOGIC --- */
+        const kurikulumData = {
+            indo: {
+                1: [
+                    { title: "🔤 Abjad & Pelafalan Bunyi", desc: "• Huruf Vokal: A, I, U, E, O\n• Huruf Konsonan: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z\n\n💡 Latihan Pelafalan:\n• B-A dibaca BA\n• B-I dibaca BI\n• B-U dibaca BU\n\nMari mengeja kata: B-A-J-U = Baju, M-A-T-A = Mata." },
+                    { title: "📖 Suku Kata Terbuka & Tertutup", desc: "• Suku Kata Terbuka: Ba-ju, Bo-la, Ku-da, Ka-ki.\n• Suku Kata Tertutup: Pas-tir, Mung-kin, Bus, Tas, Jam.\n\n💡 Latihan Membaca: 'I-bu me-ma-sak na-si di da-pur'." }
+                ],
+                2: [
+                    { title: "📖 Membaca Lancar Teks Pendek", desc: "• Teks Cerita Pendek:\n'Dino adalah anak yang rajin. Setiap pagi setelah bangun tidur, Dino merapikan tempat tidurnya sendiri. Setelah itu, ia membantu Ibu menyiram bunga di halaman rumah.'\n\n💡 Pertanyaan:\nSiapa anak yang rajin? (Dino)\nApa yang dilakukan Dino di halaman? (Menyiram bunga)." },
+                    { title: "✍️ Tanda Baca & Huruf Kapital", desc: "• Huruf Kapital: Awal kalimat, nama orang, hari, bulan, dan tempat.\nContoh: Ani pergi ke Jakarta pada hari Senin di bulan Agustus.\n• Tanda Titik (.) & Tanda Tanya (?)." }
+                ],
+                3: [
+                    { title: "📚 Teks Paragraf & Gagasan Utama", desc: "• Gagasan Utama / Ide Pokok:\nInti masalah yang dibahas dalam satu paragraf.\n\n💡 Cara Menemukan Ide Pokok:\n1. Baca seluruh kalimat dalam paragraf.\n2. Cermati kalimat pertama atau terakhir.\n3. Simpulkan intinya." },
+                    { title: "🔍 Pengenalan Kamus (KBBI)", desc: "Kata disusun berurutan abjad A-Z. Untuk kata 'Membaca', carilah kata dasarnya yaitu 'Baca' di abjad B." }
+                ],
+                4: [
+                    { title: "📄 Teks Informatif (Nonfiksi)", desc: "Teks yang dibuat berdasarkan fakta, data nyata, dan ilmu pengetahuan asli.\nContoh: Artikel siklus air, laporan cuaca, teks sejarah pahlawan." },
+                    { title: "⚡ Kalimat Aktif & Kalimat Pasif", desc: "• Kalimat Aktif: Budi memakan buah apel.\n• Kalimat Pasif: Buah apel dimakan oleh Budi." }
+                ],
+                5: [
+                    { title: "📖 Membaca Kritis Sastra", desc: "Unsur Intrinsik Cerita:\n1. Tokoh: Pemeran dalam cerita.\n2. Watak: Sifat tokoh (Baik/Jahat).\n3. Latar: Tempat, waktu, suasana.\n4. Amanat: Pesan moral positif." },
+                    { title: "✉️ Surat Resmi vs Surat Pribadi", desc: "Surat resmi memakai bahasa baku, nomor surat, dan stempel instansi." }
+                ],
+                6: [
+                    { title: "📰 Memahami Berita & Fakta vs Opini", desc: "• Fakta: Kejadian nyata yang terbukti datanya (Indonesia merdeka 17 Agustus 1945).\n• Opini: Pendapat pribadi (Makanan ini paling enak).\nHindari menyebarkan berita bohong (hoaks)!" },
+                    { title: "🎙️ Menyusun Teks Pidato", desc: "Bagian Pidato: Pembuka, Isi Pidato, dan Penutup." }
+                ]
+            },
+            inggris: {
+                1: [
+                    { title: "👋 Greetings & Expressions", desc: "• Good Morning (Selamat Pagi)\n• Good Afternoon (Selamat Siang)\n• How are you? (Apa kabarmu?)\n• I am fine, thank you! (Saya baik, terima kasih)." },
+                    { title: "🔢 Numbers 1 - 10", desc: "1: One, 2: Two, 3: Three, 4: Four, 5: Five, 6: Six, 7: Seven, 8: Eight, 9: Nine, 10: Ten." }
+                ],
+                2: [
+                    { title: "🐶 Animals Vocabulary", desc: "Cat (Kucing), Dog (Anjing), Cow (Sapi), Duck (Bebek), Bird (Burung), Fish (Ikan), Elephant (Gajah), Rabbit (Kelinci)." },
+                    { title: "📅 Days of the Week", desc: "Sunday (Minggu), Monday (Senin), Tuesday (Selasa), Wednesday (Rabu), Thursday (Kamis), Friday (Jumat), Saturday (Sabtu)." }
+                ],
+                3: [
+                    { title: "🍕 Food & Drinks", desc: "• Food: Fried Rice (Nasi Goreng), Bread (Roti), Noodles (Mie).\n• Drinks: Milk (Susu), Water (Air Putih), Tea (Teh)." },
+                    { title: "🏠 Rooms in the House", desc: "Living room (Ruang Tamu), Bedroom (Kamar Tidur), Kitchen (Dapur), Bathroom (Kamar Mandi)." }
+                ],
+                4: [
+                    { title: "🏃 Present Continuous Tense", desc: "Rumus: Subject + am/is/are + Verb-ing.\nContoh:\n1. I am reading a book.\n2. She is cooking in the kitchen." },
+                    { title: "🕰️ Telling Time", desc: "• 7 o'clock = Jam 7 tepat\n• Half past eight = Jam 8 lewat 30 menit" }
+                ],
+                5: [
+                    { title: "🗺️ Directions & Asking Way", desc: "• Turn left (Belok kiri)\n• Turn right (Belok kanan)\n• Go straight (Lurus terus)" },
+                    { title: "📏 Comparative Adjectives", desc: "• Old -> Older (Lebih tua)\n• Big -> Bigger (Lebih besar)\nContoh: An elephant is bigger than a cat." }
+                ],
+                6: [
+                    { title: "📜 Simple Past Tense", desc: "Rumus: Subject + Verb 2.\nContoh:\n1. I played football yesterday.\n2. We went to Bali last week." },
+                    { title: "👨‍⚕️ Occupations / Professions", desc: "Doctor (Dokter), Teacher (Guru), Pilot (Pilot), Chef (Koki), Police Officer (Polisi)." }
+                ]
+            },
+            ipas: {
+                3: [
+                    { title: "👁️ Panca Indra & Fungsinya", desc: "1. Mata: Melihat\n2. Telinga: Mendengar\n3. Hidung: Membaui\n4. Lidah: Mengecap rasa\n5. Kulit: Meraba suhu & tekstur." },
+                    { title: "🦋 Siklus Hidup & Metamorfosis", desc: "Telur -> Larva/Ulat -> Kepompong/Pupa -> Kupu-kupu Dewasa." }
+                ],
+                4: [
+                    { title: "🌱 Bagian Tumbuhan & Fotosintesis", desc: "Air + Karbondioksida + Cahaya Matahari -> Glukosa (Makanan) + Oksigen (O2)." },
+                    { title: "💡 Bentuk-Bentuk Energi", desc: "Energi Panas, Cahaya, Listrik, dan Bunyi. Energi tidak dapat dimusnahkan, hanya berubah bentuk." }
+                ],
+                5: [
+                    { title: "🫁 Sistem Organ Tubuh Manusia", desc: "• Pernapasan: Hidung -> Tenggorokan -> Paru-paru (Alveolus).\n• Jantung: Memompa darah ke seluruh tubuh." },
+                    { title: "🌾 Ekosistem & Jaring Makanan", desc: "Rumput (Produsen) -> Belalang (Konsumen I) -> Katak (Konsumen II) -> Ular (Konsumen III)." }
+                ],
+                6: [
+                    { title: "🪐 Tata Surya & Planet", desc: "Pusat: Matahari.\nUrutan Planet: Merkurius, Venus, Bumi, Mars, Jupiter, Saturnus, Uranus, Neptunus." },
+                    { title: "🌑 Gerak Bumi & Bulan", desc: "• Rotasi: Menyebabkan siang & malam.\n• Revolusi: Menyebabkan pergantian musim." }
+                ]
+            },
+            math: {
+                1: [
+                    { title: "🔢 Penjumlahan & Pengurangan (<20)", desc: "8 + 5 = 13\n15 - 6 = 9\n\n💡 Soal Cerita:\nBudi punya 7 kelereng, diberi Ayah 4 lagi.\nJumlah = 7 + 4 = 11 kelereng." },
+                    { title: "📐 Bangun Datar Dasar", desc: "• Segitiga: Memiliki 3 sisi.\n• Persegi: Memiliki 4 sisi sama panjang.\n• Lingkaran: Memiliki 1 sisi melengkung." }
+                ],
+                2: [
+                    { title: "➕ Penjumlahan Bersusun", desc: "  45\n  28 +\n  ---\n  73\nIngat simpan angka puluhan di atas!" },
+                    { title: "✖️ Perkalian = Penjumlahan Berulang", desc: "3 x 4 = 4 + 4 + 4 = 12." }
+                ],
+                3: [
+                    { title: "🥧 Pecahan Sederhana", desc: "Pecahan ½: 1 benda dibagi 2 bagian sama besar.\nAngka atas = Pembilang, angka bawah = Penyebut." },
+                    { title: "📏 Satuan Panjang (m, cm, mm)", desc: "1 meter (m) = 100 centimeter (cm).\n1 centimeter (cm) = 10 millimeter (mm)." }
+                ],
+                4: [
+                    { title: "📐 Luas Bangun Datar", desc: "• Luas Persegi = sisi x sisi\n• Luas Persegi Panjang = panjang x lebar" },
+                    { title: "🔢 FPB & KPK Bilangan", desc: "KPK dari 4 dan 6 adalah 12." }
+                ],
+                5: [
+                    { title: "📦 Volume Bangun Ruang", desc: "• Volume Kubus = s x s x s (s³)\n• Volume Balok = panjang x lebar x tinggi" },
+                    { title: "📊 Statistika (Mean, Median, Modus)", desc: "• Mean = Rata-rata\n• Median = Nilai Tengah\n• Modus = Nilai paling sering muncul" }
+                ],
+                6: [
+                    { title: "➖ Bilangan Bulat Negatif", desc: "Negatif ketemu Negatif menjadi Positif:\n5 - (-3) = 5 + 3 = 8." },
+                    { title: "⭕ Keliling & Luas Lingkaran", desc: "Nilai π (phi) = 22/7 atau 3,14.\nLuas = π x r²." }
+                ]
+            }
+        };
+
+        function switchSDGrade(grade) {
+            playClickSound();
+            selectedGrade = grade;
+            syncSDGradeView();
+        }
+
+        function syncSDGradeView() {
+            document.querySelectorAll('.sd-grade-tab').forEach(btn => {
+                const g = parseInt(btn.dataset.grade);
+                if (g === selectedGrade) {
+                    btn.className = 'sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-primary-container text-white shadow-sm';
+                } else {
+                    btn.className = 'sd-grade-tab shrink-0 px-3 py-1.5 rounded-xl font-heading font-bold text-xs bg-surface-container text-on-surface-variant';
+                }
+            });
+
+            const gradeTitle = document.getElementById('sdGradeTitle');
+            const faseBadge = document.getElementById('sdFaseBadge');
+            if (gradeTitle) gradeTitle.innerText = `Kelas ${selectedGrade} SD • Kurikulum Merdeka`;
+            
+            if (faseBadge) {
+                if (selectedGrade <= 2) faseBadge.innerText = 'Fase A (Fondasi Literasi & Numerasi)';
+                else if (selectedGrade <= 4) faseBadge.innerText = 'Fase B (Pemahaman Konsep & Eksplorasi)';
+                else faseBadge.innerText = 'Fase C (Penalaran Kritis & Analisis Mandiri)';
+            }
+
+            // Sync subject titles
+            const indoItem = (kurikulumData.indo[selectedGrade] || [])[0];
+            if (indoItem) document.getElementById('indoTopicTitle').innerText = indoItem.title;
+
+            const inggrisItem = (kurikulumData.inggris[selectedGrade] || [])[0];
+            if (inggrisItem) document.getElementById('inggrisTopicTitle').innerText = inggrisItem.title;
+
+            const ipasCard = document.getElementById('ipasSubjectCard');
+            if (selectedGrade <= 2) {
+                if (ipasCard) ipasCard.classList.add('opacity-70');
+                document.getElementById('ipasTopicTitle').innerText = 'Pengenalan Lingkungan & Benda (Terpadu)';
+            } else {
+                if (ipasCard) ipasCard.classList.remove('opacity-70');
+                const ipasItem = (kurikulumData.ipas[selectedGrade] || [])[0];
+                if (ipasItem) document.getElementById('ipasTopicTitle').innerText = ipasItem.title;
+            }
+
+            const mathItem = (kurikulumData.math[selectedGrade] || [])[0];
+            if (mathItem) document.getElementById('mathTopicTitle').innerText = mathItem.title;
+        }
+
+        let activeSubjectModalText = '';
+        function openSubjectDetail(subKey) {
+            playClickSound();
+            const modal = document.getElementById('modalSubjectDetail');
+            const titleEl = document.getElementById('modalSubjectTitle');
+            const subEl = document.getElementById('modalSubjectSub');
+            const bodyEl = document.getElementById('modalSubjectBody');
+            const iconEl = document.getElementById('modalSubjectIcon');
+
+            const icons = { indo: '📖', inggris: '🇬🇧', ipas: '🔬', math: '📐' };
+            const names = { indo: 'Bahasa Indonesia', inggris: 'English for Kids', ipas: 'IPAS (Sains & Sosial)', math: 'Matematika Dasar' };
+
+            iconEl.innerText = icons[subKey] || '📚';
+            titleEl.innerText = `${names[subKey]} - Kelas ${selectedGrade} SD`;
+            subEl.innerText = `Kurikulum Merdeka • Pelajaran Juara`;
+
+            let list = (kurikulumData[subKey] && kurikulumData[subKey][selectedGrade]) ? kurikulumData[subKey][selectedGrade] : [];
+            if (list.length === 0 && subKey === 'ipas' && selectedGrade <= 2) {
+                list = [{ title: "🌱 Mengenal Lingkungan Sekitar", desc: "Pada Kelas 1-2 SD, materi alam dan sosial dikenalkan melalui pengamatan benda hidup (hewan, tanaman) dan anggota keluarga." }];
+            }
+
+            let fullText = '';
+            bodyEl.innerHTML = list.map(item => {
+                fullText += `${item.title}. ${item.desc}\n\n`;
+                return `
+                    <div class="bg-surface-container-low p-4 rounded-2xl border border-surface-container">
+                        <h4 class="font-heading font-bold text-sm text-primary mb-1">${item.title}</h4>
+                        <p class="text-xs text-on-surface-variant leading-relaxed whitespace-pre-line">${item.desc}</p>
+                    </div>
+                `;
+            }).join('');
+
+            activeSubjectModalText = fullText;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeSubjectModal() {
+            playClickSound();
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            const modal = document.getElementById('modalSubjectDetail');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function speakCurrentSubject(subKey) {
+            playClickSound();
+            let list = (kurikulumData[subKey] && kurikulumData[subKey][selectedGrade]) ? kurikulumData[subKey][selectedGrade] : [];
+            if (list.length > 0) {
+                speakText(`${list[0].title}. ${list[0].desc}`);
+            }
+        }
+
+        function speakModalContent() {
+            if (activeSubjectModalText) {
+                speakText(activeSubjectModalText);
+            }
+        }
+
+
+        /* --- BANK SOAL KUIS 10 SOAL PER KELAS --- */
+        const quizBankSD = {
+            tk: [
+                { q: "Gambar hewan apakah ini? 🐱", opts: ["Kucing", "Sapi", "Bebek"], ans: 0 },
+                { q: "Mana buah Pisang? 🍌", opts: ["Apel", "Pisang", "Jeruk"], ans: 1 },
+                { q: "Suara Meong Meong itu hewan...", opts: ["Kucing", "Anjing", "Ayam"], ans: 0 },
+                { q: "Warna Buah Apel ini 🍎 adalah...", opts: ["Merah", "Kuning", "Biru"], ans: 0 },
+                { q: "Bintang ini ⭐ ⭐ ada berapa?", opts: ["1", "2", "3"], ans: 1 }
+            ],
+            1: [
+                { q: "Huruf pertama dari kata 'B-U-K-U' adalah...", opts: ["B", "U", "K"], ans: 0 },
+                { q: "Hasil dari 8 + 5 adalah...", opts: ["12", "13", "14"], ans: 1 },
+                { q: "Bangun datar yang memiliki 3 buah sisi dinamakan...", opts: ["Segitiga", "Persegi", "Lingkaran"], ans: 0 },
+                { q: "Bahasa Inggris dari angka 'Lima' adalah...", opts: ["Four", "Five", "Six"], ans: 1 },
+                { q: "Anggota tubuh yang digunakan untuk mendengar adalah...", opts: ["Telinga", "Mata", "Hidung"], ans: 0 },
+                { q: "Ungkapan yang diucapkan saat mendapat bantuan adalah...", opts: ["Terima Kasih", "Maaf", "Sama-sama"], ans: 0 },
+                { q: "Hasil dari 15 - 7 adalah...", opts: ["7", "8", "9"], ans: 1 },
+                { q: "Bahasa Inggris dari kata 'Tas' adalah...", opts: ["Bag", "Book", "Pencil"], ans: 0 }
+            ],
+            2: [
+                { q: "Huruf besar di awal kalimat dinamakan huruf...", opts: ["Kapital", "Kecil", "Sambung"], ans: 0 },
+                { q: "Hasil penjumlahan dari 45 + 28 adalah...", opts: ["63", "73", "83"], ans: 1 },
+                { q: "3 x 4 sama artinya dengan penjumlahan berulang...", opts: ["4 + 4 + 4", "3 + 3 + 3", "4 + 3"], ans: 0 },
+                { q: "Bahasa Inggris dari 'Kucing' adalah...", opts: ["Cat", "Dog", "Bird"], ans: 0 },
+                { q: "Hasil pembagian dari 12 : 3 adalah...", opts: ["3", "4", "5"], ans: 1 },
+                { q: "Satu minggu terdiri dari berapa hari?", opts: ["5 Hari", "6 Hari", "7 Hari"], ans: 2 }
+            ],
+            3: [
+                { q: "Inti masalah yang dibahas dalam suatu paragraf dinamakan...", opts: ["Ide Pokok", "Judul", "Amanat"], ans: 0 },
+                { q: "Perubahan wujud es batu menjadi air dinamakan...", opts: ["Mencair", "Membeku", "Menguap"], ans: 0 },
+                { q: "Pecahan ½ dibaca...", opts: ["Satu per dua / Setengah", "Satu per tiga", "Satu per empat"], ans: 0 },
+                { q: "Bahasa Inggris dari 'Kamar Tidur' adalah...", opts: ["Bedroom", "Kitchen", "Bathroom"], ans: 0 },
+                { q: "Hasil dari 25 x 4 adalah...", opts: ["80", "100", "120"], ans: 1 }
+            ],
+            4: [
+                { q: "Gaya yang menyebabkan buah apel jatuh ke bawah adalah...", opts: ["Gaya Gravitasi", "Gaya Magnet", "Gaya Gesek"], ans: 0 },
+                { q: "Proses pembuatan makanan pada tumbuhan hijau dinamakan...", opts: ["Fotosintesis", "Respirasi", "Adaptasi"], ans: 0 },
+                { q: "Rumus Luas Persegi Panjang adalah...", opts: ["Panjang x Lebar", "Sisi x Sisi", "Alas x Tinggi"], ans: 0 },
+                { q: "KPK dari bilangan 4 dan 6 adalah...", opts: ["12", "24", "18"], ans: 0 }
+            ],
+            5: [
+                { q: "Organ manusia yang memompa darah ke seluruh tubuh adalah...", opts: ["Jantung", "Paru-paru", "Hati"], ans: 0 },
+                { q: "Rumus Volume Kubus adalah...", opts: ["sisi x sisi x sisi (s³)", "p x l x t", "1/2 x a x t"], ans: 0 },
+                { q: "Bentuk pecahan persen dari ½ adalah...", opts: ["50%", "25%", "75%"], ans: 0 },
+                { q: "Rangkaian listrik yang disusun secara bercabang dinamakan...", opts: ["Paralel", "Seri", "Campuran"], ans: 0 }
+            ],
+            6: [
+                { q: "Planet terbesar dalam Sistem Tata Surya kita adalah...", opts: ["Jupiter", "Saturnus", "Bumi"], ans: 0 },
+                { q: "Peristiwa berputarnya bumi pada porosnya dinamakan...", opts: ["Rotasi Bumi", "Revolusi Bumi", "Gerhana"], ans: 0 },
+                { q: "Hasil perhitungan dari 5 - (-3) adalah...", opts: ["8", "2", "-8"], ans: 0 },
+                { q: "Pusat dari Sistem Tata Surya kita adalah...", opts: ["Matahari", "Bumi", "Bulan"], ans: 0 }
+            ]
+        };
+
+        let currentQuizList = [];
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+
+        function openSDQuizModal() {
+            playClickSound();
+            const modal = document.getElementById('modalQuizGame');
+            currentQuizList = quizBankSD[selectedGrade] || quizBankSD[1];
+            currentQuizIndex = 0;
+            quizScore = 0;
+
+            document.getElementById('quizGradeBadge').innerText = `Kelas ${selectedGrade} SD Kurikulum Merdeka`;
+            document.getElementById('quizTotalNum').innerText = currentQuizList.length;
+            document.getElementById('quizLiveScore').innerText = '0';
+
+            renderCurrentQuizQuestion();
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeQuizModal() {
+            playClickSound();
+            const modal = document.getElementById('modalQuizGame');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function renderCurrentQuizQuestion() {
+            const q = currentQuizList[currentQuizIndex];
+            document.getElementById('quizCurrentNum').innerText = currentQuizIndex + 1;
+            document.getElementById('quizQuestionText').innerText = q.q;
+            document.getElementById('quizInstantFeedback').innerText = '';
+
+            const container = document.getElementById('quizOptionsList');
+            container.innerHTML = '';
+
+            q.opts.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'btn-clay-surface p-3.5 rounded-2xl font-heading font-bold text-sm text-left border border-surface-container flex items-center justify-between cursor-pointer';
+                btn.innerHTML = `<span>${opt}</span><span class="text-xs text-primary font-bold">Pilih</span>`;
+                btn.onclick = () => answerQuizQuestion(idx, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function answerQuizQuestion(selectedIdx, btn) {
+            const q = currentQuizList[currentQuizIndex];
+            const feedback = document.getElementById('quizInstantFeedback');
+
+            if (selectedIdx === q.ans) {
+                playCorrectSound();
+                btn.className = 'btn-clay-green p-3.5 rounded-2xl font-heading font-bold text-sm text-left flex items-center justify-between';
+                feedback.className = 'text-center font-heading font-bold text-sm text-tertiary';
+                feedback.innerText = 'Jawaban Benar! +10 ⭐';
+                quizScore += 10;
+                addStars(10);
+                document.getElementById('quizLiveScore').innerText = quizScore;
+            } else {
+                playTone(220, 'sawtooth', 0.2, 0.2);
+                btn.className = 'p-3.5 rounded-2xl font-heading font-bold text-sm text-left bg-red-100 text-red-600 border border-red-300';
+                feedback.className = 'text-center font-heading font-bold text-sm text-red-500';
+                feedback.innerText = `Kurang tepat, yang benar: ${q.opts[q.ans]}`;
+            }
+
+            // Disable all options momentarily
+            document.querySelectorAll('#quizOptionsList button').forEach(b => b.disabled = true);
+
+            setTimeout(() => {
+                currentQuizIndex++;
+                if (currentQuizIndex < currentQuizList.length) {
+                    renderCurrentQuizQuestion();
+                } else {
+                    finishQuiz();
+                }
+            }, 1200);
+        }
+
+        function finishQuiz() {
+            playRewardFanfare();
+            const container = document.getElementById('quizOptionsList');
+            document.getElementById('quizQuestionText').innerText = '🎉 Horee! Kuis Selesai!';
+            container.innerHTML = `
+                <div class="text-center p-4 bg-surface-container-low rounded-2xl border border-surface-container">
+                    <span class="text-4xl">🏆</span>
+                    <h4 class="font-heading font-black text-lg text-primary mt-2">Luar Biasa!</h4>
+                    <p class="text-xs text-on-surface-variant">Kamu berhasil menyelesaikan kuis dan mendapatkan:</p>
+                    <div class="font-heading font-black text-2xl text-primary-container my-1">${quizScore} ⭐ Bintang</div>
+                    <button onclick="closeQuizModal()" class="btn-clay-primary px-6 py-2.5 rounded-2xl font-heading font-bold text-xs mt-3 cursor-pointer">
+                        Kembali Belajar
+                    </button>
+                </div>
+            `;
+        }
+
+
+        /* --- SCREEN 5: RUANG HADIAH, TOKO MASKOT & SERTIFIKAT --- */
+        const mascotList = [
+            { id: '🦉', name: 'Burung Hantu Omah', cost: 0, desc: 'Sahabat Bijak Literasi' },
+            { id: '🐰', name: 'Kelinci Ceria', cost: 0, desc: 'Juara Belajar TK' },
+            { id: '🦌', name: 'Kancil Pintar', cost: 50, desc: 'Trik Cepat Logika' },
+            { id: '🐅', name: 'Harimau Tangguh', cost: 80, desc: 'Juara Berhitung SD' },
+            { id: '🐘', name: 'Gajah Cerdas', cost: 120, desc: 'Sahabat Sains IPAS' },
+            { id: '🚀', name: 'Roket Super', cost: 150, desc: 'Penjelajah Antariksa' }
+        ];
+
+        function switchHadiahTab(tab) {
+            playClickSound();
+            if (tab === 'mascot') {
+                document.getElementById('tabHadiah-mascot').className = 'py-2.5 rounded-2xl bg-secondary text-white font-heading font-bold text-xs shadow-sm flex items-center justify-center gap-1.5 cursor-pointer';
+                document.getElementById('tabHadiah-cert').className = 'py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer';
+                document.getElementById('viewHadiah-mascot').classList.remove('hidden');
+                document.getElementById('viewHadiah-cert').classList.add('hidden');
+            } else {
+                document.getElementById('tabHadiah-cert').className = 'py-2.5 rounded-2xl bg-primary text-white font-heading font-bold text-xs shadow-sm flex items-center justify-center gap-1.5 cursor-pointer';
+                document.getElementById('tabHadiah-mascot').className = 'py-2.5 rounded-2xl bg-surface-container text-on-surface font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer';
+                document.getElementById('viewHadiah-cert').classList.remove('hidden');
+                document.getElementById('viewHadiah-mascot').classList.add('hidden');
+            }
+        }
+
+        function renderMascots() {
+            const container = document.getElementById('mascotGridContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            mascotList.forEach(m => {
+                const isUnlocked = unlockedMascots.includes(m.id);
+                const isActive = activeMascot === m.id;
+
+                const card = document.createElement('div');
+                card.className = 'bg-surface-container-lowest p-3.5 rounded-3xl border border-surface-container shadow-sm flex flex-col items-center text-center relative';
+                
+                let badgeHtml = '';
+                if (isActive) {
+                    badgeHtml = `<span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-tertiary text-white font-heading font-bold text-[10px]">Aktif</span>`;
+                } else if (!isUnlocked) {
+                    badgeHtml = `<span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-heading font-bold text-[10px]">${m.cost} ⭐</span>`;
+                }
+
+                let btnHtml = '';
+                if (isActive) {
+                    btnHtml = `<button class="w-full py-1.5 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs cursor-default">Sedang Dipakai</button>`;
+                } else if (isUnlocked) {
+                    btnHtml = `<button onclick="equipMascot('${m.id}')" class="btn-clay-secondary w-full py-1.5 rounded-xl font-heading font-bold text-xs cursor-pointer">Pakai</button>`;
+                } else {
+                    btnHtml = `<button onclick="unlockMascot('${m.id}', ${m.cost})" class="btn-clay-primary w-full py-1.5 rounded-xl font-heading font-bold text-xs cursor-pointer">Beli (${m.cost} ⭐)</button>`;
+                }
+
+                card.innerHTML = `
+                    ${badgeHtml}
+                    <div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-3xl my-2 shadow-inner">
+                        ${m.id}
+                    </div>
+                    <span class="font-heading font-bold text-xs text-on-surface leading-tight">${m.name}</span>
+                    <span class="text-[10px] text-on-surface-variant mt-0.5 mb-2">${m.desc}</span>
+                    ${btnHtml}
+                `;
+                container.appendChild(card);
+            });
+
+            document.getElementById('activeMascotLabel').innerText = `Aktif: ${activeMascot}`;
+            const headerAvatar = document.getElementById('activeStudentAvatar');
+            if (headerAvatar) headerAvatar.innerText = activeMascot;
+        }
+
+        function equipMascot(id) {
+            playCorrectSound();
+            activeMascot = id;
+            localStorage.setItem('omahles_active_mascot', id);
+            if (currentUser) {
+                currentUser.mascot = id;
+                localStorage.setItem('omahles_current_user', JSON.stringify(currentUser));
+                const db = getUsersDB();
+                const idx = db.findIndex(u => u.email === currentUser.email);
+                if (idx !== -1) {
+                    db[idx].mascot = id;
+                    saveUsersDB(db);
+                }
+            }
+            renderMascots();
+        }
+
+        function unlockMascot(id, cost) {
+            playClickSound();
+            if (userStars >= cost) {
+                userStars -= cost;
+                unlockedMascots.push(id);
+                activeMascot = id;
+                localStorage.setItem('omahles_stars', userStars.toString());
+                localStorage.setItem('omahles_unlocked_mascots', JSON.stringify(unlockedMascots));
+                localStorage.setItem('omahles_active_mascot', id);
+                playRewardFanfare();
+                updateStarDisplays();
+                renderMascots();
+            } else {
+                alert(`Bintang belum cukup! Kamu butuh ${cost - userStars} ⭐ lagi. Yuk rajin belajar dan ikut kuis!`);
+            }
+        }
+
+        function changeStudentNamePrompt() {
+            playClickSound();
+            const newName = prompt("Masukkan Nama Siswa untuk Sertifikat:", studentName);
+            if (newName && newName.trim()) {
+                studentName = newName.trim();
+                localStorage.setItem('omahles_student_name', studentName);
+                document.getElementById('certDisplayName').innerText = studentName;
+                if (currentUser) {
+                    currentUser.nama = studentName;
+                    localStorage.setItem('omahles_current_user', JSON.stringify(currentUser));
+                    const nameHeader = document.getElementById('activeStudentNameHeader');
+                    if (nameHeader) nameHeader.innerText = `Halo, ${studentName}!`;
+                }
+            }
+        }
+
+        function printCertificate() {
+            playClickSound();
+            window.print();
+        }
+
+        function shareWhatsApp() {
+            playClickSound();
+            const text = encodeURIComponent(`Halo Ayah & Bunda! 🌟 Lihat prestasiku di Omah Les Kids! Aku sudah mengumpulkan ${userStars} ⭐ Bintang Belajar dan meraih Sertifikat Juara!`);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+
+        /* --- CONFETTI ANIMATION (CANVAS) --- */
+        function triggerConfetti() {
+            const cCanvas = document.getElementById('confettiCanvas');
+            if (!cCanvas) return;
+            const cCtx = cCanvas.getContext('2d');
+            cCanvas.width = window.innerWidth;
+            cCanvas.height = window.innerHeight;
+
+            let particles = [];
+            const colors = ['#f76707', '#00639c', '#24aa46', '#fcc419', '#cc5de8', '#ff6b6b'];
+            for (let i = 0; i < 75; i++) {
+                particles.push({
+                    x: Math.random() * cCanvas.width,
+                    y: Math.random() * cCanvas.height * 0.4,
+                    r: Math.random() * 6 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.random() * 10,
+                    tiltAngle: Math.random() * Math.PI * 2,
+                    tiltAngleInc: Math.random() * 0.08 + 0.05,
+                    vx: (Math.random() - 0.5) * 4,
+                    vy: Math.random() * 4 + 3
+                });
+            }
+
+            let frames = 0;
+            function animate() {
+                cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.tiltAngle += p.tiltAngleInc;
+                    p.tilt = Math.sin(p.tiltAngle) * 8;
+
+                    cCtx.beginPath();
+                    cCtx.fillStyle = p.color;
+                    cCtx.arc(p.x, p.y + p.tilt, p.r, 0, Math.PI * 2);
+                    cCtx.fill();
+                });
+
+                frames++;
+                if (frames < 100) {
+                    requestAnimationFrame(animate);
+                } else {
+                    cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+                }
+            }
+            animate();
+        }
+
+
+        /* --- SERVICE WORKER REGISTRATION (FOR PWABUILDER & APK) --- */
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Omah Les PWA ServiceWorker aktif:', reg.scope))
+                    .catch(err => console.warn('ServiceWorker gagal:', err));
+            });
+        }
+
+        /* --- INITIALIZATION ON LOAD --- */
+        window.addEventListener('DOMContentLoaded', () => {
+            getUsersDB();
+            checkExistingSession();
+            updateStarDisplays();
+            document.getElementById('certDisplayName').innerText = studentName;
+            initTKLetterGrid();
+            initSukuKataList();
+            renderMascots();
+            selectGrade(1);
+        });
+    </script>
+</body>
+</html>

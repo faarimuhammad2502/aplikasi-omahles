@@ -1,0 +1,27 @@
+{
+  "name": "Omah Les Kids - Belajar Kurikulum Merdeka",
+  "short_name": "OmahLesKids",
+  "description": "Aplikasi Belajar Interaktif Ceria Kurikulum Merdeka untuk TK dan SD",
+  "id": "id.omahles.kids",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff8f6",
+  "theme_color": "#f76707",
+  "categories": ["education", "kids"],
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "192x192 512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ]
+}

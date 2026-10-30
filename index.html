@@ -2167,12 +2167,24 @@
         const sukuKataExamples = [
             { p1: 'Ba', p2: 'Ju', word: 'Baju!', emoji: '👕' },
             { p1: 'Bo', p2: 'La', word: 'Bola!', emoji: '⚽' },
-            { p1: 'Ku', p2: 'Da', word: 'Kuda!', emoji: '🐴' },
-            { p1: 'Bu', p2: 'Ku', word: 'Buku!', emoji: '📚' },
+            { p1: 'Ku', p2: 'Da', word: 'Kuda!', emoji: '🐎' },
+            { p1: 'Bu', p2: 'Ku', word: 'Buku!', emoji: '📖' },
             { p1: 'Ka', p2: 'Ki', word: 'Kaki!', emoji: '🦶' },
-            { p1: 'Ma', p2: 'Ta', word: 'Mata!', emoji: '👁️' },
+            { p1: 'Ma', p2: 'Ta', word: 'Mata!', emoji: '👀' },
             { p1: 'Ro', p2: 'Ti', word: 'Roti!', emoji: '🍞' },
-            { p1: 'Su', p2: 'Su', word: 'Susu!', emoji: '🥛' }
+            { p1: 'Su', p2: 'Su', word: 'Susu!', emoji: '🥛' },
+            { p1: 'Pi', p2: 'Ta', word: 'Pita!', emoji: '🎀' },
+            { p1: 'Me', p2: 'Ja', word: 'Meja!', emoji: '🪑' },
+            { p1: 'To', p2: 'Pi', word: 'Topi!', emoji: '🧢' },
+            { p1: 'Gu', p2: 'Lu', word: 'Gula!', emoji: '🍬' },
+            { p1: 'Sa', p2: 'Pu', word: 'Sapu!', emoji: '🧹' },
+            { p1: 'Ta', p2: 'Li', word: 'Tali!', emoji: '🪢' },
+            { p1: 'Gi', p2: 'Gi', word: 'Gigi!', emoji: '🦷' },
+            { p1: 'Pa', p2: 'Lu', word: 'Palu!', emoji: '🔨' },
+            { p1: 'Lu', p2: 'Ka', word: 'Luka!', emoji: '🩹' },
+            { p1: 'Da', p2: 'Du', word: 'Dadu!', emoji: '🎲' },
+            { p1: 'Pa', p2: 'Di', word: 'Padi!', emoji: '🌾' },
+            { p1: 'Ke', p2: 'Ju', word: 'Keju!', emoji: '🧀' }
         ];
         let sukuIndex = 0;
 
@@ -2348,98 +2360,472 @@
         const kurikulumData = {
             indo: {
                 1: [
-                    { title: "🔤 Abjad & Pelafalan Bunyi", desc: "• Huruf Vokal: A, I, U, E, O\n• Huruf Konsonan: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z\n\n💡 Latihan Pelafalan:\n• B-A dibaca BA\n• B-I dibaca BI\n• B-U dibaca BU\n\nMari mengeja kata: B-A-J-U = Baju, M-A-T-A = Mata." },
-                    { title: "📖 Suku Kata Terbuka & Tertutup", desc: "• Suku Kata Terbuka: Ba-ju, Bo-la, Ku-da, Ka-ki.\n• Suku Kata Tertutup: Pas-tir, Mung-kin, Bus, Tas, Jam.\n\n💡 Latihan Membaca: 'I-bu me-ma-sak na-si di da-pur'." }
+                    { title: "🔤 Abjad & Pelafalan Bunyi", desc: "• Huruf Vokal: A, I, U, E, O
+• Huruf Konsonan: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z
+
+🎯 Latihan Pelafalan:
+  B-A dibaca BA, B-I dibaca BI, B-U dibaca BU.
+
+Mari mengeja kata: B-A-J-U = Baju, M-A-T-A = Mata, B-O-L-A = Bola." },
+                    { title: "🪶 Suku Kata Terbuka & Tertutup", desc: "• Suku Kata Terbuka (berakhiran vokal): Ba-ju, Bo-la, Ku-da, Ka-ki, Ro-ti.
+• Suku Kata Tertutup (berakhiran konsonan): Pas-tir, Mung-kin, Bus, Tas, Jam, Bak-so.
+
+📖 Latihan Membaca Kalimat:
+'I-bu me-ma-sak na-si di da-pur.'
+'A-yah mem-ba-ca bu-ku di ru-ang ta-mu.'" },
+                    { title: "🗣️ Kata Sapaan & Kesantunan", desc: "4 Kata Ajaib dalam Berkomunikasi:
+1. Tolong: Saat kita butuh bantuan orang lain.
+2. Terima Kasih: Setelah menerima bantuan atau hadiah.
+3. Maaf: Saat melakukan kesalahan atau tidak sengaja menyenggol.
+4. Permisi: Saat ingin lewat di depan orang lain." },
+                    { title: "🔍 Pengenalan Benda di Sekitar", desc: "Mengenal nama-nama benda di dalam kelas dan rumah beserta fungsinya:
+• Pensil & Buku untuk menulis dan menggambar.
+• Penggaris untuk mengukur garis lurus.
+• Piring & Sendok untuk makan bersama keluarga." }
                 ],
                 2: [
-                    { title: "📖 Membaca Lancar Teks Pendek", desc: "• Teks Cerita Pendek:\n'Dino adalah anak yang rajin. Setiap pagi setelah bangun tidur, Dino merapikan tempat tidurnya sendiri. Setelah itu, ia membantu Ibu menyiram bunga di halaman rumah.'\n\n💡 Pertanyaan:\nSiapa anak yang rajin? (Dino)\nApa yang dilakukan Dino di halaman? (Menyiram bunga)." },
-                    { title: "✍️ Tanda Baca & Huruf Kapital", desc: "• Huruf Kapital: Awal kalimat, nama orang, hari, bulan, dan tempat.\nContoh: Ani pergi ke Jakarta pada hari Senin di bulan Agustus.\n• Tanda Titik (.) & Tanda Tanya (?)." }
+                    { title: "📖 Membaca Lancar Teks Pendek", desc: "Teks Cerita Pendek:
+'Dino adalah anak yang rajin. Setiap pagi setelah bangun tidur, Dino merapikan tempat tidurnya sendiri. Setelah itu, ia membantu Ibu menyiram bunga di halaman rumah.'
+
+❓ Pertanyaan Pemahaman:
+1. Siapa anak yang rajin? (Dino)
+2. Apa yang dilakukan Dino di halaman? (Menyiram bunga)." },
+                    { title: "🔠 Tanda Baca & Huruf Kapital", desc: "• Huruf Kapital digunakan untuk:
+  1. Awal kalimat: 'Pagi ini udara sangat segar.'
+  2. Nama orang: Budi, Siti, Faari.
+  3. Nama hari & bulan: Senin, Agustus.
+  4. Nama tempat: Jakarta, Surabaya.
+
+• Tanda Baca:
+  Titik (.) di akhir kalimat berita, Tanda Tanya (?) di akhir pertanyaan, Tanda Seru (!) untuk kalimat perintah." },
+                    { title: "🤝 Kalimat Tanya 5W1H (Adiksimba)", desc: "Kata tanya dasar untuk bertanya:
+• Siapa: Menanyakan orang ('Siapa namamu?')
+• Di mana: Menanyakan tempat ('Di mana rumahmu?')
+• Kapan: Menanyakan waktu ('Kapan kita belajar bersama?')
+• Mengapa: Menanyakan alasan ('Mengapa kita harus cuci tangan?')" },
+                    { title: "📝 Menulis Puisi Anak Sederhana", desc: "Mengenal keindahan rima dan kata indah:
+'Bungaku mekar berseri,
+Harum semerbak di pagi hari,
+Kusiram setiap hari,
+Hatiku riang berseri-seri.'" }
                 ],
                 3: [
-                    { title: "📚 Teks Paragraf & Gagasan Utama", desc: "• Gagasan Utama / Ide Pokok:\nInti masalah yang dibahas dalam satu paragraf.\n\n💡 Cara Menemukan Ide Pokok:\n1. Baca seluruh kalimat dalam paragraf.\n2. Cermati kalimat pertama atau terakhir.\n3. Simpulkan intinya." },
-                    { title: "🔍 Pengenalan Kamus (KBBI)", desc: "Kata disusun berurutan abjad A-Z. Untuk kata 'Membaca', carilah kata dasarnya yaitu 'Baca' di abjad B." }
+                    { title: "📑 Teks Paragraf & Gagasan Utama", desc: "• Gagasan Utama / Ide Pokok: Inti masalah atau pesan terpenting yang dibahas dalam satu paragraf.
+
+💡 Langkah Praktis Menemukan Ide Pokok:
+1. Baca seluruh kalimat dalam paragraf dengan seksama.
+2. Temukan kalimat utama (biasanya di awal atau akhir paragraf).
+3. Simpulkan pokok pikiran utamanya." },
+                    { title: "📚 Pengenalan Kamus (KBBI)", desc: "Kata dalam kamus disusun berurutan dari A hingga Z.
+• Cara mencari kata berimbuhan: Carilah kata dasarnya lebih dulu!
+Contoh: Untuk mencari kata 'Membaca', carilah kata dasar 'Baca' di kelompok huruf B." },
+                    { title: "🎭 Cerita Fabel & Karakter Tokoh", desc: "Fabel adalah dongeng dengan tokoh binatang yang bertingkah seperti manusia.
+• Tokoh Protagonis: Tokoh berwatak baik (penolong, jujur).
+• Tokoh Antagonis: Tokoh berwatak jahat atau sombong.
+• Amanat: Pesan moral positif di akhir cerita fabel (misal fabel Kancil dan Buaya)." },
+                    { title: "✍️ Menulis Pengalaman Pribadi", desc: "Menulis karangan berdasarkan urutan waktu (kronologis):
+1. Bagian Awal: Pengenalan tempat dan waktu liburan.
+2. Bagian Isi: Kegiatan seru yang dilakukan.
+3. Bagian Penutup: Perasaan senang atau pelajaran berharga yang didapat." }
                 ],
                 4: [
-                    { title: "📄 Teks Informatif (Nonfiksi)", desc: "Teks yang dibuat berdasarkan fakta, data nyata, dan ilmu pengetahuan asli.\nContoh: Artikel siklus air, laporan cuaca, teks sejarah pahlawan." },
-                    { title: "⚡ Kalimat Aktif & Kalimat Pasif", desc: "• Kalimat Aktif: Budi memakan buah apel.\n• Kalimat Pasif: Buah apel dimakan oleh Budi." }
+                    { title: "📰 Teks Informatif (Nonfiksi)", desc: "Teks informatif ditulis berdasarkan fakta nyata, data asli, dan hasil pengamatan ilmiah, bukan karangan fiksi.
+Contoh: Laporan pengamatan siklus air, ensiklopedia hewan langka di Indonesia, biografi pahlawan nasional." },
+                    { title: "🔄 Kalimat Aktif & Kalimat Pasif", desc: "• Kalimat Aktif (Subjek melakukan tindakan, predikat berawalan me-):
+  'Budi memakan buah apel manis.'
+• Kalimat Pasif (Subjek menerima tindakan, predikat berawalan di-):
+  'Buah apel manis dimakan oleh Budi.'" },
+                    { title: "💬 Wawancara Sederhana & Bahasa Baku", desc: "Langkah melakukan wawancara:
+1. Tentukan topik dan narasumber yang tepat (guru, dokter, pedagang).
+2. Susun daftar pertanyaan dengan kata baku (daftar tanya: apa, siapa, di mana, kapan, mengapa, bagaimana).
+3. Catat jawaban penting dengan santun." },
+                    { title: "🖼️ Infografis & Bahasa Iklan", desc: "Memahami pesan visual dan teks persuasi:
+• Ciri Iklan: Menarik perhatian, singkat, padat, dan mengajak kebaikan (misal: 'Matikan keran air setelah digunakan demi bumi kita!')." }
                 ],
                 5: [
-                    { title: "📖 Membaca Kritis Sastra", desc: "Unsur Intrinsik Cerita:\n1. Tokoh: Pemeran dalam cerita.\n2. Watak: Sifat tokoh (Baik/Jahat).\n3. Latar: Tempat, waktu, suasana.\n4. Amanat: Pesan moral positif." },
-                    { title: "✉️ Surat Resmi vs Surat Pribadi", desc: "Surat resmi memakai bahasa baku, nomor surat, dan stempel instansi." }
+                    { title: "🧐 Membaca Kritis & Unsur Intrinsik", desc: "Unsur Intrinsik Cerita Pendek:
+1. Tema: Gagasan dasar cerita.
+2. Tokoh & Penokohan: Sifat dan karakter pemeran.
+3. Latar (Setting): Tempat, suasana, dan waktu kejadian.
+4. Alur (Plot): Rangkaian peristiwa (maju / mundur).
+5. Sudut Pandang: Posisi pengarang (orang pertama 'aku' / orang ketiga 'dia').
+6. Amanat: Pesan moral yang ingin disampaikan kepada pembaca." },
+                    { title: "✉️ Surat Resmi vs Surat Pribadi", desc: "• Surat Pribadi: Bahasa santai dan akrab, ditujukan ke teman atau kerabat, tanpa kop surat.
+• Surat Resmi: Menggunakan kop surat, nomor surat, perihal, lampiran, bahasa baku, tanda tangan resmi, dan stempel stempel lembaga." },
+                    { title: "📊 Membaca Diagram & Tabel Teks", desc: "Mengubah informasi visual tabel atau grafik batang menjadi teks narasi yang mudah dipahami pembaca, seperti data jumlah siswa berprestasi atau data ekspor beras." },
+                    { title: "🎭 Teks Eksplanasi Fenomena Alam", desc: "Teks yang menjelaskan 'mengapa' dan 'bagaimana' suatu peristiwa alam atau sosial terjadi (contoh: proses terjadinya gempa bumi, gerhana matahari, dan pelangi)." }
                 ],
                 6: [
-                    { title: "📰 Memahami Berita & Fakta vs Opini", desc: "• Fakta: Kejadian nyata yang terbukti datanya (Indonesia merdeka 17 Agustus 1945).\n• Opini: Pendapat pribadi (Makanan ini paling enak).\nHindari menyebarkan berita bohong (hoaks)!" },
-                    { title: "🎙️ Menyusun Teks Pidato", desc: "Bagian Pidato: Pembuka, Isi Pidato, dan Penutup." }
+                    { title: "📰 Memahami Berita: Fakta vs Opini", desc: "• Fakta: Peristiwa nyata yang terbukti kebenarannya dengan data dan angka pasti.
+Contoh: 'Indonesia memproklamasikan kemerdekaan pada tanggal 17 Agustus 1945.'
+• Opini: Pandangan, pendapat, atau penilaian pribadi seseorang.
+Contoh: 'Pantai Kuta adalah pantai terindah di dunia.'
+
+🛡️ Cerdas Literasi: Selalu periksa sumber berita dan jangan menyebarkan hoaks!" },
+                    { title: "🎙️ Menyusun Teks Pidato Persuasif", desc: "Struktur Pidato Lengkap:
+1. Salam Pembuka & Penghormatan kepada hadirin.
+2. Pendahuluan: Menjelaskan tema dan latar belakang topik.
+3. Isi Pokok: Gagasan utama, argumen logis, dan ajakan positif.
+4. Penutup: Kesimpulan ringkas, permohonan maaf, dan salam penutup." },
+                    { title: "📖 Mengisi Formulir & Lembar Jawaban (LJK)", desc: "Keterampilan membaca instruksi administratif:
+• Menulis nama lengkap dengan huruf kapital balok sesuai akta lahir.
+• Menulis tanggal lahir, nomor induk siswa nasional (NISN), dan alamat dengan teliti." },
+                    { title: "📚 Karya Ilmiah Sederhana & Ringkasan Buku", desc: "Membuat ringkasan (sinopsis) dari buku nonfiksi dengan mencatat judul, pengarang, penerbit, bab utama, dan intisari ilmu yang dipelajari." }
                 ]
             },
             inggris: {
                 1: [
-                    { title: "👋 Greetings & Expressions", desc: "• Good Morning (Selamat Pagi)\n• Good Afternoon (Selamat Siang)\n• How are you? (Apa kabarmu?)\n• I am fine, thank you! (Saya baik, terima kasih)." },
-                    { title: "🔢 Numbers 1 - 10", desc: "1: One, 2: Two, 3: Three, 4: Four, 5: Five, 6: Six, 7: Seven, 8: Eight, 9: Nine, 10: Ten." }
+                    { title: "👋 Greetings & Expressions", desc: "• Good Morning (Selamat Pagi)
+• Good Afternoon (Selamat Siang)
+• Good Evening (Selamat Sore / Malam)
+• Good Night (Selamat Tidur)
+• How are you? (Apa kabarmu?)
+• I am fine, thank you! (Saya sehat/baik, terima kasih!)" },
+                    { title: "🔢 Numbers 1 - 20", desc: "1: One, 2: Two, 3: Three, 4: Four, 5: Five, 6: Six, 7: Seven, 8: Eight, 9: Nine, 10: Ten.
+11: Eleven, 12: Twelve, 13: Thirteen, 14: Fourteen, 15: Fifteen, 16: Sixteen, 17: Seventeen, 18: Eighteen, 19: Nineteen, 20: Twenty." },
+                    { title: "🎨 Colors & Shapes", desc: "• Colors: Red (Merah), Blue (Biru), Yellow (Kuning), Green (Hijau), Orange (Jingga), Purple (Ungu), Black (Hitam), White (Putih).
+• Shapes: Circle (Lingkaran), Square (Persegi), Triangle (Segitiga)." },
+                    { title: "🏫 Classroom Objects", desc: "• Book (Buku), Pen (Pulpen), Pencil (Pensil), Eraser (Penghapus), Ruler (Penggaris), Bag (Tas), Desk (Meja Belajar), Chair (Kursi)." }
                 ],
                 2: [
-                    { title: "🐶 Animals Vocabulary", desc: "Cat (Kucing), Dog (Anjing), Cow (Sapi), Duck (Bebek), Bird (Burung), Fish (Ikan), Elephant (Gajah), Rabbit (Kelinci)." },
-                    { title: "📅 Days of the Week", desc: "Sunday (Minggu), Monday (Senin), Tuesday (Selasa), Wednesday (Rabu), Thursday (Kamis), Friday (Jumat), Saturday (Sabtu)." }
+                    { title: "🐾 Animals Vocabulary", desc: "• Pets & Farm Animals: Cat (Kucing), Dog (Anjing), Cow (Sapi), Duck (Bebek), Bird (Burung), Fish (Ikan), Rabbit (Kelinci), Horse (Kuda).
+• Wild Animals: Lion (Singa), Elephant (Gajah), Tiger (Harimau), Monkey (Monyet)." },
+                    { title: "📅 Days of the Week & Months", desc: "• Days: Sunday (Minggu), Monday (Senin), Tuesday (Selasa), Wednesday (Rabu), Thursday (Kamis), Friday (Jumat), Saturday (Sabtu).
+• Example: 'Today is Monday. We learn English together!'" },
+                    { title: "🍎 Fruits & Vegetables", desc: "• Fruits: Apple (Apel), Banana (Pisang), Orange (Jeruk), Mango (Mangga), Strawberry (Stroberi).
+• Vegetables: Carrot (Wortel), Tomato (Tomat), Spinach (Bayam), Corn (Jagung)." },
+                    { title: "👕 My Clothes", desc: "• Shirt (Kemeja), T-shirt (Kaos), Pants (Celana Panjang), Skirt (Rok), Shoes (Sepatu), Socks (Kaos Kaki), Hat (Topi)." }
                 ],
                 3: [
-                    { title: "🍕 Food & Drinks", desc: "• Food: Fried Rice (Nasi Goreng), Bread (Roti), Noodles (Mie).\n• Drinks: Milk (Susu), Water (Air Putih), Tea (Teh)." },
-                    { title: "🏠 Rooms in the House", desc: "Living room (Ruang Tamu), Bedroom (Kamar Tidur), Kitchen (Dapur), Bathroom (Kamar Mandi)." }
+                    { title: "🍽️ Food & Drinks", desc: "• Food: Fried Rice (Nasi Goreng), Bread (Roti), Noodles (Mie), Soup (Sup), Fried Chicken (Ayam Goreng).
+• Drinks: Milk (Susu), Water (Air Putih), Orange Juice (Jus Jeruk), Tea (Teh).
+• Like & Dislike: 'I like milk, but I don't like soda.'" },
+                    { title: "🏡 Rooms in the House", desc: "• Living room (Ruang Tamu): Where we sit with guests.
+• Bedroom (Kamar Tidur): Where we sleep and rest.
+• Kitchen (Dapur): Where mom cooks yummy food.
+• Bathroom (Kamar Mandi): Where we brush our teeth and take a bath." },
+                    { title: "👁️ Parts of the Body", desc: "• Head (Kepala), Hair (Rambut), Eyes (Mata), Ears (Telinga), Nose (Hidung), Mouth (Mulut), Hands (Tangan), Legs (Kaki).
+• Function: 'We see with our eyes. We listen with our ears.'" },
+                    { title: "⚽ Hobbies & Leisure", desc: "• Reading (Membaca), Swimming (Berenang), Playing football (Main sepak bola), Drawing (Menggambar), Dancing (Menari), Singing (Bernyanyi)." }
                 ],
                 4: [
-                    { title: "🏃 Present Continuous Tense", desc: "Rumus: Subject + am/is/are + Verb-ing.\nContoh:\n1. I am reading a book.\n2. She is cooking in the kitchen." },
-                    { title: "🕰️ Telling Time", desc: "• 7 o'clock = Jam 7 tepat\n• Half past eight = Jam 8 lewat 30 menit" }
+                    { title: "⏳ Present Continuous Tense", desc: "Pattern: Subject + am/is/are + Verb-ing.
+• I am reading a story book.
+• She is cooking soup in the kitchen.
+• They are playing football in the school yard.
+Used for actions happening right now!" },
+                    { title: "⏰ Telling the Time", desc: "• 07.00 = It is seven o'clock.
+• 07.30 = It is half past seven.
+• 07.15 = It is a quarter past seven.
+• 07.45 = It is a quarter to eight.
+• a.m. (pagi) & p.m. (siang hingga malam)." },
+                    { title: "🌦️ Weather & Seasons", desc: "• Weather: Sunny (Cerah), Rainy (Hujan), Cloudy (Berawan), Windy (Berangin).
+• Seasons: Dry Season (Musim Kemarau), Rainy Season (Musim Hujan)." },
+                    { title: "🚗 Transportation", desc: "• Land: Car (Mobil), Bicycle (Sepeda), Train (Kereta), Bus (Bus).
+• Water: Ship (Kapal), Boat (Perahu).
+• Air: Airplane (Pesawat), Helicopter (Helikopter)." }
                 ],
                 5: [
-                    { title: "🗺️ Directions & Asking Way", desc: "• Turn left (Belok kiri)\n• Turn right (Belok kanan)\n• Go straight (Lurus terus)" },
-                    { title: "📏 Comparative Adjectives", desc: "• Old -> Older (Lebih tua)\n• Big -> Bigger (Lebih besar)\nContoh: An elephant is bigger than a cat." }
+                    { title: "🗺️ Directions & Asking the Way", desc: "Expressions:
+• Excuse me, where is the library? (Permisi, di mana perpustakaan?)
+• Turn left (Belok kiri)
+• Turn right (Belok kanan)
+• Go straight on (Jalan lurus terus)
+• It is on your right side (Ada di sebelah kananmu)." },
+                    { title: "📏 Comparative & Superlative", desc: "• Comparative (-er / more):
+  Old -> Older (Lebih tua)
+  Big -> Bigger (Lebih besar)
+  Expensive -> More expensive (Lebih mahal)
+  'An elephant is bigger than a tiger.'
+• Superlative (-est / most):
+  'The blue whale is the biggest animal.'" },
+                    { title: "🩺 Health & Illnesses", desc: "• Headache (Sakit kepala), Stomachache (Sakit perut), Toothache (Sakit gigi), Cold / Flu (Flu / pilek), Fever (Demam).
+• Expression: 'You should drink warm water and take a rest.'" },
+                    { title: "🛒 Shopping & Prices", desc: "• Asking price: 'How much is this pencil?'
+• It is five thousand rupiahs (Rp 5.000).
+• Bargaining politely: 'Can I have a discount?'" }
                 ],
                 6: [
-                    { title: "📜 Simple Past Tense", desc: "Rumus: Subject + Verb 2.\nContoh:\n1. I played football yesterday.\n2. We went to Bali last week." },
-                    { title: "👨‍⚕️ Occupations / Professions", desc: "Doctor (Dokter), Teacher (Guru), Pilot (Pilot), Chef (Koki), Police Officer (Polisi)." }
+                    { title: "🕰️ Simple Past Tense", desc: "Used for events that already happened in the past (yesterday, last week, two days ago).
+Pattern: Subject + Verb 2.
+• Regular: play -> played, visit -> visited, wash -> washed.
+• Irregular: go -> went, see -> saw, buy -> bought, eat -> ate.
+Example: 'We went to the zoo yesterday.'" },
+                    { title: "💼 Occupations & Dream Jobs", desc: "• Doctor: Treats sick people in the hospital.
+• Teacher: Educates students in school.
+• Pilot: Flies airplanes in the sky.
+• Chef: Cooks delicious dishes in the restaurant.
+• Software Engineer: Creates cool mobile apps and websites!" },
+                    { title: "🌍 Save Our Planet (Environment)", desc: "Environmental action words:
+• Reduce, Reuse, Recycle (3R)
+• Plant trees (Menanam pohon)
+• Save water and electricity (Hemat air dan listrik)
+• Don't litter (Jangan buang sampah sembarangan)." },
+                    { title: "📖 Reading Comprehension: Legends & Folk Tales", desc: "Understanding narrative texts:
+• The legend of Malin Kundang (Amanat: berbakti pada orang tua).
+• The story of Roro Jonggrang & Lake Toba.
+Focus on moral value, orientation, complication, and resolution." }
                 ]
             },
             ipas: {
+                1: [
+                    { title: "🌿 Mengenal Bagian Tubuh & Panca Indra", desc: "• Bagian Tubuh: Kepala, badan, tangan, dan kaki.
+• 5 Panca Indra Hebat:
+  1. Mata untuk melihat warna-warni dunia.
+  2. Telinga untuk mendengar suara merdu.
+  3. Hidung untuk mencium aroma harum makanan.
+  4. Lidah untuk mengecap rasa manis, asin, asam, dan pahit.
+  5. Kulit untuk merasakan sentuhan kasar atau halus." },
+                    { title: "🏡 Merawat Diri & Lingkungan Sehat", desc: "Kebiasaan Hidup Bersih:
+• Mandi dua kali sehari memakai sabun bersih.
+• Menggosok gigi setelah sarapan dan sebelum tidur malam.
+• Mencuci tangan pakai sabun sebelum menyentuh makanan.
+• Membuang sampah selalu ke tempat sampah!" }
+                ],
+                2: [
+                    { title: "🌱 Benda Hidup vs Benda Tak Hidup", desc: "• Ciri Benda Hidup (Makhluk Hidup):
+  Membutuhkan makanan & air, bernapas, tumbuh membesar, dan dapat bergerak sendiri (Contoh: kucing, pohon mangga, manusia).
+• Ciri Benda Tak Hidup:
+  Tidak bernapas dan tidak tumbuh (Contoh: batu, buku, meja, boneka)." },
+                    { title: "☀️ Siang, Malam, & Cuaca di Sekitar", desc: "• Siang Hari: Ada matahari terang benderang, udara terasa hangat.
+• Malam Hari: Gelap, ada bulan dan bintang yang berkelap-kelip.
+• Macam Cuaca: Cuaca panas terik, berawan teduh, dan cuaca hujan deras." }
+                ],
                 3: [
-                    { title: "👁️ Panca Indra & Fungsinya", desc: "1. Mata: Melihat\n2. Telinga: Mendengar\n3. Hidung: Membaui\n4. Lidah: Mengecap rasa\n5. Kulit: Meraba suhu & tekstur." },
-                    { title: "🦋 Siklus Hidup & Metamorfosis", desc: "Telur -> Larva/Ulat -> Kepompong/Pupa -> Kupu-kupu Dewasa." }
+                    { title: "👃 Panca Indra & Mekanisme Kerjanya", desc: "Detail Fungsi Indra Manusia:
+1. Mata: Kornea, pupil, dan lensa menangkap cahaya.
+2. Telinga: Gendang telinga bergetar saat menangkap gelombang suara.
+3. Hidung: Saraf pembau mendeteksi aroma partikel di udara.
+4. Lidah: Bintik perasa mendeteksi manis di ujung, asam & asin di samping, pahit di pangkal.
+5. Kulit: Reseptor merasakan panas, dingin, dan rasa nyeri." },
+                    { title: "🦋 Siklus Hidup & Metamorfosis", desc: "• Metamorfosis Sempurna (Bentuk anak berbeda jauh dengan induknya):
+  Telur -> Larva (Ulat) -> Pupa (Kepompong) -> Kupu-kupu Dewasa (Imago).
+  Contoh lain: Katak (Telur -> Berudu -> Katak berekor -> Katak dewasa), Nyamuk.
+• Metamorfosis Tidak Sempurna: Telur -> Nimfa -> Dewasa (Contoh: Belalang, Kecoa)." },
+                    { title: "🧊 Perubahan Wujud Benda di Rumah", desc: "6 Macam Perubahan Wujud Benda:
+1. Mencair: Padat ke Cair (Es batu meleleh saat dipanaskan).
+2. Membeku: Cair ke Padat (Air dimasukkan ke dalam freezer kulkas).
+3. Menguap: Cair ke Gas (Air mendidih mengeluarkan uap panas).
+4. Mengembun: Gas ke Cair (Titik-titik air di luar gelas es sirup).
+5. Menyublim: Padat ke Gas (Kapur barus di lemari pakaian mengecil).
+6. Mengkristal: Gas ke Padat (Uap air menjadi butiran salju dingin)." },
+                    { title: "🤝 Denah Lingkungan Rumah & Sekolah", desc: "Membaca arah mata angin dasar (Utara, Timur, Selatan, Barat) dan mengenal batas-batas lingkungan rukun tetangga (RT/RW) serta fasilitas umum seperti puskesmas dan pasar." }
                 ],
                 4: [
-                    { title: "🌱 Bagian Tumbuhan & Fotosintesis", desc: "Air + Karbondioksida + Cahaya Matahari -> Glukosa (Makanan) + Oksigen (O2)." },
-                    { title: "💡 Bentuk-Bentuk Energi", desc: "Energi Panas, Cahaya, Listrik, dan Bunyi. Energi tidak dapat dimusnahkan, hanya berubah bentuk." }
+                    { title: "🍃 Bagian Tumbuhan & Fotosintesis", desc: "• Bagian Utama: Akar (penyerap air & mineral), Batang (penopang), Daun (dapur tumbuhan), Bunga (alat perkembangbiakan), Buah & Biji.
+
+☀️ Rumus Reaksi Fotosintesis:
+Air (dari akar) + Karbondioksida (dari udara) + Cahaya Matahari (diserap Klorofil)
+   ➡️ Glukosa (Energi makanan) + Oksigen (O2 segar yang kita hirup)." },
+                    { title: "⚡ Bentuk-Bentuk Energi & Perubahannya", desc: "Hukum Kekekalan Energi: Energi tidak dapat diciptakan atau dimusnahkan, hanya dapat berubah bentuk.
+• Contoh Perubahan Energi:
+  1. Energi Listrik -> Panas: Setrika, Magic Com, Oven.
+  2. Energi Listrik -> Gerak: Kipas angin, Blender, Mesin cuci.
+  3. Energi Kimia -> Gerak: Makanan yang kita makan membuat kita bisa berlari!" },
+                    { title: "🧲 Gaya di Sekitar Kita", desc: "Macam-macam Gaya Fisika:
+• Gaya Otot: Mendorong gerobak atau menendang bola.
+• Gaya Gesek: Gesekan rem sepeda dengan roda untuk memperlambat laju.
+• Gaya Gravitasi: Gaya tarik bumi yang membuat buah mangga selalu jatuh ke bawah.
+• Gaya Magnet: Menarik benda logam (besi, baja). Kutub sejenis tolak-menolak, kutub berbeda tarik-menarik." },
+                    { title: "🏛️ Keragaman Budaya & Kearifan Lokal", desc: "Mengenal kekayaan Nusantara:
+• Rumah Adat: Joglo (Jawa), Gadang (Sumatera Barat), Tongkonan (Toraja).
+• Alat Musik: Angklung (Jawa Barat), Sasando (NTT), Gamelan (Jawa & Bali).
+• Sikap Toleransi: Menghargai perbedaan suku, agama, dan budaya di Indonesia." }
                 ],
                 5: [
-                    { title: "🫁 Sistem Organ Tubuh Manusia", desc: "• Pernapasan: Hidung -> Tenggorokan -> Paru-paru (Alveolus).\n• Jantung: Memompa darah ke seluruh tubuh." },
-                    { title: "🌾 Ekosistem & Jaring Makanan", desc: "Rumput (Produsen) -> Belalang (Konsumen I) -> Katak (Konsumen II) -> Ular (Konsumen III)." }
+                    { title: "🫁 Sistem Organ Tubuh Manusia", desc: "• Sistem Pernapasan:
+Hidung (penyaringan udara) -> Faring & Laring -> Trakea (tenggorokan) -> Bronkus -> Paru-paru (pertukaran O2 dan CO2 di alveolus).
+• Sistem Pencernaan:
+Mulut (pencernaan mekanik & enzim ptialin) -> Kerongkongan (gerak peristaltik) -> Lambung -> Usus Halus (penyerapan sari makanan) -> Usus Besar -> Anus.
+• Sistem Peredaran Darah:
+Jantung 4 ruang memompa darah ke seluruh tubuh melalui pembuluh arteri dan vena." },
+                    { title: "🌾 Ekosistem & Rantai Makanan", desc: "Tingkatan Rantai Makanan Sawah:
+1. Produsen: Padi (menghasilkan makanan sendiri lewat fotosintesis).
+2. Konsumen I (Herbivora): Belalang memakan padi.
+3. Konsumen II (Karnivora): Katak memakan belalang.
+4. Konsumen III (Predator): Ular memakan katak.
+5. Pengurai (Dekomposer): Jamur & bakteri menguraikan bangkai menjadi humus tanah." },
+                    { title: "💧 Siklus Hidrologi Air Bumi", desc: "Urutan Daur Air Alami:
+1. Evaporasi: Penguapan air laut dan sungai akibat panas matahari.
+2. Transpirasi: Penguapan air dari stomata daun tumbuhan.
+3. Kondensasi: Uap air mendingin dan membentuk awan mendung.
+4. Presipitasi: Turunnya titik air sebagai hujan ke daratan.
+5. Infiltrasi: Peresapan air hujan ke dalam pori-pori tanah." },
+                    { title: "🇮🇩 Penjajahan & Perjuangan Kemerdekaan", desc: "Perjuangan Bangsa Menuju Kemerdekaan:
+• Perlawanan kedaerahan (Pangeran Diponegoro, Tuanku Imam Bonjol, Pattimura).
+• Kebangkitan Nasional 1908 (Budi Utomo) dan Sumpah Pemuda 1928.
+• Peristiwa Rengasdengklok dan Pembacaan Teks Proklamasi oleh Ir. Soekarno pada 17 Agustus 1945." }
                 ],
                 6: [
-                    { title: "🪐 Tata Surya & Planet", desc: "Pusat: Matahari.\nUrutan Planet: Merkurius, Venus, Bumi, Mars, Jupiter, Saturnus, Uranus, Neptunus." },
-                    { title: "🌑 Gerak Bumi & Bulan", desc: "• Rotasi: Menyebabkan siang & malam.\n• Revolusi: Menyebabkan pergantian musim." }
+                    { title: "🪐 Tata Surya & Planet Angkasa", desc: "Pusat Tata Surya: Matahari (Bintang raksasa dengan gravitasi terbesar).
+Urutan 8 Planet dari yang Terdekat:
+1. Merkurius: Planet terkecil dan terdekat ke matahari.
+2. Venus: Planet paling panas (efek rumah kaca) dan bintang fajar.
+3. Bumi: Satu-satunya planet tempat tinggal kita dengan atmosfer air.
+4. Mars: Planet merah berdebu besi.
+5. Jupiter: Planet terbesar dalam tata surya.
+6. Saturnus: Planet dengan cincin es dan batu yang indah.
+7. Uranus: Planet es berwarna biru kehijauan yang berputar miring.
+8. Neptunus: Planet terluar dengan badai angin super cepat." },
+                    { title: "🌍 Rotasi & Revolusi Bumi", desc: "• Rotasi Bumi (Bumi berputar pada porosnya selama 24 jam):
+  Akibatnya: Terjadinya siang dan malam, gerak semu harian matahari, dan perbedaan zona waktu (WIB, WITA, WIT).
+• Revolusi Bumi (Bumi mengelilingi matahari selama 365¼ hari / 1 tahun):
+  Akibatnya: Pergantian 4 musim di dunia dan perubahan lamanya waktu siang dan malam." },
+                    { title: "🔋 Energi Alternatif & Ramah Lingkungan", desc: "Sumber energi terbarukan untuk menggantikan bahan bakar fosil minyak bumi:
+• PLTS: Pembangkit Listrik Tenaga Surya memakai panel fotovoltaik.
+• PLTA: Pembangkit Listrik Tenaga Air memanfaatkan arus waduk/sungai.
+• PLTB: Pembangkit Listrik Tenaga Bayu (kincir angin raksasa).
+• Geotermal & Biomassa." },
+                    { title: "🌏 Globalisasi & Kerjasama ASEAN", desc: "• Globalisasi: Era keterbukaan informasi dan pertukaran teknologi antarnegara.
+• Kerjasama ASEAN (Perhimpunan Bangsa Asia Tenggara):
+  Didirikan 8 Agustus 1967 di Bangkok oleh 5 negara pelopor termasuk Indonesia (Adam Malik).
+  Bentuk kerjasama: Ekspor-impor ekonomi, pertukaran pelajar, dan pertahanan perdamaian." }
                 ]
             },
             math: {
                 1: [
-                    { title: "🔢 Penjumlahan & Pengurangan (<20)", desc: "8 + 5 = 13\n15 - 6 = 9\n\n💡 Soal Cerita:\nBudi punya 7 kelereng, diberi Ayah 4 lagi.\nJumlah = 7 + 4 = 11 kelereng." },
-                    { title: "📐 Bangun Datar Dasar", desc: "• Segitiga: Memiliki 3 sisi.\n• Persegi: Memiliki 4 sisi sama panjang.\n• Lingkaran: Memiliki 1 sisi melengkung." }
+                    { title: "➕ Penjumlahan & Pengurangan (<20)", desc: "• Contoh Hitung Cepat:
+  8 + 5 = 13
+  12 + 6 = 18
+  15 - 7 = 8
+  20 - 9 = 11
+
+🎯 Soal Cerita Latihan:
+'Budi memiliki 9 kelereng kaca di kantongnya. Lalu Ayah memberi 6 kelereng baru sebagai hadiah.'
+Berapa jumlah kelereng Budi sekarang?
+Jawab: 9 + 6 = 15 kelereng!" },
+                    { title: "📐 Bangun Datar Dasar", desc: "Mengenal bentuk 2 dimensi:
+• Segitiga: Memiliki 3 sisi dan 3 titik sudut.
+• Persegi: Memiliki 4 sisi yang semuanya sama panjang.
+• Persegi Panjang: Memiliki 2 pasang sisi sejajar yang sama panjang.
+• Lingkaran: Memiliki 1 sisi melengkung bulat penuh." },
+                    { title: "📏 Perbandingan Panjang & Berat", desc: "Konsep komparasi:
+• Lebih panjang vs Lebih pendek (misal: penggaris lebih panjang dari pensil).
+• Lebih berat vs Lebih ringan (misal: semangka lebih berat dari apel).
+• Lebih tinggi vs Lebih rendah." },
+                    { title: "📊 Pola Gambar & Bilangan", desc: "Melengkapi urutan berpola:
+• Pola Bilangan Loncat 2: 2, 4, 6, 8, [10], [12].
+• Pola Bilangan Loncat 5: 5, 10, 15, 20, [25]." }
                 ],
                 2: [
-                    { title: "➕ Penjumlahan Bersusun", desc: "  45\n  28 +\n  ---\n  73\nIngat simpan angka puluhan di atas!" },
-                    { title: "✖️ Perkalian = Penjumlahan Berulang", desc: "3 x 4 = 4 + 4 + 4 = 12." }
+                    { title: "🔢 Penjumlahan Bersusun Panjang & Pendek", desc: "Metode Menyimpan:
+    45
+    28 +
+    ---
+Langkah:
+1. Jumlahkan satuan: 5 + 8 = 13 (tulis 3 di satuan, simpan 1 di puluhan).
+2. Jumlahkan puluhan: 1 (simpanan) + 4 + 2 = 7.
+Hasil Akhir = 73!" },
+                    { title: "✖️ Perkalian = Penjumlahan Berulang", desc: "Konsep Dasar Perkalian:
+• 3 x 4 artinya 4 dijumlahkan sebanyak 3 kali: 4 + 4 + 4 = 12.
+• 5 x 2 artinya 2 dijumlahkan sebanyak 5 kali: 2 + 2 + 2 + 2 + 2 = 10.
+• Sifat Komutatif (Pertukaran): a x b = b x a (Contoh: 3 x 4 = 4 x 3 = 12)." },
+                    { title: "➗ Pembagian = Pengurangan Berulang", desc: "Konsep Dasar Pembagian:
+• 12 : 3 sama artinya dengan mengurangi 12 dengan 3 sampai habis nol:
+  12 - 3 = 9
+  9 - 3 = 6
+  6 - 3 = 3
+  3 - 3 = 0 (Terjadi 4 kali pengurangan)
+Jadi 12 : 3 = 4!" },
+                    { title: "⏰ Membaca Jam Analog & Kalender", desc: "• Jarum pendek menunjukkan Jam, jarum panjang menunjukkan Menit.
+• Jarum pendek di angka 3, jarum panjang di angka 12 = Pukul 03.00 tepat.
+• 1 Jam = 60 Menit. 1 Hari = 24 Jam. 1 Minggu = 7 Hari." }
                 ],
                 3: [
-                    { title: "🥧 Pecahan Sederhana", desc: "Pecahan ½: 1 benda dibagi 2 bagian sama besar.\nAngka atas = Pembilang, angka bawah = Penyebut." },
-                    { title: "📏 Satuan Panjang (m, cm, mm)", desc: "1 meter (m) = 100 centimeter (cm).\n1 centimeter (cm) = 10 millimeter (mm)." }
+                    { title: "🥧 Pecahan Sederhana (1/2, 1/3, 1/4)", desc: "Arti Pecahan:
+• Pecahan 1/2: Satu pizza utuh dipotong menjadi 2 potong sama besar.
+• Angka di atas dinamakan Pembilang (bagian yang diambil).
+• Angka di bawah dinamakan Penyebut (jumlah seluruh potongan).
+• Membandingkan: 1/2 lebih besar daripada 1/4." },
+                    { title: "📏 Satuan Panjang Baku (km hingga mm)", desc: "Tangga Satuan Panjang (Turun 1 tangga x10, Naik 1 tangga :10):
+km (kilometer) -> hm -> dam -> m (meter) -> dm -> cm (centimeter) -> mm
+
+Contoh Penting:
+• 1 meter (m) = 100 centimeter (cm).
+• 1 centimeter (cm) = 10 millimeter (mm).
+• 1 kilometer (km) = 1.000 meter (m)." },
+                    { title: "⚖️ Satuan Berat (kg, gram, ons)", desc: "Konversi Satuan Massa:
+• 1 kilogram (kg) = 1.000 gram.
+• 1 kilogram (kg) = 10 ons (hektogram).
+• 1 ons = 100 gram." },
+                    { title: "📐 Keliling Persegi & Persegi Panjang", desc: "Keliling adalah jumlah seluruh panjang sisi tepi bangun datar:
+• Keliling Persegi = 4 x sisi (s + s + s + s).
+• Keliling Persegi Panjang = 2 x (panjang + lebar)." }
                 ],
                 4: [
-                    { title: "📐 Luas Bangun Datar", desc: "• Luas Persegi = sisi x sisi\n• Luas Persegi Panjang = panjang x lebar" },
-                    { title: "🔢 FPB & KPK Bilangan", desc: "KPK dari 4 dan 6 adalah 12." }
+                    { title: "📐 Luas Persegi & Persegi Panjang", desc: "Rumus Luas Bidang Datar:
+• Luas Persegi = sisi x sisi (s²)
+  Contoh: sisi 6 cm -> Luas = 6 x 6 = 36 cm².
+• Luas Persegi Panjang = panjang x lebar (p x l)
+  Contoh: panjang 8 cm, lebar 5 cm -> Luas = 8 x 5 = 40 cm².
+• Luas Segitiga = 1/2 x alas x tinggi." },
+                    { title: "🔢 FPB & KPK Bilangan", desc: "• Faktor Persekutuan Terbesar (FPB):
+  Faktor dari 12: 1, 2, 3, 4, 6, 12.
+  Faktor dari 18: 1, 2, 3, 6, 9, 18.
+  FPB dari 12 dan 18 adalah 6.
+• Kelipatan Persekutuan Terkecil (KPK):
+  Kelipatan 4: 4, 8, 12, 16, 20, 24...
+  Kelipatan 6: 6, 12, 18, 24...
+  KPK dari 4 dan 6 adalah 12." },
+                    { title: "🍕 Operasi Pecahan Biasa & Campuran", desc: "Penjumlahan Pecahan Berpenyebut Sama:
+• 2/7 + 3/7 = 5/7 (penyebut tetap, jumlahkan pembilang).
+Penjumlahan Berpenyebut Beda (Samakan KPK penyebut):
+• 1/2 + 1/3 = 3/6 + 2/6 = 5/6." },
+                    { title: "📐 Mengukur Sudut dengan Busur Derajat", desc: "Jenis-Jenis Sudut:
+• Sudut Lancip: Besar sudutnya antara 0° sampai kurang dari 90°.
+• Sudut Siku-Siku: Tepat berukuran 90° (tegak lurus).
+• Sudut Tumpul: Lebih dari 90° sampai kurang dari 180°.
+• Sudut Lurus: Tepat berukuran 180°." }
                 ],
                 5: [
-                    { title: "📦 Volume Bangun Ruang", desc: "• Volume Kubus = s x s x s (s³)\n• Volume Balok = panjang x lebar x tinggi" },
-                    { title: "📊 Statistika (Mean, Median, Modus)", desc: "• Mean = Rata-rata\n• Median = Nilai Tengah\n• Modus = Nilai paling sering muncul" }
+                    { title: "📦 Volume Bangun Ruang (Kubus & Balok)", desc: "• Volume Kubus:
+  Rumus: V = s x s x s (s³)
+  Contoh: rusuk s = 5 cm, maka V = 5 x 5 x 5 = 125 cm³.
+• Volume Balok:
+  Rumus: V = panjang x lebar x tinggi (p x l x t)
+  Contoh: p = 10 cm, l = 4 cm, t = 6 cm, maka V = 10 x 4 x 6 = 240 cm³.
+• 1 Liter = 1 dm³ = 1.000 cm³." },
+                    { title: "📊 Statistika Dasar (Mean, Median, Modus)", desc: "Pengolahan Data Nilai Ulangan: 7, 8, 8, 9, 8
+1. Mean (Nilai Rata-rata):
+   Jumlah data : banyak data = (7+8+8+9+8) : 5 = 40 : 5 = 8.
+2. Median (Nilai Tengah):
+   Urutkan data: 7, 8, [8], 8, 9. Nilai tengahnya adalah 8.
+3. Modus (Nilai Paling Sering Muncul):
+   Angka 8 muncul 3 kali. Modusnya adalah 8." },
+                    { title: "💯 Operasi Pecahan Desimal & Persen", desc: "• Mengubah Pecahan ke Desimal: 1/2 = 0,5 ; 3/4 = 0,75 ; 1/5 = 0,2.
+• Mengubah ke Persen (per seratus): 1/2 = 50% ; 3/4 = 75% ; 1/4 = 25%.
+• Menghitung Diskon Toko:
+  Baju harga Rp 100.000 dapat diskon 20%.
+  Potongan = 20/100 x 100.000 = Rp 20.000.
+  Harga bayar = Rp 80.000!" },
+                    { title: "🚗 Kecepatan, Jarak, & Waktu", desc: "Segitiga Rumus Kecepatan:
+• Jarak (S) = Kecepatan (V) x Waktu (t)
+• Kecepatan (V) = Jarak : Waktu
+• Waktu (t) = Jarak : Kecepatan
+Contoh: Mobil melaju dengan kecepatan 60 km/jam selama 2 jam, jarak yang ditempuh = 60 x 2 = 120 km." }
                 ],
                 6: [
-                    { title: "➖ Bilangan Bulat Negatif", desc: "Negatif ketemu Negatif menjadi Positif:\n5 - (-3) = 5 + 3 = 8." },
-                    { title: "⭕ Keliling & Luas Lingkaran", desc: "Nilai π (phi) = 22/7 atau 3,14.\nLuas = π x r²." }
+                    { title: "➖ Bilangan Bulat Negatif & Garis Bilangan", desc: "Aturan Operasi Bilangan Bulat Positif & Negatif:
+• 7 + (-3) = 7 - 3 = 4
+• -5 + (-2) = -7
+• Pengurangan: 6 - (-4) = 6 + 4 = 10 (negatif ketemu minus menjadi plus!)
+• Perkalian:
+  Positif x Negatif = Negatif (4 x -3 = -12)
+  Negatif x Negatif = Positif (-5 x -4 = +20)" },
+                    { title: "⭕ Lingkaran: Keliling & Luas", desc: "Unsur Lingkaran: Titik Pusat, Jari-jari (r), Diameter (d = 2r).
+Nilai π (phi) = 22/7 (jika r kelipatan 7) atau 3,14.
+
+• Keliling Lingkaran = 2 x π x r (atau π x d)
+  Contoh: r = 7 cm, K = 2 x (22/7) x 7 = 44 cm.
+• Luas Lingkaran = π x r²
+  Contoh: r = 7 cm, L = (22/7) x 7 x 7 = 154 cm²." },
+                    { title: "🏛️ Luas Permukaan & Volume Tabung, Kerucut, Bola", desc: "Rumus Bangun Ruang Lengkung:
+• Volume Tabung = Luas Alas x Tinggi = π x r² x t
+• Volume Kerucut = 1/3 x π x r² x t
+• Luas Selimut Tabung = 2 x π x r x t" },
+                    { title: "⚖️ Perbandingan Senilai & Skala Peta", desc: "Rumus Skala:
+• Skala = Jarak pada Peta (JP) : Jarak Sebenarnya (JS)
+• Contoh: Skala 1 : 100.000 artinya 1 cm di peta mewakili 100.000 cm (1 km) jarak aslinya di daratan." }
                 ]
             }
         };
@@ -2556,9 +2942,14 @@
             tk: [
                 { q: "Gambar hewan apakah ini? 🐱", opts: ["Kucing", "Sapi", "Bebek"], ans: 0 },
                 { q: "Mana buah Pisang? 🍌", opts: ["Apel", "Pisang", "Jeruk"], ans: 1 },
-                { q: "Suara Meong Meong itu hewan...", opts: ["Kucing", "Anjing", "Ayam"], ans: 0 },
-                { q: "Warna Buah Apel ini 🍎 adalah...", opts: ["Merah", "Kuning", "Biru"], ans: 0 },
-                { q: "Bintang ini ⭐ ⭐ ada berapa?", opts: ["1", "2", "3"], ans: 1 }
+                { q: "Suara 'Meong... Meong...' itu hewan...", opts: ["Kucing", "Anjing", "Ayam"], ans: 0 },
+                { q: "Warna Buah Apel matang 🍎 adalah...", opts: ["Merah", "Kuning", "Biru"], ans: 0 },
+                { q: "Bintang ini ⭐ ⭐ ada berapa?", opts: ["1", "2", "3"], ans: 1 },
+                { q: "Hewan yang berkokok di pagi hari adalah...", opts: ["Ayam Jantan", "Kambing", "Ikan"], ans: 0 },
+                { q: "Warna daun pohon yang segar 🍃 umumnya...", opts: ["Hijau", "Hitam", "Ungu"], ans: 0 },
+                { q: "Benda yang kita pakai di kepala saat panas 🧢 adalah...", opts: ["Topi", "Sepatu", "Kaos Kaki"], ans: 0 },
+                { q: "Berapa jumlah jari tangan kiri kita? 🖐️", opts: ["3 Jari", "5 Jari", "7 Jari"], ans: 1 },
+                { q: "Hewan yang berenang di dalam air adalah... 🐟", opts: ["Ikan", "Burung", "Kucing"], ans: 0 }
             ],
             1: [
                 { q: "Huruf pertama dari kata 'B-U-K-U' adalah...", opts: ["B", "U", "K"], ans: 0 },
@@ -2568,7 +2959,9 @@
                 { q: "Anggota tubuh yang digunakan untuk mendengar adalah...", opts: ["Telinga", "Mata", "Hidung"], ans: 0 },
                 { q: "Ungkapan yang diucapkan saat mendapat bantuan adalah...", opts: ["Terima Kasih", "Maaf", "Sama-sama"], ans: 0 },
                 { q: "Hasil dari 15 - 7 adalah...", opts: ["7", "8", "9"], ans: 1 },
-                { q: "Bahasa Inggris dari kata 'Tas' adalah...", opts: ["Bag", "Book", "Pencil"], ans: 0 }
+                { q: "Bahasa Inggris dari kata 'Tas Sekolah' adalah...", opts: ["Bag", "Book", "Pencil"], ans: 0 },
+                { q: "Huruf vokal dalam kata 'M-E-J-A' adalah...", opts: ["E dan A", "M dan J", "M dan A"], ans: 0 },
+                { q: "Hasil dari 9 + 7 adalah...", opts: ["15", "16", "17"], ans: 1 }
             ],
             2: [
                 { q: "Huruf besar di awal kalimat dinamakan huruf...", opts: ["Kapital", "Kecil", "Sambung"], ans: 0 },
@@ -2576,32 +2969,59 @@
                 { q: "3 x 4 sama artinya dengan penjumlahan berulang...", opts: ["4 + 4 + 4", "3 + 3 + 3", "4 + 3"], ans: 0 },
                 { q: "Bahasa Inggris dari 'Kucing' adalah...", opts: ["Cat", "Dog", "Bird"], ans: 0 },
                 { q: "Hasil pembagian dari 12 : 3 adalah...", opts: ["3", "4", "5"], ans: 1 },
-                { q: "Satu minggu terdiri dari berapa hari?", opts: ["5 Hari", "6 Hari", "7 Hari"], ans: 2 }
+                { q: "Satu minggu terdiri dari berapa hari?", opts: ["5 Hari", "6 Hari", "7 Hari"], ans: 2 },
+                { q: "Tanda baca yang digunakan untuk mengakhiri kalimat tanya adalah...", opts: ["Tanda Tanya (?)", "Tanda Titik (.)", "Tanda Seru (!)"], ans: 0 },
+                { q: "Benda yang tidak dapat tumbuh dan bernapas disebut...", opts: ["Benda Tak Hidup", "Benda Hidup", "Tumbuhan"], ans: 0 },
+                { q: "Hasil perkalian dari 5 x 4 adalah...", opts: ["15", "20", "25"], ans: 1 },
+                { q: "Bahasa Inggris dari hari 'Minggu' adalah...", opts: ["Sunday", "Monday", "Friday"], ans: 0 }
             ],
             3: [
-                { q: "Inti masalah yang dibahas dalam suatu paragraf dinamakan...", opts: ["Ide Pokok", "Judul", "Amanat"], ans: 0 },
+                { q: "Inti masalah yang dibahas dalam suatu paragraf dinamakan...", opts: ["Ide Pokok / Gagasan Utama", "Judul Karangan", "Amanat"], ans: 0 },
                 { q: "Perubahan wujud es batu menjadi air dinamakan...", opts: ["Mencair", "Membeku", "Menguap"], ans: 0 },
-                { q: "Pecahan ½ dibaca...", opts: ["Satu per dua / Setengah", "Satu per tiga", "Satu per empat"], ans: 0 },
+                { q: "Pecahan 1/2 dibaca...", opts: ["Satu per dua / Setengah", "Satu per tiga", "Satu per empat"], ans: 0 },
                 { q: "Bahasa Inggris dari 'Kamar Tidur' adalah...", opts: ["Bedroom", "Kitchen", "Bathroom"], ans: 0 },
-                { q: "Hasil dari 25 x 4 adalah...", opts: ["80", "100", "120"], ans: 1 }
+                { q: "Hasil dari 25 x 4 adalah...", opts: ["80", "100", "120"], ans: 1 },
+                { q: "1 meter (m) sama dengan berapa centimeter (cm)?", opts: ["10 cm", "100 cm", "1000 cm"], ans: 1 },
+                { q: "Cerita dongeng dengan tokoh binatang disebut...", opts: ["Fabel", "Mite", "Legenda"], ans: 0 },
+                { q: "Tahapan metamorfosis kupu-kupu setelah telur menetas adalah...", opts: ["Ulat (Larva)", "Kepompong", "Kupu dewasa"], ans: 0 },
+                { q: "Hasil dari 180 : 3 adalah...", opts: ["50", "60", "70"], ans: 1 },
+                { q: "Rumus Keliling Persegi dengan sisi (s) adalah...", opts: ["4 x s", "s x s", "2 x (p + l)"], ans: 0 }
             ],
             4: [
-                { q: "Gaya yang menyebabkan buah apel jatuh ke bawah adalah...", opts: ["Gaya Gravitasi", "Gaya Magnet", "Gaya Gesek"], ans: 0 },
-                { q: "Proses pembuatan makanan pada tumbuhan hijau dinamakan...", opts: ["Fotosintesis", "Respirasi", "Adaptasi"], ans: 0 },
+                { q: "Gaya yang menyebabkan buah apel jatuh ke bumi adalah...", opts: ["Gaya Gravitasi", "Gaya Magnet", "Gaya Gesek"], ans: 0 },
+                { q: "Proses pembuatan makanan pada daun tumbuhan hijau dinamakan...", opts: ["Fotosintesis", "Respirasi", "Adaptasi"], ans: 0 },
                 { q: "Rumus Luas Persegi Panjang adalah...", opts: ["Panjang x Lebar", "Sisi x Sisi", "Alas x Tinggi"], ans: 0 },
-                { q: "KPK dari bilangan 4 dan 6 adalah...", opts: ["12", "24", "18"], ans: 0 }
+                { q: "KPK dari bilangan 4 dan 6 adalah...", opts: ["12", "24", "18"], ans: 0 },
+                { q: "Bentuk energi yang dihasilkan oleh setrika listrik adalah...", opts: ["Energi Panas", "Energi Bunyi", "Energi Gerak"], ans: 0 },
+                { q: "Bahasa Inggris dari kalimat 'Dia sedang membaca buku' adalah...", opts: ["He is reading a book", "He reads books yesterday", "He read a book"], ans: 0 },
+                { q: "Kalimat: 'Ikan digoreng oleh Ibu di dapur' merupakan kalimat...", opts: ["Kalimat Pasif", "Kalimat Aktif", "Kalimat Tanya"], ans: 0 },
+                { q: "Besar sudut siku-siku adalah...", opts: ["45°", "90°", "180°"], ans: 1 },
+                { q: "Hasil dari 3/8 + 2/8 adalah...", opts: ["5/8", "5/16", "1/8"], ans: 0 },
+                { q: "Kutub magnet yang senama jika didekatkan akan...", opts: ["Tolak-menolak", "Tarik-menarik", "Menempel erat"], ans: 0 }
             ],
             5: [
-                { q: "Organ manusia yang memompa darah ke seluruh tubuh adalah...", opts: ["Jantung", "Paru-paru", "Hati"], ans: 0 },
-                { q: "Rumus Volume Kubus adalah...", opts: ["sisi x sisi x sisi (s³)", "p x l x t", "1/2 x a x t"], ans: 0 },
-                { q: "Bentuk pecahan persen dari ½ adalah...", opts: ["50%", "25%", "75%"], ans: 0 },
-                { q: "Rangkaian listrik yang disusun secara bercabang dinamakan...", opts: ["Paralel", "Seri", "Campuran"], ans: 0 }
+                { q: "Organ manusia yang berfungsi memompa darah ke seluruh tubuh adalah...", opts: ["Jantung", "Paru-paru", "Lambung"], ans: 0 },
+                { q: "Rumus Volume Kubus dengan rusuk s adalah...", opts: ["s x s x s (s³)", "p x l x t", "1/2 x a x t"], ans: 0 },
+                { q: "Bentuk persen dari pecahan 1/4 adalah...", opts: ["25%", "50%", "75%"], ans: 0 },
+                { q: "Rangkaian listrik yang dipasang secara bercabang dinamakan...", opts: ["Rangkaian Paralel", "Rangkaian Seri", "Rangkaian Campuran"], ans: 0 },
+                { q: "Proses peresapan air hujan ke dalam pori-pori tanah dinamakan...", opts: ["Infiltrasi", "Evaporasi", "Kondensasi"], ans: 0 },
+                { q: "Tokoh yang berperan baik dalam cerita disebut...", opts: ["Protagonis", "Antagonis", "Tritagonis"], ans: 0 },
+                { q: "Comparative degree dari kata 'Big' (lebih besar) adalah...", opts: ["Bigger", "Biggest", "More big"], ans: 0 },
+                { q: "Rata-rata (mean) dari data nilai: 6, 7, 8, 7 adalah...", opts: ["7", "7,5", "8"], ans: 0 },
+                { q: "Organ pencernaan manusia yang menyerap sari-sari makanan adalah...", opts: ["Usus Halus", "Lambung", "Kerongkongan"], ans: 0 },
+                { q: "Teks Proklamasi Kemerdekaan Indonesia dibacakan pada tanggal...", opts: ["17 Agustus 1945", "28 Oktober 1928", "2 Mei 1945"], ans: 0 }
             ],
             6: [
                 { q: "Planet terbesar dalam Sistem Tata Surya kita adalah...", opts: ["Jupiter", "Saturnus", "Bumi"], ans: 0 },
-                { q: "Peristiwa berputarnya bumi pada porosnya dinamakan...", opts: ["Rotasi Bumi", "Revolusi Bumi", "Gerhana"], ans: 0 },
+                { q: "Peristiwa berputarnya bumi pada porosnya dinamakan...", opts: ["Rotasi Bumi", "Revolusi Bumi", "Gerhana Matahari"], ans: 0 },
                 { q: "Hasil perhitungan dari 5 - (-3) adalah...", opts: ["8", "2", "-8"], ans: 0 },
-                { q: "Pusat dari Sistem Tata Surya kita adalah...", opts: ["Matahari", "Bumi", "Bulan"], ans: 0 }
+                { q: "Pusat dari Sistem Tata Surya kita adalah...", opts: ["Matahari", "Bumi", "Bulan"], ans: 0 },
+                { q: "Rumus Keliling Lingkaran dengan jari-jari r adalah...", opts: ["2 x π x r", "π x r²", "π x r"], ans: 0 },
+                { q: "Pergantian musim di bumi terjadi akibat dari...", opts: ["Revolusi Bumi", "Rotasi Bumi", "Rotasi Bulan"], ans: 0 },
+                { q: "Bentuk Verb 2 (Past Tense) dari kata kerja 'GO' adalah...", opts: ["Went", "Gone", "Going"], ans: 0 },
+                { q: "Kalimat fakta di bawah ini adalah...", opts: ["Indonesia merdeka tahun 1945", "Bunga mawar adalah bunga paling cantik", "Es krim cokelat lebih enak dari stroberi"], ans: 0 },
+                { q: "Pembangkit listrik yang memanfaatkan tenaga angin disebut...", opts: ["PLTB (Bayu)", "PLTA (Air)", "PLTU (Uap)"], ans: 0 },
+                { q: "Nilai dari -8 + 12 adalah...", opts: ["4", "-4", "20"], ans: 0 }
             ]
         };
 

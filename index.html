@@ -778,10 +778,12 @@
                 </div>
             </div>
 
-            <!-- TK Sub-Tabs -->
-            <div class="grid grid-cols-4 gap-1.5 my-3">
+            <!-- TK Sub-Tabs: 6 Menu Belajar Interaktif -->
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-1.5 my-3">
                 <button onclick="switchTKSubTab('huruf')" id="tkTab-huruf" class="tk-subtab py-2 px-1 rounded-xl bg-secondary-container text-white font-heading font-bold text-xs shadow-sm text-center cursor-pointer">🔤 Huruf</button>
                 <button onclick="switchTKSubTab('suku')" id="tkTab-suku" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">📖 Kata</button>
+                <button onclick="switchTKSubTab('warna')" id="tkTab-warna" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">🎨 Warna</button>
+                <button onclick="switchTKSubTab('hewan')" id="tkTab-hewan" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">🦁 Hewan</button>
                 <button onclick="switchTKSubTab('hitung')" id="tkTab-hitung" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">🔢 Hitung</button>
                 <button onclick="switchTKSubTab('trace')" id="tkTab-trace" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">✍️ Tulis</button>
             </div>
@@ -882,6 +884,98 @@
                     </div>
 
                     <div id="tkMathFeedback" class="text-xs font-heading font-bold text-tertiary min-h-[20px]"></div>
+                </div>
+            </div>
+
+            <!-- SECTION TK 5: BELAJAR WARNA & BENTUK CERIA -->
+            <div id="tkSection-warna" class="tk-section hidden flex-col gap-3">
+                <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-3xl border-2 border-primary-container shadow-sm flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div id="tkColorHeroIcon" class="w-14 h-14 rounded-2xl bg-red-500 shadow-md flex items-center justify-center text-3xl text-white font-black animate-bounce-slow">
+                            🔴
+                        </div>
+                        <div>
+                            <span class="text-xs text-on-surface-variant font-bold">Warna & Bentuk Aktif:</span>
+                            <h3 id="tkColorHeroTitle" class="font-heading font-bold text-lg text-primary leading-tight">Merah Ceria</h3>
+                            <p id="tkColorHeroDesc" class="text-xs text-on-surface-variant">Sentuh untuk mendengar pengucapan</p>
+                        </div>
+                    </div>
+                    <button onclick="speakCurrentTKColor()" class="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center shadow-md active:scale-95 transition-transform cursor-pointer">
+                        <span class="material-symbols-outlined text-[22px]">volume_up</span>
+                    </button>
+                </div>
+
+                <!-- Pilihan Warna Ceria -->
+                <div class="bg-surface-container-lowest p-3.5 rounded-3xl border border-surface-container shadow-sm">
+                    <h4 class="font-heading font-extrabold text-xs text-primary mb-2.5 flex items-center gap-1.5">
+                        <span class="text-base">🎨</span>
+                        <span>Sentuh Warna & Dengarkan:</span>
+                    </h4>
+                    <div class="grid grid-cols-3 gap-2" id="tkColorButtonsGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Pilihan Bentuk Geometri Ramah Anak -->
+                <div class="bg-surface-container-lowest p-3.5 rounded-3xl border border-surface-container shadow-sm">
+                    <h4 class="font-heading font-extrabold text-xs text-secondary mb-2.5 flex items-center gap-1.5">
+                        <span class="text-base">🔷</span>
+                        <span>Mengenal Bentuk Geometri:</span>
+                    </h4>
+                    <div class="grid grid-cols-3 gap-2" id="tkShapeButtonsGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION TK 6: SAFARI SUARA HEWAN -->
+            <div id="tkSection-hewan" class="tk-section hidden flex-col gap-3">
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-3xl border-2 border-emerald-300 shadow-sm flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div id="tkAnimalHeroIcon" class="w-14 h-14 rounded-2xl bg-white border-2 border-emerald-400 shadow-md flex items-center justify-center text-3xl animate-bounce-slow">
+                            🐱
+                        </div>
+                        <div>
+                            <span class="text-xs text-on-surface-variant font-bold">Hewan Pilihan:</span>
+                            <h3 id="tkAnimalHeroTitle" class="font-heading font-bold text-lg text-emerald-800 leading-tight">Kucing Manja</h3>
+                            <p id="tkAnimalHeroSound" class="text-xs text-emerald-700 font-bold">"Meong... Meong!"</p>
+                        </div>
+                    </div>
+                    <button onclick="speakCurrentTKAnimal()" class="w-11 h-11 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-md active:scale-95 transition-transform cursor-pointer">
+                        <span class="material-symbols-outlined text-[22px]">volume_up</span>
+                    </button>
+                </div>
+
+                <!-- Grid Kartu Hewan Safari -->
+                <div class="bg-surface-container-lowest p-3.5 rounded-3xl border border-surface-container shadow-sm">
+                    <h4 class="font-heading font-extrabold text-xs text-emerald-800 mb-2.5 flex items-center justify-between">
+                        <span class="flex items-center gap-1.5">
+                            <span class="text-base">🦁</span>
+                            <span>Sentuh Hewan & Tirukan Suaranya:</span>
+                        </span>
+                        <span class="text-[10px] text-emerald-600 font-bold bg-emerald-100 px-2 py-0.5 rounded-full">12 Hewan</span>
+                    </h4>
+                    <div class="grid grid-cols-3 sm:grid-cols-4 gap-2" id="tkAnimalCardsGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Mini Kuis Tebak Suara Hewan -->
+                <div class="bg-amber-50 p-4 rounded-3xl border border-amber-200 shadow-sm flex flex-col gap-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-heading font-extrabold text-xs text-amber-800 flex items-center gap-1">
+                            <span>🎮</span>
+                            <span>Tebak Suara Hewan Ceria:</span>
+                        </span>
+                        <span class="text-[10px] bg-amber-200 text-amber-900 font-bold px-2 py-0.5 rounded-full">+5 ⭐</span>
+                    </div>
+                    <div id="tkAnimalGamePrompt" class="text-center font-heading font-black text-sm text-on-surface bg-white p-3 rounded-2xl border border-amber-200 shadow-inner">
+                        "Siapakah hewan yang suaranya Kwek Kwek?"
+                    </div>
+                    <div class="grid grid-cols-3 gap-2" id="tkAnimalGameOptions">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div id="tkAnimalGameFeedback" class="text-center font-heading font-bold text-xs min-h-[18px]"></div>
                 </div>
             </div>
 
@@ -2212,7 +2306,7 @@
         function switchTKSubTab(tabName) {
             playClickSound();
             currentTKTab = tabName;
-            ['huruf', 'suku', 'hitung', 'trace'].forEach(t => {
+            ['huruf', 'suku', 'warna', 'hewan', 'hitung', 'trace'].forEach(t => {
                 const tabBtn = document.getElementById(`tkTab-${t}`);
                 const sec = document.getElementById(`tkSection-${t}`);
                 if (t === tabName) {
@@ -3392,6 +3486,188 @@ Nilai π (phi) = 22/7 (jika r kelipatan 7) atau 3,14.
             });
         }
 
+        /* --- DATA & INTERAKSI: WARNA & BENTUK TK --- */
+        const tkColorsData = [
+            { name: "Merah Ceria", color: "#ef4444", emoji: "🔴", desc: "Merah ceria seperti buah apel dan stroberi manis!", voice: "Warna Merah! Seperti buah apel segar." },
+            { name: "Kuning Cerah", color: "#eab308", emoji: "🟡", desc: "Kuning terang seperti sinar matahari dan buah pisang!", voice: "Warna Kuning! Seperti buah pisang dan matahari pagi." },
+            { name: "Biru Laut", color: "#3b82f6", emoji: "🔵", desc: "Biru indah seperti langit cerah dan air laut yang luas!", voice: "Warna Biru! Seperti langit yang indah dan samudra." },
+            { name: "Hijau Daun", color: "#22c55e", emoji: "🟢", desc: "Hijau segar seperti pepohonan rindang dan rumput taman!", voice: "Warna Hijau! Seperti dedaunan segar di kebun." },
+            { name: "Jingga Oranye", color: "#f97316", emoji: "🟠", desc: "Oranye manis seperti buah jeruk dan wortel sehat!", voice: "Warna Oranye! Seperti buah jeruk manis yang kaya vitamin." },
+            { name: "Ungu Anggur", color: "#a855f7", emoji: "🟣", desc: "Ungu cantik seperti buah anggur matang!", voice: "Warna Ungu! Seperti buah anggur yang lezat." }
+        ];
+
+        const tkShapesData = [
+            { name: "Lingkaran Bulat", symbol: "⚪", desc: "Bentuk bulat mulus tanpa sudut seperti bola dan koin!", voice: "Bentuk Lingkaran! Bulat seperti bola mainan." },
+            { name: "Persegi Empat", symbol: "🟦", desc: "Empat sisi sama panjang seperti biskuit dan jendela!", voice: "Bentuk Persegi! Memiliki empat sisi sama panjang." },
+            { name: "Segitiga Juara", symbol: "🔺", desc: "Tiga sisi tajam seperti atap rumah dan potongan pizza!", voice: "Bentuk Segitiga! Seperti atap rumah dan potongan pizza." },
+            { name: "Bintang Emas", symbol: "⭐", desc: "Bintang bersinar terang di langit malam yang indah!", voice: "Bentuk Bintang! Berkelip indah di malam hari." },
+            { name: "Hati Kasih Sayang", symbol: "❤️", desc: "Lambang kasih sayang tulus kepada Ayah, Ibu, dan guru!", voice: "Bentuk Hati! Lambang cinta dan kasih sayang keluarga." },
+            { name: "Bulan Sabit", symbol: "🌙", desc: "Bulan sabit indah yang bersinar lembut di malam hari!", voice: "Bentuk Bulan Sabit! Menghiasi langit malam yang damai." }
+        ];
+
+        let activeTKColorItem = tkColorsData[0];
+
+        function initTKColorsAndShapes() {
+            const colorContainer = document.getElementById('tkColorButtonsGrid');
+            const shapeContainer = document.getElementById('tkShapeButtonsGrid');
+            if (!colorContainer || !shapeContainer) return;
+
+            colorContainer.innerHTML = tkColorsData.map((c, i) => `
+                <button type="button" onclick="selectTKColor(${i})" class="p-2.5 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col items-center gap-1 active:scale-95 transition-all cursor-pointer hover:border-primary">
+                    <span class="w-8 h-8 rounded-full shadow-inner flex items-center justify-center text-sm" style="background-color: ${c.color}"></span>
+                    <span class="font-heading font-bold text-xs text-on-surface">${c.name.split(' ')[0]}</span>
+                </button>
+            `).join('');
+
+            shapeContainer.innerHTML = tkShapesData.map((s, i) => `
+                <button type="button" onclick="selectTKShape(${i})" class="p-2.5 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col items-center gap-1 active:scale-95 transition-all cursor-pointer hover:border-secondary">
+                    <span class="text-2xl">${s.symbol}</span>
+                    <span class="font-heading font-bold text-xs text-on-surface">${s.name.split(' ')[0]}</span>
+                </button>
+            `).join('');
+        }
+
+        function selectTKColor(idx) {
+            playClickSound();
+            activeTKColorItem = tkColorsData[idx];
+            const icon = document.getElementById('tkColorHeroIcon');
+            const title = document.getElementById('tkColorHeroTitle');
+            const desc = document.getElementById('tkColorHeroDesc');
+            if (icon) {
+                icon.style.backgroundColor = activeTKColorItem.color;
+                icon.innerText = activeTKColorItem.emoji;
+            }
+            if (title) title.innerText = activeTKColorItem.name;
+            if (desc) desc.innerText = activeTKColorItem.desc;
+            speakText(activeTKColorItem.voice);
+            addStars(1);
+        }
+
+        function selectTKShape(idx) {
+            playClickSound();
+            const shape = tkShapesData[idx];
+            activeTKColorItem = { voice: shape.voice };
+            const icon = document.getElementById('tkColorHeroIcon');
+            const title = document.getElementById('tkColorHeroTitle');
+            const desc = document.getElementById('tkColorHeroDesc');
+            if (icon) {
+                icon.style.backgroundColor = '#0284c7';
+                icon.innerText = shape.symbol;
+            }
+            if (title) title.innerText = shape.name;
+            if (desc) desc.innerText = shape.desc;
+            speakText(shape.voice);
+            addStars(1);
+        }
+
+        function speakCurrentTKColor() {
+            if (activeTKColorItem && activeTKColorItem.voice) {
+                speakText(activeTKColorItem.voice);
+            }
+        }
+
+        /* --- DATA & INTERAKSI: SUARA HEWAN SAFARI TK --- */
+        const tkAnimalsData = [
+            { name: "Kucing", sound: "Meong... Meong!", icon: "🐱", voice: "Kucing! Suaranya Meong meong.", prompt: "Siapakah hewan yang suaranya Meong meong?" },
+            { name: "Sapi", sound: "Mooo... Mooo!", icon: "🐮", voice: "Sapi! Suaranya Mooo mooo.", prompt: "Siapakah hewan penghasil susu yang suaranya Mooo?" },
+            { name: "Bebek", sound: "Kwek... Kwek... Kwek!", icon: "🦆", voice: "Bebek! Suaranya Kwek kwek kwek.", prompt: "Siapakah hewan lucu yang suaranya Kwek kwek?" },
+            { name: "Ayam", sound: "Kukuruyuk... Petok!", icon: "🐔", voice: "Ayam! Suaranya Kukuruyuk di pagi hari.", prompt: "Siapakah hewan yang berkokok Kukuruyuk di pagi hari?" },
+            { name: "Kambing", sound: "Mbeee... Mbeee!", icon: "🐐", voice: "Kambing! Suaranya Mbeee mbeee.", prompt: "Siapakah hewan pemakan rumput yang suaranya Mbeee?" },
+            { name: "Singa", sound: "Rooaaarrr!", icon: "🦁", voice: "Singa raja rimba! Suaranya Roaaarrr menggelegar.", prompt: "Siapakah raja rimba yang aumannya Roaaarrr?" },
+            { name: "Gajah", sound: "Preettt... Belalai panjang!", icon: "🐘", voice: "Gajah! Hewan besar bertelinga lebar dan berbelalai panjang.", prompt: "Siapakah hewan sangat besar yang memiliki belalai panjang?" },
+            { name: "Monyet", sound: "U-u-a-a... Gemar pisang!", icon: "🐵", voice: "Monyet lincah! Suka bergelantungan dan memakan buah pisang.", prompt: "Siapakah hewan lincah yang suka bergelantungan dan makan pisang?" },
+            { name: "Kuda", sound: "Hii-haaa... Tapak tapak!", icon: "🐎", voice: "Kuda! Berlari kencang sekali.", prompt: "Siapakah hewan gagah yang bisa berlari kencang?" },
+            { name: "Burung", sound: "Cuit... Cuit... Cuit!", icon: "🐦", voice: "Burung mungil! Berkicau merdu dan terbang di langit.", prompt: "Siapakah hewan bersayap yang berkicau Cuit cuit di dahan pohon?" },
+            { name: "Katak", sound: "Krok... Krok... Lompat!", icon: "🐸", voice: "Katak hijau! Suka melompat dan berbunyi Krok krok.", prompt: "Siapakah hewan yang suka melompat di kolam air?" },
+            { name: "Ikan", sound: "Kecipak kecipuk berenang!", icon: "🐟", voice: "Ikan! Berenang lincah di dalam air yang jernih.", prompt: "Siapakah teman kecil yang hidup dan berenang di dalam air?" }
+        ];
+
+        let activeTKAnimalItem = tkAnimalsData[0];
+        let currentTKAnimalGameTarget = null;
+
+        function initTKAnimals() {
+            const container = document.getElementById('tkAnimalCardsGrid');
+            if (!container) return;
+            container.innerHTML = tkAnimalsData.map((a, i) => `
+                <button type="button" onclick="selectTKAnimal(${i})" class="p-2.5 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col items-center gap-1 active:scale-95 transition-all cursor-pointer hover:border-emerald-400">
+                    <span class="text-3xl">${a.icon}</span>
+                    <span class="font-heading font-extrabold text-xs text-on-surface">${a.name}</span>
+                </button>
+            `).join('');
+
+            loadTKAnimalGameQuestion();
+        }
+
+        function selectTKAnimal(idx) {
+            playClickSound();
+            activeTKAnimalItem = tkAnimalsData[idx];
+            const icon = document.getElementById('tkAnimalHeroIcon');
+            const title = document.getElementById('tkAnimalHeroTitle');
+            const sound = document.getElementById('tkAnimalHeroSound');
+            if (icon) icon.innerText = activeTKAnimalItem.icon;
+            if (title) title.innerText = activeTKAnimalItem.name;
+            if (sound) sound.innerText = `"${activeTKAnimalItem.sound}"`;
+            speakText(activeTKAnimalItem.voice);
+            addStars(1);
+        }
+
+        function speakCurrentTKAnimal() {
+            if (activeTKAnimalItem && activeTKAnimalItem.voice) {
+                speakText(activeTKAnimalItem.voice);
+            }
+        }
+
+        function loadTKAnimalGameQuestion() {
+            const promptEl = document.getElementById('tkAnimalGamePrompt');
+            const optionsEl = document.getElementById('tkAnimalGameOptions');
+            const feedbackEl = document.getElementById('tkAnimalGameFeedback');
+            if (!promptEl || !optionsEl) return;
+
+            if (feedbackEl) feedbackEl.innerText = '';
+            const randomTarget = tkAnimalsData[Math.floor(Math.random() * tkAnimalsData.length)];
+            currentTKAnimalGameTarget = randomTarget;
+            promptEl.innerText = randomTarget.prompt;
+
+            // Pilih 2 opsi salah yang berbeda
+            let wrongOpts = tkAnimalsData.filter(a => a.name !== randomTarget.name);
+            wrongOpts.sort(() => 0.5 - Math.random());
+            let choices = [randomTarget, wrongOpts[0], wrongOpts[1]];
+            choices.sort(() => 0.5 - Math.random());
+
+            optionsEl.innerHTML = choices.map(c => `
+                <button type="button" onclick="answerTKAnimalGame('${c.name}', this)" class="p-3 rounded-2xl bg-white border-2 border-amber-200 font-heading font-bold text-xs flex flex-col items-center gap-1 hover:border-amber-400 active:scale-95 transition-all cursor-pointer shadow-sm">
+                    <span class="text-3xl">${c.icon}</span>
+                    <span>${c.name}</span>
+                </button>
+            `).join('');
+        }
+
+        function answerTKAnimalGame(selectedName, btn) {
+            const feedbackEl = document.getElementById('tkAnimalGameFeedback');
+            if (!currentTKAnimalGameTarget) return;
+
+            if (selectedName === currentTKAnimalGameTarget.name) {
+                playCorrectSound();
+                btn.classList.add('bg-emerald-100', 'border-emerald-400');
+                if (feedbackEl) {
+                    feedbackEl.className = 'text-center font-heading font-bold text-xs text-emerald-700';
+                    feedbackEl.innerText = `🎉 Hebat sekali! Benar, itu adalah ${currentTKAnimalGameTarget.name}! +5 ⭐`;
+                }
+                addStars(5);
+                speakText(`Hebat sekali! Benar, itu adalah ${currentTKAnimalGameTarget.name}!`);
+                setTimeout(loadTKAnimalGameQuestion, 2200);
+            } else {
+                playTone(220, 'sawtooth', 0.2, 0.2);
+                btn.classList.add('bg-red-50', 'border-red-300');
+                if (feedbackEl) {
+                    feedbackEl.className = 'text-center font-heading font-bold text-xs text-red-600';
+                    feedbackEl.innerText = 'Coba tebak lagi yaa! Kamu pasti bisa!';
+                }
+                speakText('Yuk coba tebak lagi yaa!');
+            }
+        }
+
+
         /* --- INITIALIZATION ON LOAD --- */
         window.addEventListener('DOMContentLoaded', () => {
             // Check for ?admin=1 in URL parameter
@@ -3413,6 +3689,8 @@ Nilai π (phi) = 22/7 (jika r kelipatan 7) atau 3,14.
             document.getElementById('certDisplayName').innerText = studentName;
             initTKLetterGrid();
             initSukuKataList();
+            initTKColorsAndShapes();
+            initTKAnimals();
             renderMascots();
             selectGrade(1);
         });

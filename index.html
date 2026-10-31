@@ -193,7 +193,7 @@
     <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
 
     <!-- App Wrapper (Mobile First Max Width 480px, responsive centered) -->
-    <div class="relative w-full max-w-[480px] min-h-screen sm:min-h-[880px] sm:max-h-[920px] bg-surface sm:rounded-[36px] sm:shadow-2xl sm:border-4 sm:border-surface-container-high flex flex-col justify-between overflow-hidden">
+    <div class="relative w-full max-w-[480px] md:max-w-[680px] lg:max-w-[760px] min-h-screen sm:min-h-[880px] sm:max-h-[960px] bg-surface sm:rounded-[36px] sm:shadow-2xl sm:border-4 sm:border-surface-container-high flex flex-col justify-between overflow-hidden transition-all duration-300">
 
         <!-- ========================================== -->
         <!-- SCREEN 1: SPLASH & SELAMAT DATANG          -->
@@ -1352,7 +1352,6 @@
                     </div>
                 </div>
             </div>
-            </div>
 
         </div>
 
@@ -2361,10 +2360,10 @@
             if (!('speechSynthesis' in window)) return;
             availableVoices = window.speechSynthesis.getVoices() || [];
             
-            // Cari apakah perangkat memiliki voice asli Indonesia
+            // Cari apakah perangkat memiliki voice asli Indonesia (Google, Gadis, Ardi, dsb.)
             indonesianVoice = availableVoices.find(v => 
                 (v.lang === 'id-ID' || v.lang === 'id_ID' || v.lang.startsWith('id')) && 
-                (v.name.includes('Google') || v.name.includes('Indonesian') || v.name.includes('Indonesia') || v.name.includes('Gadis') || v.name.includes('Andika'))
+                (v.name.includes('Google') || v.name.includes('Indonesian') || v.name.includes('Indonesia') || v.name.includes('Gadis') || v.name.includes('Ardi') || v.name.includes('Andika'))
             ) || availableVoices.find(v => v.lang && v.lang.toLowerCase().includes('id'));
         }
 
@@ -2388,45 +2387,35 @@
                 window.speechSynthesis.cancel();
             }
 
-            // Bersihkan emoji dan karakter aneh agar pengucapan lancar dan jernih
+            // Bersihkan emoji dan karakter non-alfanumerik
             let cleanText = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
             cleanText = cleanText.replace(/\s+/g, ' ').trim();
             if (!cleanText) return;
 
             if (!indonesianVoice) loadVoices();
 
-            // METODE 1: Jika laptop/perangkat TIDAK punya voice pack Indonesia asli (seperti Windows bawaan yang hanya punya Zira/David Inggris),
-            // gunakan Google Cloud Indonesian Voice dengan aksen & intonasi asli Indonesia yang jernih!
-            if (!indonesianVoice && cleanText.length < 200) {
-                try {
-                    const encoded = encodeURIComponent(cleanText);
-                    const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=id&client=tw-ob`;
-                    const audio = new Audio(audioUrl);
-                    activeAudioPlayer = audio;
-                    audio.playbackRate = 1.0;
-                    audio.play().catch(err => {
-                        console.warn('Audio TTS fallback triggered:', err);
-                        fallbackWebSpeech(cleanText);
-                    });
-                    return;
-                } catch(e) {
-                    console.warn(e);
-                }
-            }
+            // METODE UTAMA: Gunakan endpoint Serverless /api/tts yang menyalurkan Suara Asli Indonesia jernih (tanpa aksen Inggris Windows)
+            const audioSrc = `/api/tts?text=${encodeURIComponent(cleanText.slice(0, 190))}&lang=id`;
+            const audio = new Audio(audioSrc);
+            activeAudioPlayer = audio;
+            audio.playbackRate = 1.0;
 
-            // METODE 2: Browser Web Speech API jika voice Indonesia terpasang atau teks panjang
-            fallbackWebSpeech(cleanText);
+            audio.play().catch(err => {
+                console.warn('API TTS offline or blocked, fallback to browser speech:', err);
+                fallbackWebSpeech(cleanText);
+            });
         }
 
         function fallbackWebSpeech(cleanText) {
             if (!('speechSynthesis' in window)) return;
             const utterance = new SpeechSynthesisUtterance(cleanText);
             utterance.lang = 'id-ID';
+            // Hanya pasang voice jika benar-benar voice Indonesia agar tidak tertimpa suara David/Zira Inggris
             if (indonesianVoice) {
                 utterance.voice = indonesianVoice;
             }
-            utterance.rate = 0.95;
-            utterance.pitch = 1.05;
+            utterance.rate = 0.92;
+            utterance.pitch = 1.02;
             window.speechSynthesis.speak(utterance);
         }
 
@@ -4112,7 +4101,7 @@ Nilai π (phi) = 22/7 (jika r kelipatan 7) atau 3,14.
                 const isActive = idx === currentLessonIndex;
                 const activeClass = isActive ? 'bg-primary text-white shadow-md font-black scale-105' : 'bg-surface-container text-on-surface-variant font-bold hover:bg-surface-container-high';
                 return `
-                    <button type="button" onclick="selectLessonIndex(${idx})" class="py-1.5 px-3 rounded-xl ${activeClass} text-xs whitespace-nowrap transition-all cursor-pointer">
+                    <button type="button" onclick="selectLessonIndex(${idx})" class="py-2 px-3.5 md:px-5 rounded-xl ${activeClass} text-xs md:text-sm whitespace-nowrap transition-all cursor-pointer">
                         Bab ${idx + 1}
                     </button>
                 `;

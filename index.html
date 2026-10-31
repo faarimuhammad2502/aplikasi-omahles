@@ -778,14 +778,17 @@
                 </div>
             </div>
 
-            <!-- TK Sub-Tabs: 6 Menu Belajar Interaktif -->
-            <div class="grid grid-cols-3 sm:grid-cols-6 gap-1.5 my-3">
-                <button onclick="switchTKSubTab('huruf')" id="tkTab-huruf" class="tk-subtab py-2 px-1 rounded-xl bg-secondary-container text-white font-heading font-bold text-xs shadow-sm text-center cursor-pointer">🔤 Huruf</button>
-                <button onclick="switchTKSubTab('suku')" id="tkTab-suku" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">📖 Kata</button>
-                <button onclick="switchTKSubTab('warna')" id="tkTab-warna" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">🎨 Warna</button>
-                <button onclick="switchTKSubTab('hewan')" id="tkTab-hewan" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">🦁 Hewan</button>
-                <button onclick="switchTKSubTab('hitung')" id="tkTab-hitung" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">🔢 Hitung</button>
-                <button onclick="switchTKSubTab('trace')" id="tkTab-trace" class="tk-subtab py-2 px-1 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs text-center cursor-pointer">✍️ Tulis</button>
+            <!-- TK Sub-Tabs: 9 Menu Belajar Lengkap (Scrollable Horisontal) -->
+            <div class="flex items-center gap-1.5 my-3 overflow-x-auto pb-1.5 scrollbar-none">
+                <button onclick="switchTKSubTab('huruf')" id="tkTab-huruf" class="tk-subtab py-2 px-3 rounded-xl bg-secondary-container text-white font-heading font-bold text-xs shadow-sm whitespace-nowrap cursor-pointer">🔤 Huruf</button>
+                <button onclick="switchTKSubTab('suku')" id="tkTab-suku" class="tk-subtab py-2 px-3 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs whitespace-nowrap cursor-pointer">📖 Kata</button>
+                <button onclick="switchTKSubTab('warna')" id="tkTab-warna" class="tk-subtab py-2 px-3 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs whitespace-nowrap cursor-pointer">🎨 Warna</button>
+                <button onclick="switchTKSubTab('hewan')" id="tkTab-hewan" class="tk-subtab py-2 px-3 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs whitespace-nowrap cursor-pointer">🦁 Hewan</button>
+                <button onclick="switchTKSubTab('buah')" id="tkTab-buah" class="tk-subtab py-2 px-3 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs whitespace-nowrap cursor-pointer">🍎 Buah & Sayur</button>
+                <button onclick="switchTKSubTab('adab')" id="tkTab-adab" class="tk-subtab py-2 px-3 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs whitespace-nowrap cursor-pointer">⏰ Kebiasaan Baik</button>
+                <button onclick="switchTKSubTab('puzzle')" id="tkTab-puzzle" class="tk-subtab py-2 px-3 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs whitespace-nowrap cursor-pointer">🧩 Game Memori</button>
+                <button onclick="switchTKSubTab('hitung')" id="tkTab-hitung" class="tk-subtab py-2 px-3 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs whitespace-nowrap cursor-pointer">🔢 Hitung</button>
+                <button onclick="switchTKSubTab('trace')" id="tkTab-trace" class="tk-subtab py-2 px-3 rounded-xl bg-surface-container text-on-surface-variant font-heading font-bold text-xs whitespace-nowrap cursor-pointer">✍️ Tulis</button>
             </div>
 
             <!-- SECTION TK 1: BELAJAR HURUF A-Z -->
@@ -976,6 +979,102 @@
                         <!-- Populated by JS -->
                     </div>
                     <div id="tkAnimalGameFeedback" class="text-center font-heading font-bold text-xs min-h-[18px]"></div>
+                </div>
+            </div>
+
+            <!-- SECTION TK 7: BUAH & SAYUR SEHAT -->
+            <div id="tkSection-buah" class="tk-section hidden flex-col gap-3">
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-3xl border-2 border-red-200 shadow-sm flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div id="tkFruitHeroIcon" class="w-14 h-14 rounded-2xl bg-white border-2 border-red-300 shadow-md flex items-center justify-center text-3xl animate-bounce-slow">
+                            🍎
+                        </div>
+                        <div>
+                            <span class="text-xs text-on-surface-variant font-bold">Makanan Sehat Pilihan:</span>
+                            <h3 id="tkFruitHeroTitle" class="font-heading font-bold text-lg text-red-700 leading-tight">Apel Manis</h3>
+                            <p id="tkFruitHeroBenefit" class="text-xs text-on-surface-variant leading-tight">Bikin tubuh kuat dan bugar!</p>
+                        </div>
+                    </div>
+                    <button onclick="speakCurrentTKFruit()" class="w-11 h-11 rounded-full bg-red-500 text-white flex items-center justify-center shadow-md active:scale-95 transition-transform cursor-pointer">
+                        <span class="material-symbols-outlined text-[22px]">volume_up</span>
+                    </button>
+                </div>
+
+                <!-- Grid Buah & Sayur -->
+                <div class="bg-surface-container-lowest p-3.5 rounded-3xl border border-surface-container shadow-sm">
+                    <h4 class="font-heading font-extrabold text-xs text-red-700 mb-2.5 flex items-center justify-between">
+                        <span class="flex items-center gap-1.5">
+                            <span class="text-base">🥗</span>
+                            <span>Koleksi Buah & Sayur Kaya Vitamin:</span>
+                        </span>
+                        <span class="text-[10px] text-red-600 font-bold bg-red-100 px-2 py-0.5 rounded-full">12 Menu</span>
+                    </h4>
+                    <div class="grid grid-cols-3 sm:grid-cols-4 gap-2" id="tkFruitCardsGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION TK 8: KEBIASAAN BAIK & ADAB SEHARI-HARI -->
+            <div id="tkSection-adab" class="tk-section hidden flex-col gap-3">
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-3xl border-2 border-indigo-200 shadow-sm flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div id="tkHabitHeroIcon" class="w-14 h-14 rounded-2xl bg-white border-2 border-indigo-300 shadow-md flex items-center justify-center text-3xl animate-bounce-slow">
+                            🧼
+                        </div>
+                        <div>
+                            <span class="text-xs text-on-surface-variant font-bold">Adab Anak Hebat:</span>
+                            <h3 id="tkHabitHeroTitle" class="font-heading font-bold text-lg text-indigo-800 leading-tight">Cuci Tangan Bersih</h3>
+                            <p id="tkHabitHeroDesc" class="text-xs text-on-surface-variant leading-tight">Pakai sabun sebelum makan!</p>
+                        </div>
+                    </div>
+                    <button onclick="speakCurrentTKHabit()" class="w-11 h-11 rounded-full bg-indigo-600 text-white flex items-center justify-center shadow-md active:scale-95 transition-transform cursor-pointer">
+                        <span class="material-symbols-outlined text-[22px]">volume_up</span>
+                    </button>
+                </div>
+
+                <!-- Grid Kebiasaan Baik -->
+                <div class="bg-surface-container-lowest p-3.5 rounded-3xl border border-surface-container shadow-sm">
+                    <h4 class="font-heading font-extrabold text-xs text-indigo-800 mb-2.5 flex items-center gap-1.5">
+                        <span class="text-base">🌟</span>
+                        <span>Kebiasaan Anak Pintar & Mandiri:</span>
+                    </h4>
+                    <div class="grid grid-cols-2 gap-2.5" id="tkHabitsCardsGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION TK 9: MINI GAME MEMORY MATCH (PUZZLE) -->
+            <div id="tkSection-puzzle" class="tk-section hidden flex-col gap-3">
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-3xl border-2 border-purple-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <span class="text-[10px] bg-purple-200 text-purple-900 font-bold px-2 py-0.5 rounded-full">+10 ⭐ Juara</span>
+                        <h3 class="font-heading font-black text-lg text-purple-800 mt-1 leading-tight">Game Pasangan Kartu 🧩</h3>
+                        <p class="text-xs text-purple-700">Buka & temukan 2 gambar yang sama!</p>
+                    </div>
+                    <button onclick="initMemoryGame()" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-heading font-bold text-xs flex items-center gap-1 shadow-sm active:scale-95 transition-transform cursor-pointer">
+                        <span class="material-symbols-outlined text-[16px]">restart_alt</span>
+                        <span>Ulang</span>
+                    </button>
+                </div>
+
+                <!-- Arena Kartu Puzzle Memory -->
+                <div class="bg-surface-container-lowest p-3.5 rounded-3xl border border-surface-container shadow-sm flex flex-col items-center">
+                    <div class="w-full flex items-center justify-between mb-3 px-1 text-xs font-heading font-bold">
+                        <span class="text-on-surface-variant">Pasangan Ditemukan: <span id="memoryMatchesFound" class="text-purple-600 font-black">0</span> / 4</span>
+                        <span class="text-amber-500 font-extrabold">⭐ Tabungan Bintang</span>
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-2.5 w-full max-w-[340px]" id="memoryGridContainer">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div id="memoryGameSuccess" class="hidden mt-3 p-3 bg-emerald-50 border border-emerald-300 rounded-2xl text-center w-full">
+                        <span class="text-2xl">🎉</span>
+                        <h4 class="font-heading font-black text-sm text-emerald-800">Luar Biasa, Daya Ingatmu Hebat!</h4>
+                        <p class="text-xs text-emerald-700">Kamu berhasil menyelesaikan game memori! +10 ⭐</p>
+                    </div>
                 </div>
             </div>
 
@@ -2306,7 +2405,7 @@
         function switchTKSubTab(tabName) {
             playClickSound();
             currentTKTab = tabName;
-            ['huruf', 'suku', 'warna', 'hewan', 'hitung', 'trace'].forEach(t => {
+            ['huruf', 'suku', 'warna', 'hewan', 'buah', 'adab', 'puzzle', 'hitung', 'trace'].forEach(t => {
                 const tabBtn = document.getElementById(`tkTab-${t}`);
                 const sec = document.getElementById(`tkSection-${t}`);
                 if (t === tabName) {
@@ -2319,6 +2418,7 @@
             });
 
             if (tabName === 'hitung') loadTKMathQuestion();
+            if (tabName === 'puzzle') initMemoryGame();
             if (tabName === 'trace') resizeCanvas();
         }
 
@@ -3668,6 +3768,183 @@ Nilai π (phi) = 22/7 (jika r kelipatan 7) atau 3,14.
         }
 
 
+        /* --- DATA & INTERAKSI: BUAH & SAYUR SEHAT TK --- */
+        const tkFruitsData = [
+            { name: "Apel Manis", icon: "🍎", benefit: "Bikin badan kuat dan bugar!", voice: "Buah Apel! Manis, segar, dan bikin badan kuat." },
+            { name: "Pisang Kuning", icon: "🍌", benefit: "Kaya energi untuk bermain ceria!", voice: "Buah Pisang! Sumber energi sehat untuk bermain ceria." },
+            { name: "Jeruk Segar", icon: "🍊", benefit: "Banyak Vitamin C pencegah flu!", voice: "Buah Jeruk! Kaya Vitamin C agar kita tidak mudah sakit." },
+            { name: "Semangka", icon: "🍉", benefit: "Manis banyak air menyegarkan!", voice: "Buah Semangka! Manis dan sangat menyegarkan saat haus." },
+            { name: "Stroberi", icon: "🍓", benefit: "Kaya antioksidan dan wangi!", voice: "Buah Stroberi! Cantik berwarna merah dan kaya vitamin." },
+            { name: "Anggur", icon: "🍇", benefit: "Bentuk bulat manis kesukaan anak!", voice: "Buah Anggur! Manis dan lezat dimakan bersama keluarga." },
+            { name: "Wortel Sehat", icon: "🥕", benefit: "Sangat baik untuk kesehatan mata!", voice: "Sayur Wortel! Sangat sehat agar mata kita jernih dan terang." },
+            { name: "Bayam Hijau", icon: "🥬", benefit: "Bikin otot kuat seperti Popeye!", voice: "Sayur Bayam! Kaya zat besi agar tubuh anak bertambah kuat." },
+            { name: "Jagung Manis", icon: "🌽", benefit: "Serat sehat mengenyangkan perut!", voice: "Jagung Manis! Sumber karbohidrat lezat dan bergizi." },
+            { name: "Tomat Merah", icon: "🍅", benefit: "Kulit jadi sehat dan bersih!", voice: "Buah Tomat! Bagus untuk kesehatan kulit dan jantung." },
+            { name: "Alpukat", icon: "🥑", benefit: "Lemak baik mencerdaskan otak!", voice: "Buah Alpukat! Bagus untuk kecerdasan otak anak pintar." },
+            { name: "Susu Segar", icon: "🥛", benefit: "Kalsium tinggi untuk tulang & gigi!", voice: "Susu Segar! Bikin tulang dan gigi kita tumbuh kuat." }
+        ];
+
+        let activeTKFruitItem = tkFruitsData[0];
+
+        function initTKFruits() {
+            const container = document.getElementById('tkFruitCardsGrid');
+            if (!container) return;
+            container.innerHTML = tkFruitsData.map((f, i) => `
+                <button type="button" onclick="selectTKFruit(${i})" class="p-2.5 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col items-center gap-1 active:scale-95 transition-all cursor-pointer hover:border-red-300">
+                    <span class="text-3xl">${f.icon}</span>
+                    <span class="font-heading font-extrabold text-xs text-on-surface">${f.name}</span>
+                </button>
+            `).join('');
+        }
+
+        function selectTKFruit(idx) {
+            playClickSound();
+            activeTKFruitItem = tkFruitsData[idx];
+            const icon = document.getElementById('tkFruitHeroIcon');
+            const title = document.getElementById('tkFruitHeroTitle');
+            const benefit = document.getElementById('tkFruitHeroBenefit');
+            if (icon) icon.innerText = activeTKFruitItem.icon;
+            if (title) title.innerText = activeTKFruitItem.name;
+            if (benefit) benefit.innerText = activeTKFruitItem.benefit;
+            speakText(activeTKFruitItem.voice);
+            addStars(1);
+        }
+
+        function speakCurrentTKFruit() {
+            if (activeTKFruitItem && activeTKFruitItem.voice) {
+                speakText(activeTKFruitItem.voice);
+            }
+        }
+
+        /* --- DATA & INTERAKSI: KEBIASAAN BAIK & ADAB ANAK HEBAT --- */
+        const tkHabitsData = [
+            { title: "Cuci Tangan Bersih", icon: "🧼", desc: "Mencuci tangan dengan air mengalir dan sabun sebelum makan & setelah bermain.", voice: "Cuci tangan pakai sabun agar kuman jahat hilang!" },
+            { title: "Sikat Gigi Pagi & Malam", icon: "🪥", desc: "Menggosok gigi setelah sarapan dan sebelum tidur agar gigi tidak berlubang.", voice: "Rajin sikat gigi dua kali sehari agar gigi putih dan sehat!" },
+            { title: "Merapikan Tempat Tidur", icon: "🛏️", desc: "Melipat selimut dan merapikan bantal sendiri setelah bangun pagi.", voice: "Bangun pagi dan rapikan tempat tidurmu sendiri seperti anak mandiri!" },
+            { title: "Berdoa Sebelum & Sesudah Makan", icon: "🤲", desc: "Mengucapkan syukur dan berdoa memohon berkah atas rezeki makanan.", voice: "Selalu berdoa sebelum makan dan ucapkan rasa syukur." },
+            { title: "Membereskan Mainan", icon: "🧸", desc: "Mengembalikan mainan ke wadahnya setelah selesai bermain bersama teman.", voice: "Kembalikan mainan ke tempatnya dengan rapi setelah selesai bermain." },
+            { title: "Ucapkan Tolong & Terima Kasih", icon: "🤝", desc: "Bicara santun saat minta bantuan dan berterima kasih setelah ditolong.", voice: "Ingat kata ajaib: tolong, terima kasih, dan minta maaf." }
+        ];
+
+        let activeTKHabitItem = tkHabitsData[0];
+
+        function initTKHabits() {
+            const container = document.getElementById('tkHabitsCardsGrid');
+            if (!container) return;
+            container.innerHTML = tkHabitsData.map((h, i) => `
+                <div onclick="selectTKHabit(${i})" class="p-3 rounded-2xl bg-surface-container-low border border-surface-container flex items-start gap-2.5 active:scale-95 transition-all cursor-pointer hover:border-indigo-300">
+                    <span class="text-3xl shrink-0 p-1 bg-white rounded-xl shadow-sm">${h.icon}</span>
+                    <div class="flex flex-col">
+                        <h5 class="font-heading font-extrabold text-xs text-indigo-900 leading-snug">${h.title}</h5>
+                        <p class="text-[11px] text-on-surface-variant leading-tight mt-0.5">${h.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectTKHabit(idx) {
+            playClickSound();
+            activeTKHabitItem = tkHabitsData[idx];
+            const icon = document.getElementById('tkHabitHeroIcon');
+            const title = document.getElementById('tkHabitHeroTitle');
+            const desc = document.getElementById('tkHabitHeroDesc');
+            if (icon) icon.innerText = activeTKHabitItem.icon;
+            if (title) title.innerText = activeTKHabitItem.title;
+            if (desc) desc.innerText = activeTKHabitItem.desc;
+            speakText(activeTKHabitItem.voice);
+            addStars(1);
+        }
+
+        function speakCurrentTKHabit() {
+            if (activeTKHabitItem && activeTKHabitItem.voice) {
+                speakText(activeTKHabitItem.voice);
+            }
+        }
+
+        /* --- DATA & INTERAKSI: MINI GAME MEMORY MATCH (PUZZLE TK) --- */
+        const memoryIcons = ["🍎", "🐱", "🚗", "⭐"];
+        let memoryCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let memoryLocked = false;
+
+        function initMemoryGame() {
+            const container = document.getElementById('memoryGridContainer');
+            const matchesEl = document.getElementById('memoryMatchesFound');
+            const successEl = document.getElementById('memoryGameSuccess');
+            if (!container) return;
+
+            matchedPairs = 0;
+            flippedCards = [];
+            memoryLocked = false;
+            if (matchesEl) matchesEl.innerText = '0';
+            if (successEl) successEl.classList.add('hidden');
+
+            // 4 pasang = 8 kartu
+            memoryCards = [...memoryIcons, ...memoryIcons];
+            memoryCards.sort(() => 0.5 - Math.random());
+
+            container.innerHTML = memoryCards.map((icon, idx) => `
+                <button type="button" data-idx="${idx}" data-icon="${icon}" onclick="flipMemoryCard(this)" class="memory-card h-16 rounded-2xl bg-gradient-to-b from-purple-100 to-purple-200 border-2 border-purple-300 shadow-sm flex items-center justify-center text-2xl font-bold cursor-pointer active:scale-95 transition-all">
+                    <span class="card-cover text-purple-700 text-lg font-heading font-black">❓</span>
+                    <span class="card-icon hidden text-3xl">${icon}</span>
+                </button>
+            `).join('');
+        }
+
+        function flipMemoryCard(cardEl) {
+            if (memoryLocked) return;
+            if (cardEl.classList.contains('matched') || cardEl.classList.contains('flipped')) return;
+
+            playClickSound();
+            cardEl.classList.add('flipped', 'bg-white', 'border-purple-500');
+            cardEl.querySelector('.card-cover').classList.add('hidden');
+            cardEl.querySelector('.card-icon').classList.remove('hidden');
+
+            flippedCards.push(cardEl);
+
+            if (flippedCards.length === 2) {
+                memoryLocked = true;
+                const c1 = flippedCards[0];
+                const c2 = flippedCards[1];
+
+                if (c1.dataset.icon === c2.dataset.icon) {
+                    // Benar! Pasangan cocok
+                    playCorrectSound();
+                    c1.classList.add('matched', 'bg-emerald-100', 'border-emerald-400');
+                    c2.classList.add('matched', 'bg-emerald-100', 'border-emerald-400');
+                    matchedPairs++;
+                    const matchesEl = document.getElementById('memoryMatchesFound');
+                    if (matchesEl) matchesEl.innerText = matchedPairs;
+
+                    flippedCards = [];
+                    memoryLocked = false;
+
+                    if (matchedPairs === 4) {
+                        playRewardFanfare();
+                        addStars(10);
+                        const successEl = document.getElementById('memoryGameSuccess');
+                        if (successEl) successEl.classList.remove('hidden');
+                        speakText("Horeee! Luar biasa, kamu berhasil menemukan semua pasangan kartu! Selamat, kamu dapat sepuluh bintang!");
+                    }
+                } else {
+                    // Salah: tutup kembali setelah jeda singkat
+                    playTone(200, 'sawtooth', 0.15, 0.2);
+                    setTimeout(() => {
+                        c1.classList.remove('flipped', 'bg-white', 'border-purple-500');
+                        c2.classList.remove('flipped', 'bg-white', 'border-purple-500');
+                        c1.querySelector('.card-cover').classList.remove('hidden');
+                        c2.querySelector('.card-cover').classList.remove('hidden');
+                        c1.querySelector('.card-icon').classList.add('hidden');
+                        c2.querySelector('.card-icon').classList.add('hidden');
+                        flippedCards = [];
+                        memoryLocked = false;
+                    }, 850);
+                }
+            }
+        }
+
+
         /* --- INITIALIZATION ON LOAD --- */
         window.addEventListener('DOMContentLoaded', () => {
             // Check for ?admin=1 in URL parameter
@@ -3691,6 +3968,9 @@ Nilai π (phi) = 22/7 (jika r kelipatan 7) atau 3,14.
             initSukuKataList();
             initTKColorsAndShapes();
             initTKAnimals();
+            initTKFruits();
+            initTKHabits();
+            initMemoryGame();
             renderMascots();
             selectGrade(1);
         });

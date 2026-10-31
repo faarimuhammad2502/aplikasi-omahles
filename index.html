@@ -1167,121 +1167,304 @@
                 </button>
             </div>
 
+                        <!-- Header Mata Pelajaran Kurikulum Merdeka -->
+            <div class="flex items-center justify-between px-1 mt-2">
+                <div>
+                    <h3 class="font-heading font-black text-sm text-primary flex items-center gap-1.5">
+                        <span>📚</span>
+                        <span>Mata Pelajaran Utama (Gratis):</span>
+                    </h3>
+                    <p class="text-[11px] text-on-surface-variant">Pilih pelajaran untuk masuk ke Ruang Belajar Mandiri</p>
+                </div>
+                <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full border border-emerald-300">4 Modul Aktif</span>
+            </div>
+
             <!-- 4 Mata Pelajaran Utama -->
             <div class="flex flex-col gap-3 my-2">
                 
-                <!-- 1. Bahasa Indonesia -->
-                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5">
+                <!-- 1. Matematika Dasar -->
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5 hover:border-primary-container transition-all">
                     <div class="flex items-center justify-between">
-                        <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-primary font-heading font-bold text-xs">Bahasa Indonesia</span>
-                        <span class="text-[11px] text-on-surface-variant font-medium">Buku Siswa Merdeka</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-surface-container text-primary-container font-heading font-bold text-xs flex items-center gap-1">
+                            <span>📐</span> Matematika Dasar
+                        </span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-700 font-extrabold px-2 py-0.5 rounded-full">LENGKAP 1-6</span>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-2xl bg-primary-fixed/40 flex items-center justify-center text-2xl shrink-0">
-                            📖
-                        </div>
-                        <div class="min-w-0">
-                            <h3 id="indoTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Membaca & Memahami Teks</h3>
-                            <p class="text-xs text-on-surface-variant truncate">Suku kata, kosakata & dongeng anak</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2 mt-1">
-                        <button onclick="openSubjectDetail('indo')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
-                            <span class="material-symbols-outlined text-[16px]">menu_book</span>
-                            <span>Buka Materi</span>
-                        </button>
-                        <button onclick="speakCurrentSubject('indo')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
-                            <span class="material-symbols-outlined text-[16px] text-primary">volume_up</span>
-                            <span>Dengar Audio</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 2. English for Kids -->
-                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5">
-                    <div class="flex items-center justify-between">
-                        <span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-secondary font-heading font-bold text-xs">English for Kids</span>
-                        <span class="text-[11px] text-secondary font-bold">Phonics & Vocabulary</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-2xl bg-secondary-fixed/40 flex items-center justify-center text-2xl shrink-0">
-                            🇬🇧
-                        </div>
-                        <div class="min-w-0">
-                            <h3 id="inggrisTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Greetings & Numbers</h3>
-                            <p class="text-xs text-on-surface-variant truncate">Percakapan ramah & kosakata bergambar</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2 mt-1">
-                        <button onclick="openSubjectDetail('inggris')" class="btn-clay-secondary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
-                            <span class="material-symbols-outlined text-[16px]">menu_book</span>
-                            <span>Buka Materi</span>
-                        </button>
-                        <button onclick="speakCurrentSubject('inggris')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
-                            <span class="material-symbols-outlined text-[16px] text-secondary">volume_up</span>
-                            <span>Dengar Audio</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 3. IPAS (Sains & Sosial) -->
-                <div id="ipasSubjectCard" class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5">
-                    <div class="flex items-center justify-between">
-                        <span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-tertiary font-heading font-bold text-xs">IPAS (Sains & Sosial)</span>
-                        <span class="text-[11px] text-tertiary font-bold">Eksperimen Seru</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-2xl bg-tertiary-fixed/40 flex items-center justify-center text-2xl shrink-0">
-                            🔬
-                        </div>
-                        <div class="min-w-0">
-                            <h3 id="ipasTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Panca Indra & Alam Sekitar</h3>
-                            <p class="text-xs text-on-surface-variant truncate">Wujud benda, fotosintesis & tata surya</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2 mt-1">
-                        <button onclick="openSubjectDetail('ipas')" class="btn-clay-green py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
-                            <span class="material-symbols-outlined text-[16px]">menu_book</span>
-                            <span>Buka Materi</span>
-                        </button>
-                        <button onclick="speakCurrentSubject('ipas')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
-                            <span class="material-symbols-outlined text-[16px] text-tertiary">volume_up</span>
-                            <span>Dengar Audio</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 4. Matematika Dasar -->
-                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5">
-                    <div class="flex items-center justify-between">
-                        <span class="px-2.5 py-0.5 rounded-full bg-surface-container text-primary-container font-heading font-bold text-xs">Matematika Dasar</span>
-                        <span class="text-[11px] text-primary-container font-bold">Rumus Cepat</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-2xl shrink-0">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl shrink-0 shadow-inner">
                             📐
                         </div>
-                        <div class="min-w-0">
+                        <div class="min-w-0 flex-1">
                             <h3 id="mathTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Hitung Cepat & Bangun Datar</h3>
-                            <p class="text-xs text-on-surface-variant truncate">Penjumlahan, perkalian, pecahan & volume</p>
+                            <p class="text-xs text-on-surface-variant truncate">Penjumlahan, perkalian, pecahan, keliling & volume</p>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mt-1">
-                        <button onclick="openSubjectDetail('math')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 cursor-pointer">
-                            <span class="material-symbols-outlined text-[16px]">menu_book</span>
-                            <span>Buka Materi</span>
+                        <button onclick="openSubjectDetail('math')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">auto_stories</span>
+                            <span>Ruang Belajar</span>
                         </button>
-                        <button onclick="speakCurrentSubject('math')" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
-                            <span class="material-symbols-outlined text-[16px] text-primary">volume_up</span>
-                            <span>Dengar Audio</span>
+                        <button onclick="openSDQuizModal()" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px] text-amber-600">sports_esports</span>
+                            <span>Kuis Cepat</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. IPAS (Sains & Sosial) -->
+                <div id="ipasSubjectCard" class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5 hover:border-emerald-300 transition-all">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-tertiary font-heading font-bold text-xs flex items-center gap-1">
+                            <span>🔬</span> IPAS (Sains & Sosial)
+                        </span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-700 font-extrabold px-2 py-0.5 rounded-full">LENGKAP 1-6</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-tertiary-fixed/40 flex items-center justify-center text-2xl shrink-0 shadow-inner">
+                            🔬
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <h3 id="ipasTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Panca Indra & Alam Sekitar</h3>
+                            <p class="text-xs text-on-surface-variant truncate">Wujud benda, fotosintesis, organ tubuh & tata surya</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-1">
+                        <button onclick="openSubjectDetail('ipas')" class="btn-clay-green py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">auto_stories</span>
+                            <span>Ruang Belajar</span>
+                        </button>
+                        <button onclick="openSDQuizModal()" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px] text-emerald-600">sports_esports</span>
+                            <span>Kuis Cepat</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Bahasa Indonesia -->
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5 hover:border-primary-container transition-all">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-primary font-heading font-bold text-xs flex items-center gap-1">
+                            <span>📖</span> Bahasa Indonesia
+                        </span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-700 font-extrabold px-2 py-0.5 rounded-full">LENGKAP 1-6</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-primary-fixed/40 flex items-center justify-center text-2xl shrink-0 shadow-inner">
+                            📖
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <h3 id="indoTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Membaca & Memahami Teks</h3>
+                            <p class="text-xs text-on-surface-variant truncate">Abjad, suku kata, ide pokok, kalimat aktif & pidato</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-1">
+                        <button onclick="openSubjectDetail('indo')" class="btn-clay-primary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">auto_stories</span>
+                            <span>Ruang Belajar</span>
+                        </button>
+                        <button onclick="openSDQuizModal()" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px] text-primary">sports_esports</span>
+                            <span>Kuis Cepat</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. English for Kids -->
+                <div class="bg-surface-container-lowest p-4 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-2.5 hover:border-secondary transition-all">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-secondary font-heading font-bold text-xs flex items-center gap-1">
+                            <span>🇬🇧</span> English for Kids
+                        </span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-700 font-extrabold px-2 py-0.5 rounded-full">LENGKAP 1-6</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-secondary-fixed/40 flex items-center justify-center text-2xl shrink-0 shadow-inner">
+                            🇬🇧
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <h3 id="inggrisTopicTitle" class="font-heading font-bold text-sm text-on-surface truncate">Greetings & Grammar</h3>
+                            <p class="text-xs text-on-surface-variant truncate">Daily vocabulary, continuous tense & past tense</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-1">
+                        <button onclick="openSubjectDetail('inggris')" class="btn-clay-secondary py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">auto_stories</span>
+                            <span>Ruang Belajar</span>
+                        </button>
+                        <button onclick="openSDQuizModal()" class="btn-clay-surface py-2.5 rounded-xl font-heading font-bold text-xs flex items-center justify-center gap-1 border border-surface-container cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px] text-secondary">sports_esports</span>
+                            <span>Kuis Cepat</span>
                         </button>
                     </div>
                 </div>
 
             </div>
 
+            <!-- MODUL PELAJARAN PRO (COMING SOON) -->
+            <div class="mt-4 pt-3 border-t border-surface-container flex flex-col gap-2.5">
+                <div class="flex items-center justify-between px-1">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-base">💎</span>
+                        <h4 class="font-heading font-black text-xs text-purple-900">Materi Pelajaran Pro (Segera Hadir)</h4>
+                    </div>
+                    <span class="text-[10px] bg-purple-100 text-purple-800 font-bold px-2 py-0.5 rounded-full">Coming Soon</span>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2.5">
+                    <!-- Pro 1: Pendidikan Pancasila (PPKn) -->
+                    <div onclick="showProComingSoonNotice('Pendidikan Pancasila (PPKn)')" class="p-3 rounded-2xl bg-surface-container-low border border-dashed border-purple-300 opacity-80 flex flex-col gap-1.5 cursor-pointer hover:opacity-100 hover:border-purple-500 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl">🦅</span>
+                            <span class="material-symbols-outlined text-[16px] text-purple-600">lock</span>
+                        </div>
+                        <span class="font-heading font-bold text-xs text-on-surface">Pendidikan Pancasila</span>
+                        <span class="text-[10px] text-purple-600 font-medium">Nilai moral & sila Pancasila</span>
+                    </div>
+
+                    <!-- Pro 2: Seni Rupa & Prakarya -->
+                    <div onclick="showProComingSoonNotice('Seni Budaya & Prakarya (SBdP)')" class="p-3 rounded-2xl bg-surface-container-low border border-dashed border-purple-300 opacity-80 flex flex-col gap-1.5 cursor-pointer hover:opacity-100 hover:border-purple-500 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl">🎨</span>
+                            <span class="material-symbols-outlined text-[16px] text-purple-600">lock</span>
+                        </div>
+                        <span class="font-heading font-bold text-xs text-on-surface">Seni Budaya (SBdP)</span>
+                        <span class="text-[10px] text-purple-600 font-medium">Gambar dekoratif & lagu wajib</span>
+                    </div>
+
+                    <!-- Pro 3: Pendidikan Agama & Budi Pekerti -->
+                    <div onclick="showProComingSoonNotice('Pendidikan Agama & Budi Pekerti')" class="p-3 rounded-2xl bg-surface-container-low border border-dashed border-purple-300 opacity-80 flex flex-col gap-1.5 cursor-pointer hover:opacity-100 hover:border-purple-500 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl">🕌</span>
+                            <span class="material-symbols-outlined text-[16px] text-purple-600">lock</span>
+                        </div>
+                        <span class="font-heading font-bold text-xs text-on-surface">Pendidikan Agama</span>
+                        <span class="text-[10px] text-purple-600 font-medium">Doa harian & kisah teladan</span>
+                    </div>
+
+                    <!-- Pro 4: Coding & Literasi Digital Kids -->
+                    <div onclick="showProComingSoonNotice('Coding & Logika Komputer')" class="p-3 rounded-2xl bg-surface-container-low border border-dashed border-purple-300 opacity-80 flex flex-col gap-1.5 cursor-pointer hover:opacity-100 hover:border-purple-500 transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl">💻</span>
+                            <span class="material-symbols-outlined text-[16px] text-purple-600">lock</span>
+                        </div>
+                        <span class="font-heading font-bold text-xs text-on-surface">Coding Anak Pintar</span>
+                        <span class="text-[10px] text-purple-600 font-medium">Logika blok & algoritma seru</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+
         </div>
 
+
+        <!-- ========================================== -->
+        <!-- SCREEN 6: RUANG BELAJAR MANDIRI (FULL PAGE)-->
+        <!-- ========================================== -->
+        <div id="screen-materi" class="screen-view flex-col w-full h-full min-h-screen sm:min-h-[880px] p-5 relative overflow-y-auto">
+            
+            <!-- Top Navigation Bar -->
+            <div class="flex items-center justify-between w-full pb-3 border-b border-surface-container sticky top-0 bg-surface/90 backdrop-blur-md z-20">
+                <button onclick="navigateBackFromMateri()" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface border border-surface-container-high shadow-sm cursor-pointer hover:scale-105 active:scale-95 transition-transform">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </button>
+                <div class="text-center min-w-0 px-2">
+                    <div class="flex items-center justify-center gap-1.5">
+                        <span id="materiSubjectIcon" class="text-lg">📖</span>
+                        <h2 id="materiSubjectName" class="font-heading font-black text-sm text-primary truncate">Bahasa Indonesia</h2>
+                    </div>
+                    <span id="materiGradeBadge" class="text-[11px] text-on-surface-variant font-bold">Kelas 1 SD • Kurikulum Merdeka</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="px-2.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-800 font-extrabold text-xs flex items-center gap-1 shadow-sm">
+                        <span>⭐</span>
+                        <span id="starCounterMateri">0</span>
+                    </div>
+                    <button onclick="speakActiveLesson()" title="Dengarkan Suara Guru" class="w-9 h-9 rounded-full bg-secondary-container text-white flex items-center justify-center shadow-sm cursor-pointer hover:scale-105 active:scale-95 transition-transform">
+                        <span class="material-symbols-outlined text-[18px]">volume_up</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Subject Hero Banner & Progress -->
+            <div class="mt-3 bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100 p-4 rounded-3xl border-2 border-primary-container shadow-sm flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-heading font-extrabold text-primary flex items-center gap-1">
+                        <span>📖</span>
+                        <span id="materiActiveChapterNum">Bab 1 dari 4</span>
+                    </span>
+                    <span id="materiReadStatusBadge" class="text-[10px] bg-emerald-100 text-emerald-800 font-extrabold px-2.5 py-0.5 rounded-full flex items-center gap-1 border border-emerald-300">
+                        <span>✨</span> Sedang Dipelajari
+                    </span>
+                </div>
+                <h3 id="materiLessonTitle" class="font-heading font-black text-base text-on-surface leading-snug">
+                    Memuat materi pembelajaran...
+                </h3>
+                <div class="w-full bg-surface-container rounded-full h-2 overflow-hidden shadow-inner mt-1">
+                    <div id="materiProgressBar" class="bg-gradient-to-r from-primary to-amber-500 h-2 rounded-full transition-all duration-300" style="width: 25%"></div>
+                </div>
+            </div>
+
+            <!-- Daftar Bab Pill Switcher (Daftar Isi Cepat) -->
+            <div class="my-3 flex flex-col gap-1.5">
+                <span class="text-xs font-heading font-bold text-on-surface-variant px-1 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[15px] text-primary">format_list_bulleted</span>
+                    <span>Daftar Bab Pelajaran:</span>
+                </span>
+                <div id="materiChapterPillsList" class="flex items-center gap-1.5 overflow-x-auto pb-1.5 scrollbar-none">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Main Reading Canvas (Reader Mode) -->
+            <div class="bg-surface-container-lowest p-5 rounded-3xl border border-surface-container shadow-sm flex flex-col gap-3.5 my-1">
+                <div class="flex items-center justify-between border-b border-surface-container pb-2">
+                    <span class="text-xs font-heading font-black text-primary flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[18px]">lightbulb</span>
+                        <span>Uraian & Penjelasan Materi:</span>
+                    </span>
+                    <button onclick="speakActiveLesson()" class="text-[11px] font-heading font-bold text-secondary flex items-center gap-0.5 hover:underline cursor-pointer">
+                        <span class="material-symbols-outlined text-[15px]">play_circle</span>
+                        <span>Dengarkan</span>
+                    </button>
+                </div>
+
+                <!-- Content Body -->
+                <div id="materiLessonContent" class="text-xs sm:text-sm text-on-surface leading-relaxed font-medium whitespace-pre-line">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Callout Box: Tips & Cara Cepat Ingat -->
+                <div id="materiTipsBox" class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 flex items-start gap-2.5">
+                    <span class="text-2xl shrink-0">💡</span>
+                    <div class="flex flex-col">
+                        <h5 class="font-heading font-extrabold text-xs text-amber-900">Tips Juara Omah Les:</h5>
+                        <p id="materiTipsText" class="text-xs text-amber-800 leading-snug mt-0.5">
+                            Baca berulang dan coba praktikkan contoh soalnya bersama guru les ya!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson Navigation Footer Buttons -->
+            <div class="pt-3 pb-2 flex flex-col gap-2 mt-auto">
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="btnPrevLesson" onclick="navigateLesson(-1)" class="btn-clay-surface py-3 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 border border-surface-container cursor-pointer">
+                        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                        <span>Bab Sebelumnya</span>
+                    </button>
+                    <button id="btnNextLesson" onclick="navigateLesson(1)" class="btn-clay-primary py-3 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                        <span>Bab Selanjutnya</span>
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </button>
+                </div>
+
+                <button onclick="finishLessonAndGoQuiz()" class="btn-clay-amber w-full py-3 rounded-2xl font-heading font-extrabold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md">
+                    <span class="material-symbols-outlined text-[18px]">sports_esports</span>
+                    <span>Tantangan Kuis Bab Ini (+10 ⭐)</span>
+                </button>
+            </div>
+
+        </div>
 
         <!-- ========================================== -->
         <!-- SCREEN 5: RUANG HADIAH & SERTIFIKAT        -->
@@ -2272,7 +2455,7 @@
         }
 
         function updateStarDisplays() {
-            ['starCounterJenjang', 'starCounterTK', 'starCounterSD', 'starBankAmount', 'certStarTotal'].forEach(id => {
+            ['starCounterJenjang', 'starCounterTK', 'starCounterSD', 'starBankAmount', 'certStarTotal', 'starCounterMateri'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.innerText = userStars;
             });
@@ -3136,64 +3319,7 @@ Nilai π (phi) = 22/7 (jika r kelipatan 7) atau 3,14.
             if (mathItem) document.getElementById('mathTopicTitle').innerText = mathItem.title;
         }
 
-        let activeSubjectModalText = '';
-        function openSubjectDetail(subKey) {
-            playClickSound();
-            const modal = document.getElementById('modalSubjectDetail');
-            const titleEl = document.getElementById('modalSubjectTitle');
-            const subEl = document.getElementById('modalSubjectSub');
-            const bodyEl = document.getElementById('modalSubjectBody');
-            const iconEl = document.getElementById('modalSubjectIcon');
-
-            const icons = { indo: '📖', inggris: '🇬🇧', ipas: '🔬', math: '📐' };
-            const names = { indo: 'Bahasa Indonesia', inggris: 'English for Kids', ipas: 'IPAS (Sains & Sosial)', math: 'Matematika Dasar' };
-
-            iconEl.innerText = icons[subKey] || '📚';
-            titleEl.innerText = `${names[subKey]} - Kelas ${selectedGrade} SD`;
-            subEl.innerText = `Kurikulum Merdeka • Pelajaran Juara`;
-
-            let list = (kurikulumData[subKey] && kurikulumData[subKey][selectedGrade]) ? kurikulumData[subKey][selectedGrade] : [];
-            if (list.length === 0 && subKey === 'ipas' && selectedGrade <= 2) {
-                list = [{ title: "🌱 Mengenal Lingkungan Sekitar", desc: "Pada Kelas 1-2 SD, materi alam dan sosial dikenalkan melalui pengamatan benda hidup (hewan, tanaman) dan anggota keluarga." }];
-            }
-
-            let fullText = '';
-            bodyEl.innerHTML = list.map(item => {
-                fullText += `${item.title}. ${item.desc}\n\n`;
-                return `
-                    <div class="bg-surface-container-low p-4 rounded-2xl border border-surface-container">
-                        <h4 class="font-heading font-bold text-sm text-primary mb-1">${item.title}</h4>
-                        <p class="text-xs text-on-surface-variant leading-relaxed whitespace-pre-line">${item.desc}</p>
-                    </div>
-                `;
-            }).join('');
-
-            activeSubjectModalText = fullText;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeSubjectModal() {
-            playClickSound();
-            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-            const modal = document.getElementById('modalSubjectDetail');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function speakCurrentSubject(subKey) {
-            playClickSound();
-            let list = (kurikulumData[subKey] && kurikulumData[subKey][selectedGrade]) ? kurikulumData[subKey][selectedGrade] : [];
-            if (list.length > 0) {
-                speakText(`${list[0].title}. ${list[0].desc}`);
-            }
-        }
-
-        function speakModalContent() {
-            if (activeSubjectModalText) {
-                speakText(activeSubjectModalText);
-            }
-        }
+        // Old modalSubjectDetail replaced by screen-materi
 
 
         /* --- BANK SOAL KUIS 10 SOAL PER KELAS --- */
@@ -3942,6 +4068,134 @@ Nilai π (phi) = 22/7 (jika r kelipatan 7) atau 3,14.
                     }, 850);
                 }
             }
+        }
+
+
+        /* --- SCREEN MATERI MANDIRI (DEDICATED FULL-PAGE LEARNING) --- */
+        let activeSubjectKey = 'indo';
+        let currentLessonIndex = 0;
+        let currentLessonList = [];
+
+        function openSubjectDetail(subKey) {
+            playClickSound();
+            activeSubjectKey = subKey;
+            currentLessonIndex = 0;
+
+            const icons = { indo: '📖', inggris: '🇬🇧', ipas: '🔬', math: '📐' };
+            const names = { indo: 'Bahasa Indonesia', inggris: 'English for Kids', ipas: 'IPAS (Sains & Sosial)', math: 'Matematika Dasar' };
+
+            document.getElementById('materiSubjectIcon').innerText = icons[subKey] || '📚';
+            document.getElementById('materiSubjectName').innerText = names[subKey] || 'Materi Belajar';
+            document.getElementById('materiGradeBadge').innerText = `Kelas ${selectedGrade} SD • Kurikulum Merdeka`;
+
+            currentLessonList = (kurikulumData[subKey] && kurikulumData[subKey][selectedGrade]) ? kurikulumData[subKey][selectedGrade] : [];
+            
+            if (currentLessonList.length === 0 && subKey === 'ipas' && selectedGrade <= 2) {
+                currentLessonList = [
+                    { 
+                        title: "🌱 Mengenal Lingkungan Sekitar & Alam", 
+                        desc: "Pada Kelas 1-2 SD, materi alam dan sosial dikenalkan melalui pengamatan lingkungan nyata di sekitar rumah dan sekolah.\n\n• Mengamati benda hidup: Hewan peliharaan dan tanaman hias di taman.\n• Mengamati benda mati: Meja, kursi, pensil, dan buku tulis.\n• Interaksi sosial: Menghormati orang tua, guru, dan menyayangi teman les." 
+                    }
+                ];
+            }
+
+            renderChapterPills();
+            renderActiveLessonContent();
+            navigateTo('screen-materi');
+            addStars(2); // Bonus membuka modul belajar
+        }
+
+        function renderChapterPills() {
+            const container = document.getElementById('materiChapterPillsList');
+            if (!container) return;
+            container.innerHTML = currentLessonList.map((item, idx) => {
+                const isActive = idx === currentLessonIndex;
+                const activeClass = isActive ? 'bg-primary text-white shadow-md font-black scale-105' : 'bg-surface-container text-on-surface-variant font-bold hover:bg-surface-container-high';
+                return `
+                    <button type="button" onclick="selectLessonIndex(${idx})" class="py-1.5 px-3 rounded-xl ${activeClass} text-xs whitespace-nowrap transition-all cursor-pointer">
+                        Bab ${idx + 1}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectLessonIndex(idx) {
+            playClickSound();
+            currentLessonIndex = idx;
+            renderChapterPills();
+            renderActiveLessonContent();
+        }
+
+        function renderActiveLessonContent() {
+            if (!currentLessonList || currentLessonList.length === 0) return;
+            const lesson = currentLessonList[currentLessonIndex];
+            if (!lesson) return;
+
+            document.getElementById('materiActiveChapterNum').innerText = `Bab ${currentLessonIndex + 1} dari ${currentLessonList.length}`;
+            document.getElementById('materiLessonTitle').innerText = lesson.title;
+            document.getElementById('materiLessonContent').innerText = lesson.desc;
+
+            // Progress Bar
+            const percent = Math.round(((currentLessonIndex + 1) / currentLessonList.length) * 100);
+            const pb = document.getElementById('materiProgressBar');
+            if (pb) pb.style.width = `${percent}%`;
+
+            // Tips Callout
+            const tipsEl = document.getElementById('materiTipsText');
+            if (tipsEl) {
+                const tipsArray = [
+                    "Baca perlahan dan perhatikan contoh di atas ya!",
+                    "Catat rumus atau kata-kata penting di buku tulismu agar tidak lupa.",
+                    "Praktikkan bersama Ayah, Bunda, atau Guru lesmu!",
+                    "Setelah paham, uji kemampuanmu dengan kuis bintang di bawah!"
+                ];
+                tipsEl.innerText = tipsArray[currentLessonIndex % tipsArray.length];
+            }
+
+            // Prev / Next button state
+            const prevBtn = document.getElementById('btnPrevLesson');
+            const nextBtn = document.getElementById('btnNextLesson');
+            if (prevBtn) prevBtn.style.opacity = currentLessonIndex === 0 ? '0.5' : '1';
+            if (nextBtn) nextBtn.style.opacity = currentLessonIndex === currentLessonList.length - 1 ? '0.5' : '1';
+        }
+
+        function navigateLesson(dir) {
+            playClickSound();
+            const targetIdx = currentLessonIndex + dir;
+            if (targetIdx >= 0 && targetIdx < currentLessonList.length) {
+                currentLessonIndex = targetIdx;
+                renderChapterPills();
+                renderActiveLessonContent();
+                speakActiveLesson();
+            }
+        }
+
+        function speakActiveLesson() {
+            if (!currentLessonList || currentLessonList.length === 0) return;
+            const lesson = currentLessonList[currentLessonIndex];
+            if (lesson) {
+                // Bacakan judul dan intisari kalimat pertama
+                const firstSentence = lesson.desc.split('\n')[0];
+                speakText(`${lesson.title}. ${firstSentence}`);
+            }
+        }
+
+        function finishLessonAndGoQuiz() {
+            playRewardFanfare();
+            addStars(5);
+            openSDQuizModal();
+        }
+
+        function navigateBackFromMateri() {
+            playClickSound();
+            navigateTo('screen-sd');
+        }
+
+        function showProComingSoonNotice(subjectName) {
+            playClickSound();
+            playTone(350, 'sine', 0.15, 0.15);
+            alert(`💎 Modul ${subjectName} (Versi Pro)\n\nModul ini sedang disiapkan khusus oleh tim Omah Les dan akan segera hadir di pembaruan berikutnya!\n\nTerus kumpulkan Bintang Prestasimu yaa! ⭐`);
+            speakText(`Modul ${subjectName} versi Pro segera hadir!`);
         }
 
 
